@@ -7,18 +7,18 @@
   
   <title>关于Spring Boot配置文件简介 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. YAML语言1.1 简介YAML是”YAML Ain’t a Markup Language”（YAML不是一种标记语言）的递归缩写，文件名以.yml结尾。 1.2 基本语法1. `key: value`表示一对键值对（冒号后面必须要有一个空格）。 2. `key`和`value`大小写敏感。 3. 使用空格缩进，不允许使用Tab键缩进，缩进表示层级关系，缩进的空格数量无要求（一般空两格），">
+  <meta name="description" content="1. YAML语言1.1 简介YAML是”YAML Ain’t a Markup Language”（YAML不是一种标记语言）的递归缩写，文件名以.yml结尾。 1.2 基本语法 key: value表示一对键值对（冒号后面必须要有一个空格）。 key和value大小写敏感。 使用空格缩进，不允许使用Tab键缩进，缩进表示层级关系，缩进的空格数量无要求（一般空两格），但同一层级要对齐。 使用#进">
 <meta name="keywords" content="Spring Boot,YAML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Spring Boot配置文件简介">
 <meta property="og:url" content="http://yoursite.com/2019/03/22/关于Spring-Boot配置文件简介/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1. YAML语言1.1 简介YAML是”YAML Ain’t a Markup Language”（YAML不是一种标记语言）的递归缩写，文件名以.yml结尾。 1.2 基本语法1. `key: value`表示一对键值对（冒号后面必须要有一个空格）。 2. `key`和`value`大小写敏感。 3. 使用空格缩进，不允许使用Tab键缩进，缩进表示层级关系，缩进的空格数量无要求（一般空两格），">
+<meta property="og:description" content="1. YAML语言1.1 简介YAML是”YAML Ain’t a Markup Language”（YAML不是一种标记语言）的递归缩写，文件名以.yml结尾。 1.2 基本语法 key: value表示一对键值对（冒号后面必须要有一个空格）。 key和value大小写敏感。 使用空格缩进，不允许使用Tab键缩进，缩进表示层级关系，缩进的空格数量无要求（一般空两格），但同一层级要对齐。 使用#进">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-22T13:13:08.808Z">
+<meta property="og:updated_time" content="2019-03-27T08:31:43.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Spring Boot配置文件简介">
-<meta name="twitter:description" content="1. YAML语言1.1 简介YAML是”YAML Ain’t a Markup Language”（YAML不是一种标记语言）的递归缩写，文件名以.yml结尾。 1.2 基本语法1. `key: value`表示一对键值对（冒号后面必须要有一个空格）。 2. `key`和`value`大小写敏感。 3. 使用空格缩进，不允许使用Tab键缩进，缩进表示层级关系，缩进的空格数量无要求（一般空两格），">
+<meta name="twitter:description" content="1. YAML语言1.1 简介YAML是”YAML Ain’t a Markup Language”（YAML不是一种标记语言）的递归缩写，文件名以.yml结尾。 1.2 基本语法 key: value表示一对键值对（冒号后面必须要有一个空格）。 key和value大小写敏感。 使用空格缩进，不允许使用Tab键缩进，缩进表示层级关系，缩进的空格数量无要求（一般空两格），但同一层级要对齐。 使用#进">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -88,11 +88,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="1-YAML语言"><a href="#1-YAML语言" class="headerlink" title="1. YAML语言"></a>1. YAML语言</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><p>YAML是”YAML Ain’t a Markup Language”（YAML不是一种标记语言）的递归缩写，文件名以<code>.yml</code>结尾。</p>
-<h3 id="1-2-基本语法"><a href="#1-2-基本语法" class="headerlink" title="1.2 基本语法"></a>1.2 基本语法</h3><pre><code>1. `key: value`表示一对键值对（冒号后面必须要有一个空格）。
-2. `key`和`value`大小写敏感。
-3. 使用空格缩进，不允许使用Tab键缩进，缩进表示层级关系，缩进的空格数量无要求（一般空两格），但同一层级要对齐。
-4. 使用`#`进行注释，从这个字符一直到行尾都会被解析器忽略。
-</code></pre><h3 id="1-3-示例"><a href="#1-3-示例" class="headerlink" title="1.3 示例"></a>1.3 示例</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#emp的数据配置</span></span><br><span class="line"><span class="attr">emp:</span></span><br><span class="line"><span class="attr">  lastName:</span> <span class="string">Tom</span></span><br><span class="line"><span class="attr">  age:</span> <span class="number">22</span></span><br><span class="line"><span class="attr">  salary:</span> <span class="number">10000</span></span><br><span class="line"><span class="attr">  boss:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  birthday:</span> <span class="number">1997</span><span class="string">/08/20</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-2-基本语法"><a href="#1-2-基本语法" class="headerlink" title="1.2 基本语法"></a>1.2 基本语法</h3><ol>
+<li><code>key: value</code>表示一对键值对（冒号后面必须要有一个空格）。</li>
+<li><code>key</code>和<code>value</code>大小写敏感。</li>
+<li>使用空格缩进，不允许使用Tab键缩进，缩进表示层级关系，缩进的空格数量无要求（一般空两格），但同一层级要对齐。</li>
+<li>使用<code>#</code>进行注释，从这个字符一直到行尾都会被解析器忽略。</li>
+</ol>
+<h3 id="1-3-示例"><a href="#1-3-示例" class="headerlink" title="1.3 示例"></a>1.3 示例</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#emp的数据配置</span></span><br><span class="line"><span class="attr">emp:</span></span><br><span class="line"><span class="attr">  lastName:</span> <span class="string">Tom</span></span><br><span class="line"><span class="attr">  age:</span> <span class="number">22</span></span><br><span class="line"><span class="attr">  salary:</span> <span class="number">10000</span></span><br><span class="line"><span class="attr">  boss:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  birthday:</span> <span class="number">1997</span><span class="string">/08/20</span></span><br></pre></td></tr></table></figure>
 <h2 id="2-Spring-Boot配置文件"><a href="#2-Spring-Boot配置文件" class="headerlink" title="2. Spring Boot配置文件"></a>2. Spring Boot配置文件</h2><h3 id="2-1-全局配置文件"><a href="#2-1-全局配置文件" class="headerlink" title="2.1 全局配置文件"></a>2.1 全局配置文件</h3><ul>
 <li><p>可以使用<code>.properties</code>文件配置，命名为<code>application.properties</code>。</p>
 </li>
@@ -112,7 +114,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/22/关于Spring-Boot配置文件简介/" data-id="cjtqxb8jz0000t4rcg391ceh9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/22/关于Spring-Boot配置文件简介/" data-id="cjtqyahv60001cgrc8g4ctjhj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/YAML/">YAML</a></li></ul>
