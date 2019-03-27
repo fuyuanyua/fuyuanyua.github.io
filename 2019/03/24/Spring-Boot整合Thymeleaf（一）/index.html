@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1. 迭代集合数据1.1 简介 使用th:each进行迭代，th:each作用在哪个标签上，就会对应的根据他的值迭代多少次。  th:each后可取两个值：  use：第一个值，代表每次迭代出的对象，名字任意取。  iterStat：第二个值，代表每次迭代器的内置对象，名字任意取，并有以下属性：  index：当前迭代下标从0开始。  count：当前迭代下标从1开始。  size：获取总记录数。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-27T08:01:04.350Z">
+<meta property="og:updated_time" content="2019-03-27T08:26:42.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot整合Thymeleaf（一）">
 <meta name="twitter:description" content="1. 迭代集合数据1.1 简介 使用th:each进行迭代，th:each作用在哪个标签上，就会对应的根据他的值迭代多少次。  th:each后可取两个值：  use：第一个值，代表每次迭代出的对象，名字任意取。  iterStat：第二个值，代表每次迭代器的内置对象，名字任意取，并有以下属性：  index：当前迭代下标从0开始。  count：当前迭代下标从1开始。  size：获取总记录数。">
@@ -147,17 +147,17 @@
 <h3 id="2-2-th-if用法"><a href="#2-2-th-if用法" class="headerlink" title="2.2 th:if用法"></a>2.2 <code>th:if</code>用法</h3><p>示例：假设以下代码<code>userList</code>不为空</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">th:if</span>=<span class="string">"not $&#123;#lists.isEmpty(userList)&#125;"</span>&gt;</span>显示内容<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>结果：在网页上显示“显示内容”这四个字。</p>
-<p>分析：<code>${&amp;#35;lists.isEmpty(userList)}</code>返回值为<code>false</code>，则<code>not ${&amp;#35;lists.isEmpty(userList)}</code>返回值为<code>true</code>，故显示标签内容。</p>
+<p>分析：<strong><em>${&#35;lists.isEmpty(userList)}</em></strong>返回值为<code>false</code>，则<strong><em>not ${&#35;lists.isEmpty(userList)}</em></strong>返回值为<code>true</code>，故显示标签内容。</p>
 <h3 id="2-3-th-unless用法"><a href="#2-3-th-unless用法" class="headerlink" title="2.3 th:unless用法"></a>2.3 <code>th:unless</code>用法</h3><p>实例：假设以下代码<code>userList</code>不为空</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">th:unless</span>=<span class="string">"$&#123;#lists.isEmpty(userList)&#125;"</span>&gt;</span>显示内容<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>结果：在网页上显示“显示内容”这四个字。</p>
-<p>分析：<code>${&amp;#35;lists.isEmpty(userList)}</code>返回值为<code>false</code>，故显示标签内容。</p>
+<p>分析：<strong><em>${&#35;lists.isEmpty(userList)}</em></strong>返回值为<code>false</code>，故显示标签内容。</p>
 <p>未完待续~~</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/24/Spring-Boot整合Thymeleaf（一）/" data-id="cjtmq3qqe0000ygrcuyd3jbr4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/24/Spring-Boot整合Thymeleaf（一）/" data-id="cjtqxb8k40001t4rc3zdlkwg8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li></ul>
