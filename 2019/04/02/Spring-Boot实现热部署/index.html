@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Spring Boot实现热部署 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. Spring Boot实现项目的热部署1.1 简介Spring Boot项目的热部署，按照我的理解，就是在修改代码后，无须重新启动服务器，只需要重新Build Project，然后刷新网页，就可以立即在网页查看到修改后的变化。 1.2 在配置文件中禁用模板缓存如果不禁用缓存，那么因为有网页的缓存，变化无法实时获取，所以在配置文件application.properties或者applicat">
+<meta name="keywords" content="Spring Boot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot实现热部署">
+<meta property="og:url" content="http://yoursite.com/2019/04/02/Spring-Boot实现热部署/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. Spring Boot实现项目的热部署1.1 简介Spring Boot项目的热部署，按照我的理解，就是在修改代码后，无须重新启动服务器，只需要重新Build Project，然后刷新网页，就可以立即在网页查看到修改后的变化。 1.2 在配置文件中禁用模板缓存如果不禁用缓存，那么因为有网页的缓存，变化无法实时获取，所以在配置文件application.properties或者applicat">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-02T03:18:04.079Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Boot实现热部署">
+<meta name="twitter:description" content="1. Spring Boot实现项目的热部署1.1 简介Spring Boot项目的热部署，按照我的理解，就是在修改代码后，无须重新启动服务器，只需要重新Build Project，然后刷新网页，就可以立即在网页查看到修改后的变化。 1.2 在配置文件中禁用模板缓存如果不禁用缓存，那么因为有网页的缓存，变化无法实时获取，所以在配置文件application.properties或者applicat">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Spring-Boot实现热部署" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/02/Spring-Boot实现热部署/" class="article-date">
+  <time datetime="2019-04-02T02:51:07.000Z" itemprop="datePublished">2019-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring Boot实现热部署
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Spring-Boot实现项目的热部署"><a href="#1-Spring-Boot实现项目的热部署" class="headerlink" title="1. Spring Boot实现项目的热部署"></a>1. Spring Boot实现项目的热部署</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><p>Spring Boot项目的热部署，按照我的理解，就是在修改代码后，无须重新启动服务器，只需要重新Build Project，然后刷新网页，就可以立即在网页查看到修改后的变化。</p>
+<h3 id="1-2-在配置文件中禁用模板缓存"><a href="#1-2-在配置文件中禁用模板缓存" class="headerlink" title="1.2 在配置文件中禁用模板缓存"></a>1.2 在配置文件中禁用模板缓存</h3><p>如果不禁用缓存，那么因为有网页的缓存，变化无法实时获取，所以在配置文件<code>application.properties</code>或者<code>application,yml</code>中禁用Thymeleaf模板缓存，下面以<code>application.properties</code>配置文件为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 开发中推荐关闭thymeleaf的缓存，可以实现热部署</span><br><span class="line">spring.thymeleaf.cache=false</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-在pom-xml文件中引入依赖"><a href="#1-3-在pom-xml文件中引入依赖" class="headerlink" title="1.3 在pom.xml文件中引入依赖"></a>1.3 在<code>pom.xml</code>文件中引入依赖</h3><p>在<code>pom.xml</code>文件中引入热部署依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 热部署依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-4-实现"><a href="#1-4-实现" class="headerlink" title="1.4 实现"></a>1.4 实现</h3><p>按IDEA快捷键 <strong>ctrl+F9</strong> 进行Build Project，无须重新启动服务器，然后刷新网页即可实现项目的热部署。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/02/Spring-Boot实现热部署/" data-id="cjtz7r0mu0003ncrcaxvcoghh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/31/Spring-Boot整合Thymeleaf（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Spring Boot整合Thymeleaf（二）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Spring-Boot/" style="font-size: 20px;">Spring Boot</a> <a href="/tags/Thymeleaf/" style="font-size: 15px;">Thymeleaf</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/02/Spring-Boot实现热部署/">Spring Boot实现热部署</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/31/Spring-Boot整合Thymeleaf（二）/">Spring Boot整合Thymeleaf（二）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/24/Spring-Boot整合Thymeleaf（一）/">Spring Boot整合Thymeleaf（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/22/关于Spring-Boot配置文件简介/">关于Spring Boot配置文件简介</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
