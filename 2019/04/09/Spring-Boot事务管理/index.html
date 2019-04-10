@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Spring Boot事务管理 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 事务管理1.1 简介事务是应用程序中一系列严密的操作，所有操作必须成功完成，否则在每个操作中所作的所有更改都会被撤消。也就是事务具有原子性，一个事务中的一系列的操作要么全部成功，要么一个都不做。事务的结束有两种，当事务中的所以步骤全部成功执行时，事务提交。如果其中一个步骤失败，将发生回滚操作，撤消撤消之前到事务开始时的所以操作。在Spring Boot中，使用了spring-boot-sta">
+<meta name="keywords" content="Spring Boot,事务管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot事务管理">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/Spring-Boot事务管理/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. 事务管理1.1 简介事务是应用程序中一系列严密的操作，所有操作必须成功完成，否则在每个操作中所作的所有更改都会被撤消。也就是事务具有原子性，一个事务中的一系列的操作要么全部成功，要么一个都不做。事务的结束有两种，当事务中的所以步骤全部成功执行时，事务提交。如果其中一个步骤失败，将发生回滚操作，撤消撤消之前到事务开始时的所以操作。在Spring Boot中，使用了spring-boot-sta">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-10T06:18:54.609Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Boot事务管理">
+<meta name="twitter:description" content="1. 事务管理1.1 简介事务是应用程序中一系列严密的操作，所有操作必须成功完成，否则在每个操作中所作的所有更改都会被撤消。也就是事务具有原子性，一个事务中的一系列的操作要么全部成功，要么一个都不做。事务的结束有两种，当事务中的所以步骤全部成功执行时，事务提交。如果其中一个步骤失败，将发生回滚操作，撤消撤消之前到事务开始时的所以操作。在Spring Boot中，使用了spring-boot-sta">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Spring-Boot事务管理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/09/Spring-Boot事务管理/" class="article-date">
+  <time datetime="2019-04-09T10:30:59.000Z" itemprop="datePublished">2019-04-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring Boot事务管理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-事务管理"><a href="#1-事务管理" class="headerlink" title="1. 事务管理"></a>1. 事务管理</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><p>事务是应用程序中一系列严密的操作，所有操作必须成功完成，否则在每个操作中所作的所有更改都会被撤消。也就是事务具有原子性，一个事务中的一系列的操作要么全部成功，要么一个都不做。<br>事务的结束有两种，当事务中的所以步骤全部成功执行时，事务提交。如果其中一个步骤失败，将发生回滚操作，撤消撤消之前到事务开始时的所以操作。<br>在Spring Boot中，使用了<code>spring-boot-starter-jdbc</code>或者<code>spring-boot-starter-data-jpa</code>依赖时，框架会自动默认注入<code>DataSourceTransactionManager</code>或者<code>jpaTransactionManager</code>。所以我们不需要任何额外配置就可以用<code>@Transactional</code>注解进行事务的使用。</p>
+<h3 id="1-2-事务管理步骤"><a href="#1-2-事务管理步骤" class="headerlink" title="1.2 事务管理步骤"></a>1.2 事务管理步骤</h3><ol>
+<li><p>在启动类中，使用<code>@EnableTransactionManagement</code>开启注解方式事务管理支持。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableTransactionManagement</span> <span class="comment">//开启注解方式事务支持</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBoot08DataJpaApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringBoot08DataJpaApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="2">
+<li><p>在Service层方法上使用<code>@Transactional</code>注解。</p>
+<ul>
+<li><p><code>@Transactional</code>也可直接注解在类上，这样默认该类下所有方法都开启事务注解。</p>
+</li>
+<li><p>但实际中一般只对 <strong>增</strong>、<strong>删</strong>、<strong>改</strong> 进行事务管理，不对 <strong>查</strong> 进行事务管理，所以注解在方法上。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-3-注意"><a href="#1-3-注意" class="headerlink" title="1.3 注意"></a>1.3 注意</h3><ol>
+<li><p><code>application.yml</code>配置文件</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://localhost:3306/jpa?serverTimezone=GMT%2B8</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># jpa相关配置</span></span><br><span class="line"><span class="attr">  jpa:</span></span><br><span class="line"><span class="attr">    hibernate:</span></span><br><span class="line">      <span class="comment"># 会根据映射实体类自动创建会更新数据表</span></span><br><span class="line"><span class="attr">      ddl-auto:</span> <span class="string">update</span></span><br><span class="line">    <span class="comment"># 控制台打印sql语句</span></span><br><span class="line"><span class="attr">    show-sql:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果使用 JPA（Java Persistence API），hibernate在自动创建表时，创建的表引擎是 <strong>MyISAM</strong>，是非事务安全的，无法实现事务回滚。需要指定 <strong>InnoDB</strong> 引擎才可以进行事务管理。</p>
+</li>
+<li><p>在<code>application.yml</code>配置文件中添加配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://localhost:3306/jpa?serverTimezone=GMT%2B8</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># jpa相关配置</span></span><br><span class="line"><span class="attr">  jpa:</span></span><br><span class="line"><span class="attr">    hibernate:</span></span><br><span class="line">      <span class="comment"># 会根据映射实体类自动创建会更新数据表</span></span><br><span class="line"><span class="attr">      ddl-auto:</span> <span class="string">update</span></span><br><span class="line">    <span class="comment"># 控制台打印sql语句</span></span><br><span class="line"><span class="attr">    show-sql:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 指定表的引擎为InnoDB，如果不指定，则默认表引擎为MyISAM,MyISAM是不支持事务管理的</span></span><br><span class="line"><span class="attr">    database-platform:</span> <span class="string">org.hibernate.dialect.MySQL57Dialect</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="2-事务的隔离级别"><a href="#2-事务的隔离级别" class="headerlink" title="2. 事务的隔离级别"></a>2. 事务的隔离级别</h2><h3 id="2-1-脏读、不可重复读和幻读"><a href="#2-1-脏读、不可重复读和幻读" class="headerlink" title="2.1 脏读、不可重复读和幻读"></a>2.1 脏读、不可重复读和幻读</h3><ol>
+<li>脏读：A事务执行过程中修改了id=1的数据，未提交前，B事务读取了A事务修改的id=1的数据，而这时A事务却回滚了，这样B事务就形成了脏读。</li>
+<li>不可重复读：A事务先读取了一条数据，然后执行逻辑，这时B事务将这条数据改变了，然后A事务再次读取这条数据，发现数据不匹配了，这就是不可重复读。</li>
+<li>幻读：A事务先根据条件查询到了N调数据，然后这时B事务新增了M条符合A事务查询条件的数据，A事务再次查询时发现有N+M条数据了，就产生了幻读。</li>
+</ol>
+<h3 id="2-2-隔离级别"><a href="#2-2-隔离级别" class="headerlink" title="2.2 隔离级别"></a>2.2 隔离级别</h3><p>数据库事务的隔离级别有4个，由低到高依次为Read uncommitted 、Read committed 、Repeatable read 、Serializable ，这四个级别可以逐个解决脏读 、不可重复读 、幻读这几类问题。</p>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read uncommitted（读未提交）</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Read committed（读提交）</td>
+<td>×</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Repeatable read（重复读）</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Serializable（序列化）</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-3-源码"><a href="#2-3-源码" class="headerlink" title="2.3 源码"></a>2.3 源码</h3><p>查看<code>org.springframework.transaction.annotation</code>包中的枚举类<code>Isolation</code>定义了五个表示隔离级别的值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.springframework.transaction.annotation;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Isolation &#123;</span><br><span class="line">    DEFAULT(-<span class="number">1</span>),</span><br><span class="line">    READ_UNCOMMITTED(<span class="number">1</span>),</span><br><span class="line">    READ_COMMITTED(<span class="number">2</span>),</span><br><span class="line">    REPEATABLE_READ(<span class="number">4</span>),</span><br><span class="line">    SERIALIZABLE(<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Isolation</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">value</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>DEFAULT：默认值，表示使用底层数据库的默认隔离级别，大多数数据库的默认隔离级别是READ_COMMITTED。</li>
+<li>READ_UNCOMMITTED：通常很少使用该隔离级别，因为避免不了脏读、不可重复读和幻读。</li>
+<li><strong>READ_COMMITTED：可以防止脏读，也是大多数数据库的默认隔离级别，比如SQL Server , Oracle，性能最好。</strong></li>
+<li>REPEATABLE_READ：可以避免脏读和不可重复读，是MySQL的默认隔离级别。四</li>
+<li>SERIALIZABLE：可以避免脏读、不可重复读和幻读，但严重影响程序性能，通常不会用到该级别。</li>
+</ol>
+<h3 id="2-4-指定隔离级别"><a href="#2-4-指定隔离级别" class="headerlink" title="2.4 指定隔离级别"></a>2.4 指定隔离级别</h3><p>在<code>@Transactional</code>注解上设置属性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span>(isolation = Isolation.DEFAULT) </span><br><span class="line">   <span class="comment">//当前方法开启事务管理</span></span><br><span class="line">   <span class="comment">//isolation指定隔离级别，当前指定为默认</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-事务的传播行为"><a href="#3-事务的传播行为" class="headerlink" title="3. 事务的传播行为"></a>3. 事务的传播行为</h2><h3 id="3-1-源码"><a href="#3-1-源码" class="headerlink" title="3.1 源码"></a>3.1 源码</h3><p>查看<code>org.springframework.transaction.annotation</code>包中的枚举类<code>Propagation</code>定义了七个表示传播行为的值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.springframework.transaction.annotation;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Propagation &#123;</span><br><span class="line">    REQUIRED(<span class="number">0</span>),</span><br><span class="line">    SUPPORTS(<span class="number">1</span>),</span><br><span class="line">    MANDATORY(<span class="number">2</span>),</span><br><span class="line">    REQUIRES_NEW(<span class="number">3</span>),</span><br><span class="line">    NOT_SUPPORTED(<span class="number">4</span>),</span><br><span class="line">    NEVER(<span class="number">5</span>),</span><br><span class="line">    NESTED(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Propagation</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">value</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>REQUIRED：支持当前事务，如果当前没有事务，就新建一个事务。<br>如果A方法有事务，那么B方法就使用A方法的事务。<br>如果A方法没有事务，那么B方法就创建一个新事物。<br><strong>是Spring提供的默认事务传播行为，适合绝大数情况。</strong></p>
+</li>
+<li><p>SUPPORTS：支持当前事务，如果当前没有事务，就以非事务方式执行。<br>如果A方法有事务，那么B方法就使用A方法的事务。<br>如果A方法没有事务，那么B方法就不使用事务的方式执行</p>
+</li>
+<li><p>MANDATORY：支持当前事务，如果当前没有事务，就抛出异常。<br>如果A方法有事务，那么A方法就使用A方法事务。<br>如果A方法没有事务，那么就抛出异常。<br><strong>该事务传播行为要求A方法必须以事务的方式运行。</strong></p>
+</li>
+<li><p>REQUIRES_NEW：新建事务，如果当前存在事务，把当前事务挂起。<br>如果A方法有事务，就把A方法的事务挂起，B方法新创建一个事务。<br>如果A方法没有事务，那么B方法就创建一个新事务。</p>
+</li>
+<li><p>NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。<br>如果A方法有事务，那么就把A方法的事务挂起，B方法以非事务的方式执行。<br>如果A方法没有事务，那么B也不使用事务执行。</p>
+</li>
+<li><p>NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。<br>如果方法A有事务，那么就抛出异常。<br>如果方法A没有事务，那么B方法就以非事务的方式运行。</p>
+</li>
+<li><p>NESTED：如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则进行与PROPAGATION_REQUIRED类似的。<br>如果A方法有事务，那么B方法就在A方法的事务中使用嵌套事务。<br>如果A方法没有事务，那么方法B就新创建一个事务。</p>
+</li>
+</ol>
+<h3 id="3-2-指定传播行为"><a href="#3-2-指定传播行为" class="headerlink" title="3.2 指定传播行为"></a>3.2 指定传播行为</h3><p>在<code>@Transactional</code>注解上设置属性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span>(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED )</span><br><span class="line"><span class="comment">//当前方法开启事务管理</span></span><br><span class="line"><span class="comment">//isolation指定隔离级别，当前指定为默认</span></span><br><span class="line"><span class="comment">//propagation指定传播行为，当前指定为默认</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/09/Spring-Boot事务管理/" data-id="cjuataby10005ccrcx2enjjxb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/事务管理/">事务管理</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/04/配置Druid数据库连接池/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">配置Druid数据库连接池</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Druid/">Druid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事务管理/">事务管理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Druid/" style="font-size: 10px;">Druid</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/Spring-Boot/" style="font-size: 20px;">Spring Boot</a> <a href="/tags/Thymeleaf/" style="font-size: 15px;">Thymeleaf</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/事务管理/" style="font-size: 10px;">事务管理</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/09/Spring-Boot事务管理/">Spring Boot事务管理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/04/配置Druid数据库连接池/">配置Druid数据库连接池</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/03/Spring-Boot嵌入式Servlet容器/">Spring Boot嵌入式Servlet容器</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/02/Spring-Boot中pom文件的依赖配置/">Spring Boot中pom文件的依赖配置</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/02/Spring-Boot实现热部署/">Spring Boot实现热部署</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
