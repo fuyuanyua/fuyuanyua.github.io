@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1. 事务管理1.1 简介事务是应用程序中一系列严密的操作，所有操作必须成功完成，否则在每个操作中所作的所有更改都会被撤消。也就是事务具有原子性，一个事务中的一系列的操作要么全部成功，要么一个都不做。事务的结束有两种，当事务中的所以步骤全部成功执行时，事务提交。如果其中一个步骤失败，将发生回滚操作，撤消撤消之前到事务开始时的所以操作。在Spring Boot中，使用了spring-boot-sta">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-10T06:18:54.609Z">
+<meta property="og:updated_time" content="2019-04-10T06:23:59.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot事务管理">
 <meta name="twitter:description" content="1. 事务管理1.1 简介事务是应用程序中一系列严密的操作，所有操作必须成功完成，否则在每个操作中所作的所有更改都会被撤消。也就是事务具有原子性，一个事务中的一系列的操作要么全部成功，要么一个都不做。事务的结束有两种，当事务中的所以步骤全部成功执行时，事务提交。如果其中一个步骤失败，将发生回滚操作，撤消撤消之前到事务开始时的所以操作。在Spring Boot中，使用了spring-boot-sta">
@@ -161,7 +161,7 @@
 <li>DEFAULT：默认值，表示使用底层数据库的默认隔离级别，大多数数据库的默认隔离级别是READ_COMMITTED。</li>
 <li>READ_UNCOMMITTED：通常很少使用该隔离级别，因为避免不了脏读、不可重复读和幻读。</li>
 <li><strong>READ_COMMITTED：可以防止脏读，也是大多数数据库的默认隔离级别，比如SQL Server , Oracle，性能最好。</strong></li>
-<li>REPEATABLE_READ：可以避免脏读和不可重复读，是MySQL的默认隔离级别。四</li>
+<li>REPEATABLE_READ：可以避免脏读和不可重复读，是MySQL的默认隔离级别。</li>
 <li>SERIALIZABLE：可以避免脏读、不可重复读和幻读，但严重影响程序性能，通常不会用到该级别。</li>
 </ol>
 <h3 id="2-4-指定隔离级别"><a href="#2-4-指定隔离级别" class="headerlink" title="2.4 指定隔离级别"></a>2.4 指定隔离级别</h3><p>在<code>@Transactional</code>注解上设置属性：</p>
@@ -190,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/09/Spring-Boot事务管理/" data-id="cjuataby10005ccrcx2enjjxb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/09/Spring-Boot事务管理/" data-id="cjuatvvy8000rdcrct80xsgy8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/事务管理/">事务管理</a></li></ul>
