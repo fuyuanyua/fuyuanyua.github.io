@@ -111,10 +111,10 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MapperScan</span>(<span class="string">"com.example.springboot.mapper"</span>)</span><br><span class="line"><span class="comment">//扫描该包下的所有Mapper自动装到容器当中，而不用在各Mapper上加上注解@Mapper</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBoot08DataMybatisApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringBoot08DataMybatisApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="1-5-创建MyBatis核心配置文件"><a href="#1-5-创建MyBatis核心配置文件" class="headerlink" title="1.5 创建MyBatis核心配置文件"></a>1.5 创建MyBatis核心配置文件</h3><p>在resources目录下新建mybatis目录，在该目录下创建<code>mybatis-config.xml</code>，这便是MyBatis核心配置文件，文件编写参考官方文档：<a href="http://www.mybatis.org/mybatis-3/zh/getting-started.html。我在这仅仅配置了开启了自动驼峰命名规则映射。" target="_blank" rel="noopener">http://www.mybatis.org/mybatis-3/zh/getting-started.html。我在这仅仅配置了开启了自动驼峰命名规则映射。</a></p>
+<h3 id="1-5-创建MyBatis核心配置文件"><a href="#1-5-创建MyBatis核心配置文件" class="headerlink" title="1.5 创建MyBatis核心配置文件"></a>1.5 创建MyBatis核心配置文件</h3><p>在resources目录下新建mybatis目录，在该目录下创建<code>mybatis-config.xml</code>，这便是MyBatis核心配置文件，我在这仅仅配置了开启自动驼峰命名规则映射，文件编写参考官方文档：<a href="http://www.mybatis.org/mybatis-3/zh/getting-started.html" target="_blank" rel="noopener">http://www.mybatis.org/mybatis-3/zh/getting-started.html</a></p>
 <p>代码示例：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE configuration</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 这是mybatis核心配置文件 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 是否开启自动驼峰命名规则（camel case）映射，</span></span><br><span class="line"><span class="comment">        即从经典数据库列名 A_COLUMN 到经典 Java 属性名 aColumn 的类似映射 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"mapUnderscoreToCamelCase"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-6-创建Mapper映射配置文件"><a href="#1-6-创建Mapper映射配置文件" class="headerlink" title="1.6 创建Mapper映射配置文件"></a>1.6 创建Mapper映射配置文件</h3><p>在resources目录的mybatis目录下新建mapper目录，在该目录下创建<code>BillMapper.xml</code>，文件编写也参考官网文档：<a href="http://www.mybatis.org/mybatis-3/zh/getting-started.html，在此文件中编写SQL语句。" target="_blank" rel="noopener">http://www.mybatis.org/mybatis-3/zh/getting-started.html，在此文件中编写SQL语句。</a></p>
+<h3 id="1-6-创建Mapper映射配置文件"><a href="#1-6-创建Mapper映射配置文件" class="headerlink" title="1.6 创建Mapper映射配置文件"></a>1.6 创建Mapper映射配置文件</h3><p>在resources目录的mybatis目录下新建mapper目录，在该目录下创建<code>BillMapper.xml</code>，在此文件中编写sql语句，文件编写也参考官网文档：<a href="http://www.mybatis.org/mybatis-3/zh/getting-started.html" target="_blank" rel="noopener">http://www.mybatis.org/mybatis-3/zh/getting-started.html</a></p>
 <p>代码示例：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.example.springboot.mapper.BillMapper"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getBillByBid"</span> <span class="attr">resultType</span>=<span class="string">"com.example.springboot.entities.Bill"</span>&gt;</span></span><br><span class="line">        select * from bill where bid = #&#123;bid&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"addBill"</span>&gt;</span></span><br><span class="line">        insert into bill(bill_code, bill_name, bill_com, bill_num)</span><br><span class="line">        values (#&#123;billCode&#125;, #&#123;billName&#125;, #&#123;billCom&#125;, #&#123;billNum&#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
@@ -174,7 +174,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/10/Spring-Boot整合MyBatis/" data-id="cjudyxvdq000qxorc418t7s2v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/10/Spring-Boot整合MyBatis/" data-id="cjudzqc3k000rj4rcqh1ro86n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
@@ -311,7 +311,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/09/Spring-Boot事务管理/" data-id="cjudyxvdo000pxorc2u3jskms" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/09/Spring-Boot事务管理/" data-id="cjudzqc3l000sj4rc3h1t0np1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/事务管理/">事务管理</a></li></ul>
@@ -369,7 +369,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/04/配置Druid数据库连接池/" data-id="cjudyxvd20004xorcrfk0jln6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/04/配置Druid数据库连接池/" data-id="cjudzqc330004j4rcx7oyb14o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Druid/">Druid</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
@@ -436,7 +436,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/03/Spring-Boot嵌入式Servlet容器/" data-id="cjudyxvcs0000xorcp986703q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/03/Spring-Boot嵌入式Servlet容器/" data-id="cjudzqc2t0000j4rctjrpkil0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
@@ -483,7 +483,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/02/Spring-Boot中pom文件的依赖配置/" data-id="cjudyxveo000zxorcpnn4zwi5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/02/Spring-Boot中pom文件的依赖配置/" data-id="cjudzqc340005j4rc88ynymrv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
@@ -527,7 +527,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/02/Spring-Boot实现热部署/" data-id="cjudyxvd50007xorcxpgvg2zc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/02/Spring-Boot实现热部署/" data-id="cjudzqc2z0001j4rc62dsw6mn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
@@ -587,7 +587,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/31/Spring-Boot整合Thymeleaf（二）/" data-id="cjudyxvd10003xorchjadu8ia" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/31/Spring-Boot整合Thymeleaf（二）/" data-id="cjudzqc370009j4rc3mb4fol1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li></ul>
@@ -691,7 +691,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/24/Spring-Boot整合Thymeleaf（一）/" data-id="cjudyxvcx0001xorc0i8qawdf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/24/Spring-Boot整合Thymeleaf（一）/" data-id="cjudzqc320003j4rcovwlmw2m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li></ul>
@@ -752,7 +752,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/22/关于Spring-Boot配置文件简介/" data-id="cjudyxvd30005xorclu0ak3y8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/22/关于Spring-Boot配置文件简介/" data-id="cjudzqc350007j4rcfif3nbv9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/YAML/">YAML</a></li></ul>
