@@ -62,6 +62,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Spring-Boot邮件操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/19/Spring-Boot邮件操作/" class="article-date">
+  <time datetime="2019-04-19T06:48:39.000Z" itemprop="datePublished">2019-04-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/19/Spring-Boot邮件操作/">Spring Boot邮件操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-简单邮件"><a href="#1-简单邮件" class="headerlink" title="1. 简单邮件"></a>1. 简单邮件</h2><h3 id="1-1-配置application-yml文件"><a href="#1-1-配置application-yml文件" class="headerlink" title="1.1 配置application.yml文件"></a>1.1 配置<code>application.yml</code>文件</h3><p>以qq邮箱为例，</p>
+<ul>
+<li>spring.mail.username为邮箱名，已打码。</li>
+<li>spring.mail.password为授权第三方登录的密码。</li>
+<li>设置发送邮件的服务器。</li>
+<li>设置SSL连接为true。</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置邮箱信息</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  mail:</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">xxxxxxxxx@qq.com</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">sroomflkeutvbbfj</span></span><br><span class="line">    <span class="comment"># 发送邮件服务器</span></span><br><span class="line"><span class="attr">    host:</span> <span class="string">smtp.qq.com</span></span><br><span class="line">    <span class="comment"># SSL连接</span></span><br><span class="line">    <span class="string">properties.smtp.ssl.enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-2-测试类"><a href="#1-2-测试类" class="headerlink" title="1.2 测试类"></a>1.2 测试类</h3><ul>
+<li><code>@Autowired
+ JavaMailSenderImpl javaMailSender;</code>注入JavaMailSenderImpl。</li>
+<li><code>SimpleMailMessage</code>类 封装了简单邮件。</li>
+<li><code>simpleMailMessage.setFrom()</code>发送方邮箱，已打码。</li>
+<li><code>simpleMailMessage.setTo()</code>接收方邮箱，已打码。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBoot12MailApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    JavaMailSenderImpl javaMailSender;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//简单邮件测试</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSimpleMail</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//SimpleMailMessage类，封装简单邮件</span></span><br><span class="line">        SimpleMailMessage simpleMailMessage = <span class="keyword">new</span> SimpleMailMessage();</span><br><span class="line">        <span class="comment">//设置邮件主题（标题）</span></span><br><span class="line">        simpleMailMessage.setSubject(<span class="string">"标题测试"</span>);</span><br><span class="line">        <span class="comment">//设置邮件正文</span></span><br><span class="line">        simpleMailMessage.setText(<span class="string">"正文测试"</span>);</span><br><span class="line">        <span class="comment">//设置发件人</span></span><br><span class="line">        simpleMailMessage.setFrom(<span class="string">"xxxxxxxxx@qq.com"</span>);</span><br><span class="line">        <span class="comment">//设置收件人</span></span><br><span class="line">        simpleMailMessage.setTo(<span class="string">"xxxxxxxxx@gmail.com"</span>);</span><br><span class="line">        javaMailSender.send(simpleMailMessage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-运行"><a href="#1-3-运行" class="headerlink" title="1.3 运行"></a>1.3 运行</h3><p>接收方邮箱便能收到这份简单邮件。</p>
+<h2 id="2-复杂邮件"><a href="#2-复杂邮件" class="headerlink" title="2. 复杂邮件"></a>2. 复杂邮件</h2><h3 id="2-1-配置application-yml文件"><a href="#2-1-配置application-yml文件" class="headerlink" title="2.1 配置application.yml文件"></a>2.1 配置<code>application.yml</code>文件</h3><p>同1.1，略</p>
+<h3 id="2-2-测试类"><a href="#2-2-测试类" class="headerlink" title="2.2 测试类"></a>2.2 测试类</h3><ul>
+<li><code>MimeMessage</code>类的对象不能直接设置标题正文等发送内容。</li>
+<li><code>MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);</code>需要通过MimeMessageHelper类的对象来设置发送内容。</li>
+<li><code>mimeMessageHelper.setText()</code>第二个参数设置为true，才能使用html代码。</li>
+<li><code>mimeMessageHelper.addAttachment()</code>设置附件，第一个参数指定附件名。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBoot12MailApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    JavaMailSenderImpl javaMailSender;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//复杂邮件测试</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMimeMail</span><span class="params">()</span> <span class="keyword">throws</span> MessagingException </span>&#123;</span><br><span class="line">        <span class="comment">//MimeMessage类</span></span><br><span class="line">        MimeMessage mimeMessage = javaMailSender.createMimeMessage();</span><br><span class="line">        <span class="comment">//通过MimeMessage帮助对象 来设置发送内容，第二个参数为true表示可以发送附件</span></span><br><span class="line">        MimeMessageHelper mimeMessageHelper = <span class="keyword">new</span> MimeMessageHelper(mimeMessage, <span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">//设置邮件主题（标题）</span></span><br><span class="line">        mimeMessageHelper.setSubject(<span class="string">"标题测试1"</span>);</span><br><span class="line">        <span class="comment">//设置邮件正文,第二个参数设置为true，才可以发送html代码</span></span><br><span class="line">        mimeMessageHelper.setText(<span class="string">"&lt;h2 style='color:red'&gt;正文测试2&lt;/h2&gt;"</span>, <span class="keyword">true</span>);</span><br><span class="line">        mimeMessageHelper.addAttachment(<span class="string">"1.jpg"</span>, <span class="keyword">new</span> File(<span class="string">"D:\\用户目录\\我的图片\\02_CONVERSEXMDNS_LANDINGPAGE_20181007_01.jpg"</span>));</span><br><span class="line">        <span class="comment">//设置发件人</span></span><br><span class="line">        mimeMessageHelper.setFrom(<span class="string">"xxxxxxxxx@qq.com"</span>);</span><br><span class="line">        <span class="comment">//设置收件人</span></span><br><span class="line">        mimeMessageHelper.setTo(<span class="string">"xxxxxxxxx@gmail.com"</span>);</span><br><span class="line">        javaMailSender.send(mimeMessage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-运行"><a href="#2-3-运行" class="headerlink" title="2.3 运行"></a>2.3 运行</h3><p>接收方邮箱便能收到邮件，且邮件带有一份名为1.jpg的附件。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/19/Spring-Boot邮件操作/" data-id="cjunr8dn50003gorc1tkjc3qn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/邮件/">邮件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Spring-Boot异步任务和定时任务" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/04/17/Spring-Boot异步任务和定时任务/" class="article-date">
@@ -157,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/17/Spring-Boot异步任务和定时任务/" data-id="cjum81w390003dorckyqb6mtb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/17/Spring-Boot异步任务和定时任务/" data-id="cjunr8dn70005gorco8azu42m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/定时任务/">定时任务</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/异步任务/">异步任务</a></li></ul>
@@ -281,7 +345,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/10/Spring-Boot整合MyBatis/" data-id="cjum81w3x000ydorccyzdfp47" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/10/Spring-Boot整合MyBatis/" data-id="cjunr8dno000qgorcxpfmj4hf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
@@ -418,7 +482,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/09/Spring-Boot事务管理/" data-id="cjum81w3u000xdorc722kll2u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/09/Spring-Boot事务管理/" data-id="cjunr8dnn000pgorc52jixha5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/事务管理/">事务管理</a></li></ul>
@@ -476,7 +540,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/04/配置Druid数据库连接池/" data-id="cjum81w3i000cdorc32k0qb43" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/04/配置Druid数据库连接池/" data-id="cjunr8dnx000zgorcisd2rurg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Druid/">Druid</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
@@ -543,7 +607,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/03/Spring-Boot嵌入式Servlet容器/" data-id="cjum81w3f0008dorc2ulntvbe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/03/Spring-Boot嵌入式Servlet容器/" data-id="cjunr8dn90008gorczcfx3h4s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
@@ -590,7 +654,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/02/Spring-Boot中pom文件的依赖配置/" data-id="cjum81w360001dorcnylc9kt0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/02/Spring-Boot中pom文件的依赖配置/" data-id="cjunr8dn20001gorcrfjgosdg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
@@ -634,7 +698,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/02/Spring-Boot实现热部署/" data-id="cjum81w300000dorc16osbgr7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/02/Spring-Boot实现热部署/" data-id="cjunr8dmx0000gorcu8xltvmp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
@@ -694,7 +758,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/31/Spring-Boot整合Thymeleaf（二）/" data-id="cjum81w3g0009dorch2quor35" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/31/Spring-Boot整合Thymeleaf（二）/" data-id="cjunr8do90017gorc2yphcuyt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li></ul>
@@ -798,7 +862,7 @@ BillMapper billMapper;</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/24/Spring-Boot整合Thymeleaf（一）/" data-id="cjum81w3b0004dorcr0sz7aw0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/24/Spring-Boot整合Thymeleaf（一）/" data-id="cjunr8dn60004gorcg0glgu12" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li></ul>
@@ -810,68 +874,12 @@ BillMapper billMapper;</code></p>
 
 
   
-    <article id="post-关于Spring-Boot配置文件简介" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/22/关于Spring-Boot配置文件简介/" class="article-date">
-  <time datetime="2019-03-22T11:28:51.000Z" itemprop="datePublished">2019-03-22</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/22/关于Spring-Boot配置文件简介/">关于Spring Boot配置文件简介</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-YAML语言"><a href="#1-YAML语言" class="headerlink" title="1. YAML语言"></a>1. YAML语言</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><p>YAML是”YAML Ain’t a Markup Language”（YAML不是一种标记语言）的递归缩写，文件名以<code>.yml</code>结尾。</p>
-<h3 id="1-2-基本语法"><a href="#1-2-基本语法" class="headerlink" title="1.2 基本语法"></a>1.2 基本语法</h3><ol>
-<li><code>key: value</code>表示一对键值对（冒号后面必须要有一个空格）。</li>
-<li><code>key</code>和<code>value</code>大小写敏感。</li>
-<li>使用空格缩进，不允许使用Tab键缩进，缩进表示层级关系，缩进的空格数量无要求（一般空两格），但同一层级要对齐。</li>
-<li>使用<code>#</code>进行注释，从这个字符一直到行尾都会被解析器忽略。</li>
-</ol>
-<h3 id="1-3-示例"><a href="#1-3-示例" class="headerlink" title="1.3 示例"></a>1.3 示例</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#emp的数据配置</span></span><br><span class="line"><span class="attr">emp:</span></span><br><span class="line"><span class="attr">  lastName:</span> <span class="string">Tom</span></span><br><span class="line"><span class="attr">  age:</span> <span class="number">22</span></span><br><span class="line"><span class="attr">  salary:</span> <span class="number">10000</span></span><br><span class="line"><span class="attr">  boss:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  birthday:</span> <span class="number">1997</span><span class="string">/08/20</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-Spring-Boot配置文件"><a href="#2-Spring-Boot配置文件" class="headerlink" title="2. Spring Boot配置文件"></a>2. Spring Boot配置文件</h2><h3 id="2-1-全局配置文件"><a href="#2-1-全局配置文件" class="headerlink" title="2.1 全局配置文件"></a>2.1 全局配置文件</h3><ul>
-<li><p>可以使用<code>.properties</code>文件配置，命名为<code>application.properties</code>。</p>
-</li>
-<li><p>也可以使用<code>.yml</code>文件配置，命名为<code>application.yml</code>。</p>
-</li>
-</ul>
-<h3 id="2-2-注解"><a href="#2-2-注解" class="headerlink" title="2.2 注解"></a>2.2 注解</h3><h4 id="2-2-1-ConfigurationProperties"><a href="#2-2-1-ConfigurationProperties" class="headerlink" title="2.2.1 @ConfigurationProperties"></a>2.2.1 <code>@ConfigurationProperties</code></h4><p>表示默认从全局配置文件<code>application.properties</code>或者<code>application.yml</code>中获取值，告诉Spring Boot将配置文件中的对应的属性值映射到这个组件类中，进行一一绑定。</p>
-<p>全局配置文件<code>application.yml</code>：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#emp的数据配置</span></span><br><span class="line"><span class="attr">emp:</span></span><br><span class="line"><span class="attr">  lastName:</span> <span class="string">Tom</span></span><br><span class="line"><span class="attr">  age:</span> <span class="number">22</span></span><br><span class="line"><span class="attr">  salary:</span> <span class="number">10000</span></span><br><span class="line"><span class="attr">  boss:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  birthday:</span> <span class="number">1997</span><span class="string">/08/20</span></span><br><span class="line"><span class="attr">  map:</span></span><br><span class="line"><span class="attr">    key1:</span> <span class="string">value1</span></span><br><span class="line"><span class="attr">    key2:</span> <span class="string">value2</span></span><br><span class="line"><span class="attr">    key3:</span> <span class="string">value3</span></span><br><span class="line"><span class="attr">  list:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">one</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">two</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">three</span></span><br><span class="line"><span class="attr">  forte:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">java</span></span><br><span class="line"><span class="attr">    time:</span> <span class="number">8</span></span><br></pre></td></tr></table></figure>
-<p>实体类<code>Emp.java</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ConfigurationProperties</span> 加载全局配置文件，告诉SpringBoot将配置文件中的对应属性值，</span></span><br><span class="line"><span class="comment"> * 映射到这个组件类中，进行一一绑定</span></span><br><span class="line"><span class="comment"> * prefix = "emp" 代表与配置文件中的前缀名绑定 ，配置了哪个前缀就会将配置文件的配置与下面的属性一一映射</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Component</span> 必须将当前组件作为SpringBoot中的一个组件来使用，这样才会纳入容器中管理</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"emp"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Emp</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//定义成员变量、Getter和Setter方法以及toString方法的代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="2-2-2-Value"><a href="#2-2-2-Value" class="headerlink" title="2.2.2 @Value"></a>2.2.2 <code>@Value</code></h4><p>在某个业务逻辑中需要获取配置文件中的某个<em>属性值</em>。</p>
-<p>全局配置文件<code>application.properties</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#配置emp的数据</span><br><span class="line">emp.last-name=李四</span><br><span class="line">emp.age=30</span><br><span class="line">emp.salary=20000</span><br><span class="line">emp.birthday=1998/08/30</span><br><span class="line">emp.boss=false</span><br><span class="line">emp.map.key1=value1</span><br><span class="line">emp.map.key2=value2</span><br><span class="line">emp.map.key3=value3</span><br><span class="line">emp.list=one, two, three</span><br><span class="line">emp.forte.name=python</span><br><span class="line">emp.forte.time=5</span><br></pre></td></tr></table></figure>
-<p>控制层<code>empController.java</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">empController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Value</span>好比Spring框架中使用配置文件的数据注入方式</span></span><br><span class="line"><span class="comment">     * &lt;bean class="Emp"&gt;</span></span><br><span class="line"><span class="comment">     *     &lt;property name="lastName" value="字面量"或者</span></span><br><span class="line"><span class="comment">     *                               value=#&#123;spEL&#125;或者</span></span><br><span class="line"><span class="comment">     *                               value=$&#123;key&#125;&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">     * &lt;/bean&gt;</span></span><br><span class="line"><span class="comment">     * #&#123;spEL&#125;即为Spring表达式，比如#&#123;3*10&#125;</span></span><br><span class="line"><span class="comment">     * $&#123;key&#125;用来引用配置文件中的数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;emp.last-name&#125;"</span>)</span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/say"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello "</span> + name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/22/关于Spring-Boot配置文件简介/" data-id="cjum81w3c0005dorcp44uoeed" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/YAML/">YAML</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -884,7 +892,7 @@ BillMapper billMapper;</code></p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Druid/">Druid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事务管理/">事务管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定时任务/">定时任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步任务/">异步任务</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Druid/">Druid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事务管理/">事务管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定时任务/">定时任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步任务/">异步任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/邮件/">邮件</a></li></ul>
     </div>
   </div>
 
@@ -894,7 +902,7 @@ BillMapper billMapper;</code></p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Druid/" style="font-size: 10px;">Druid</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/Spring-Boot/" style="font-size: 20px;">Spring Boot</a> <a href="/tags/Thymeleaf/" style="font-size: 15px;">Thymeleaf</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/事务管理/" style="font-size: 10px;">事务管理</a> <a href="/tags/定时任务/" style="font-size: 10px;">定时任务</a> <a href="/tags/异步任务/" style="font-size: 10px;">异步任务</a>
+      <a href="/tags/Druid/" style="font-size: 10px;">Druid</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/Spring-Boot/" style="font-size: 20px;">Spring Boot</a> <a href="/tags/Thymeleaf/" style="font-size: 15px;">Thymeleaf</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/事务管理/" style="font-size: 10px;">事务管理</a> <a href="/tags/定时任务/" style="font-size: 10px;">定时任务</a> <a href="/tags/异步任务/" style="font-size: 10px;">异步任务</a> <a href="/tags/邮件/" style="font-size: 10px;">邮件</a>
     </div>
   </div>
 
@@ -916,6 +924,10 @@ BillMapper billMapper;</code></p>
       <ul>
         
           <li>
+            <a href="/2019/04/19/Spring-Boot邮件操作/">Spring Boot邮件操作</a>
+          </li>
+        
+          <li>
             <a href="/2019/04/17/Spring-Boot异步任务和定时任务/">Spring Boot异步任务和定时任务</a>
           </li>
         
@@ -929,10 +941,6 @@ BillMapper billMapper;</code></p>
         
           <li>
             <a href="/2019/04/04/配置Druid数据库连接池/">配置Druid数据库连接池</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/03/Spring-Boot嵌入式Servlet容器/">Spring Boot嵌入式Servlet容器</a>
           </li>
         
       </ul>
