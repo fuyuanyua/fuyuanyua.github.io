@@ -62,6 +62,110 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Spring-Boot整合Thymeleaf（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/24/Spring-Boot整合Thymeleaf（一）/" class="article-date">
+  <time datetime="2019-03-24T08:33:36.000Z" itemprop="datePublished">2019-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/24/Spring-Boot整合Thymeleaf（一）/">Spring Boot整合Thymeleaf（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-迭代集合数据"><a href="#1-迭代集合数据" class="headerlink" title="1. 迭代集合数据"></a>1. 迭代集合数据</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><ul>
+<li><p>使用<code>th:each</code>进行迭代，<code>th:each</code>作用在哪个标签上，就会对应的根据他的值迭代多少次。</p>
+</li>
+<li><p><code>th:each</code>后可取两个值：</p>
+<ol>
+<li><p><code>use</code>：第一个值，代表每次迭代出的对象，名字任意取。</p>
+</li>
+<li><p><code>iterStat</code>：第二个值，代表每次迭代器的内置对象，名字任意取，并有以下属性：</p>
+<ol>
+<li><p><code>index</code>：当前迭代下标从0开始。</p>
+</li>
+<li><p><code>count</code>：当前迭代下标从1开始。</p>
+</li>
+<li><p><code>size</code>：获取总记录数。</p>
+</li>
+<li><p><code>current</code>：获取当前迭代的对象。</p>
+</li>
+<li><p><code>even</code>/<code>odd</code>：当前迭代是否为偶数/奇数（从1开始算，返回值为布尔值）。</p>
+</li>
+<li><p><code>first</code>：当前是否为第一个元素。</p>
+</li>
+<li><p><code>last</code>：当前是否为最后一个元素。</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="1-2-迭代在当前标签的子标签上"><a href="#1-2-迭代在当前标签的子标签上" class="headerlink" title="1.2 迭代在当前标签的子标签上"></a>1.2 迭代在当前标签的子标签上</h3><p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tr</span> <span class="attr">th:each</span>=<span class="string">"user, iterStat : $&#123;userList&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;user.username&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;iterStat.count&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span>	</span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;user.gender == 1 ? '男' : '女'&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;iterStat.current&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;iterStat.even ? '偶数' : '奇数'&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-3-迭代在当前标签上"><a href="#1-3-迭代在当前标签上" class="headerlink" title="1.3 迭代在当前标签上"></a>1.3 迭代在当前标签上</h3><p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">th:each</span>=<span class="string">"user : $&#123;userList&#125;"</span> <span class="attr">th:text</span>=<span class="string">"$&#123;user.username&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-条件判断"><a href="#2-条件判断" class="headerlink" title="2. 条件判断"></a>2. 条件判断</h2><h3 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1 简介"></a>2.1 简介</h3><ol>
+<li><p>通常使用<code>th:if</code>和<code>th:unless</code>进行条件判断。</p>
+</li>
+<li><p>使用<code>th:if</code>，如果<code>th:if</code>为<code>true</code>，则显示标签的内容，否则不显示。</p>
+</li>
+<li><p>使用<code>th:unless</code>，如果<code>th:unless</code>为<code>false</code>，则显示标签内容，否则不显示。</p>
+</li>
+<li><p><code>th:if</code>判断特殊表达式：</p>
+<ul>
+<li><p>如果值为<code>null</code>，则返回<code>false</code>。</p>
+</li>
+<li><p>如果值不为<code>null</code>，以下情况均为<code>true</code>：</p>
+<ol>
+<li>如果值是Boolean型且值为<code>true</code>。</li>
+<li>如果值是数值型且值不为<code>0</code>。</li>
+<li>如果值是字符型型且值不为空。</li>
+<li>如果值是字符串型且值不为”false”,”off”或者”no”。</li>
+<li>如果值不是以上的类型。那么也为<code>true</code>。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><code>th:unless</code>和<code>th:if</code>相反，我将”if”翻译成”如果”，将”unless”翻译成”如果不”。</p>
+</li>
+</ol>
+<h3 id="2-2-th-if用法"><a href="#2-2-th-if用法" class="headerlink" title="2.2 th:if用法"></a>2.2 <code>th:if</code>用法</h3><p>示例：假设以下代码<code>userList</code>不为空</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">th:if</span>=<span class="string">"not $&#123;#lists.isEmpty(userList)&#125;"</span>&gt;</span>显示内容<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>结果：在网页上显示“显示内容”这四个字。</p>
+<p>分析：<strong><em>${&#35;lists.isEmpty(userList)}</em></strong>返回值为<code>false</code>，则<strong><em>not ${&#35;lists.isEmpty(userList)}</em></strong>返回值为<code>true</code>，故显示标签内容。</p>
+<h3 id="2-3-th-unless用法"><a href="#2-3-th-unless用法" class="headerlink" title="2.3 th:unless用法"></a>2.3 <code>th:unless</code>用法</h3><p>实例：假设以下代码<code>userList</code>不为空</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">th:unless</span>=<span class="string">"$&#123;#lists.isEmpty(userList)&#125;"</span>&gt;</span>显示内容<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>结果：在网页上显示“显示内容”这四个字。</p>
+<p>分析：<strong><em>${&#35;lists.isEmpty(userList)}</em></strong>返回值为<code>false</code>，故显示标签内容。</p>
+<p>未完待续~~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/24/Spring-Boot整合Thymeleaf（一）/" data-id="cjupmhnth000ajsrcdwiphzkw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-关于Spring-Boot配置文件简介" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/22/关于Spring-Boot配置文件简介/" class="article-date">
@@ -111,7 +215,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/22/关于Spring-Boot配置文件简介/" data-id="cjunrs1440009iwrcgeo02tyb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/22/关于Spring-Boot配置文件简介/" data-id="cjupmhntn000ijsrcm5i4o6g9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/YAML/">YAML</a></li></ul>
@@ -141,7 +245,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Druid/">Druid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事务管理/">事务管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定时任务/">定时任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步任务/">异步任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/邮件/">邮件</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Druid/">Druid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事务管理/">事务管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/定时任务/">定时任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步任务/">异步任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅行/">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/邮件/">邮件</a></li></ul>
     </div>
   </div>
 
@@ -151,7 +255,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Druid/" style="font-size: 10px;">Druid</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/Spring-Boot/" style="font-size: 20px;">Spring Boot</a> <a href="/tags/Thymeleaf/" style="font-size: 15px;">Thymeleaf</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/事务管理/" style="font-size: 10px;">事务管理</a> <a href="/tags/定时任务/" style="font-size: 10px;">定时任务</a> <a href="/tags/异步任务/" style="font-size: 10px;">异步任务</a> <a href="/tags/邮件/" style="font-size: 10px;">邮件</a>
+      <a href="/tags/Druid/" style="font-size: 10px;">Druid</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/Spring-Boot/" style="font-size: 20px;">Spring Boot</a> <a href="/tags/Thymeleaf/" style="font-size: 15px;">Thymeleaf</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/事务管理/" style="font-size: 10px;">事务管理</a> <a href="/tags/定时任务/" style="font-size: 10px;">定时任务</a> <a href="/tags/异步任务/" style="font-size: 10px;">异步任务</a> <a href="/tags/旅行/" style="font-size: 10px;">旅行</a> <a href="/tags/邮件/" style="font-size: 10px;">邮件</a>
     </div>
   </div>
 
@@ -173,6 +277,10 @@
       <ul>
         
           <li>
+            <a href="/2019/04/20/2019-04-21-23上海旅行规划/">2019.04.21-23上海旅行规划</a>
+          </li>
+        
+          <li>
             <a href="/2019/04/19/Spring-Boot邮件操作/">Spring Boot邮件操作</a>
           </li>
         
@@ -186,10 +294,6 @@
         
           <li>
             <a href="/2019/04/09/Spring-Boot事务管理/">Spring Boot事务管理</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/04/配置Druid数据库连接池/">配置Druid数据库连接池</a>
           </li>
         
       </ul>
