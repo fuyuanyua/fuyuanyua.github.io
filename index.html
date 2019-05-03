@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-03 16:43:33" itemprop="dateModified" datetime="2019-05-03T16:43:33+08:00">2019-05-03</time>
+                <time title="修改时间：2019-05-03 19:05:06" itemprop="dateModified" datetime="2019-05-03T19:05:06+08:00">2019-05-03</time>
               
             
           </span>
@@ -482,19 +482,22 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F:\Users\Administrator\IdeaProjects\spring-boot-10-bill\target&gt;java -jar spring-</span><br><span class="line">boot-10-bill-0.0.1-SNAPSHOT.jar --server.port=80</span><br></pre></td></tr></table></figure>
 <p><img src="QQ截图20190503154727.png" alt></p>
 <h2 id="2-阿里云服务器"><a href="#2-阿里云服务器" class="headerlink" title="2. 阿里云服务器"></a>2. 阿里云服务器</h2><h3 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1 简介"></a>2.1 简介</h3><p>阿里云官网网站：<a href="https://www.aliyun.com/" target="_blank" rel="noopener">https://www.aliyun.com/</a></p>
-<h3 id="2-2-购买"><a href="#2-2-购买" class="headerlink" title="2.2 购买"></a>2.2 购买</h3><p>先进行学生认证，然后购买此服务器仅需9.5元一个月，十分优惠。</p>
+<h3 id="2-2-购买"><a href="#2-2-购买" class="headerlink" title="2.2 购买"></a>2.2 购买</h3><p>先进行学生认证，然后购买仅需9.5元一个月，十分优惠。</p>
+<p>我购买的阿里云服务器为CentOS 7.3 64位系统（什么是CentOS：<a href="https://zh.wikipedia.org/wiki/CentOS" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/CentOS</a> ）。</p>
 <p><img src="QQ截图20190503155250.png" alt></p>
 <h3 id="2-3-开放端口"><a href="#2-3-开放端口" class="headerlink" title="2.3 开放端口"></a>2.3 开放端口</h3><p>添加安全组规则，开放8080端口、80端口和3306端口。</p>
 <p><img src="QQ截图20190503160253.png" alt></p>
-<h2 id="3-阿里云服务器安装MySQL"><a href="#3-阿里云服务器安装MySQL" class="headerlink" title="3. 阿里云服务器安装MySQL"></a>3. 阿里云服务器安装MySQL</h2><h3 id="3-1-参考"><a href="#3-1-参考" class="headerlink" title="3.1 参考"></a>3.1 参考</h3><p>我的阿里云服务器为CentOS 7.3 64位系统，安装Linux版MySQL5.7。</p>
+<h2 id="3-阿里云服务器安装MySQL"><a href="#3-阿里云服务器安装MySQL" class="headerlink" title="3. 阿里云服务器安装MySQL"></a>3. 阿里云服务器安装MySQL</h2><h3 id="3-1-参考"><a href="#3-1-参考" class="headerlink" title="3.1 参考"></a>3.1 参考</h3><p>安装Linux版MySQL5.7。</p>
 <p>具体参考：<a href="https://www.jellythink.com/archives/14" target="_blank" rel="noopener">https://www.jellythink.com/archives/14</a></p>
 <h2 id="4-阿里云服务器安装JDK1-8"><a href="#4-阿里云服务器安装JDK1-8" class="headerlink" title="4. 阿里云服务器安装JDK1.8"></a>4. 阿里云服务器安装JDK1.8</h2><h3 id="4-1-上传解压"><a href="#4-1-上传解压" class="headerlink" title="4.1 上传解压"></a>4.1 上传解压</h3><ol>
-<li><p>用FileZilla将 JDK安装包上传到服务器 /opt目录里面 ，右键选择上传即可。</p>
+<li><p>用FileZilla（什么是FileZilla：<a href="https://themebetter.com/ftp-filezilla.html" target="_blank" rel="noopener">https://themebetter.com/ftp-filezilla.html</a> ）将 JDK安装包上传到服务器 /opt目录里面 ，右键选择上传即可。</p>
 <p><img src="QQ截图20190503164248.png" alt></p>
 </li>
-<li><p>解压文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /opt</span><br><span class="line"># tar -zxvf JDK的文件名</span><br></pre></td></tr></table></figure>
+<li><p>使用secureCRT（什么是secureCRT：<a href="https://blog.csdn.net/liwf_/article/details/9429349" target="_blank" rel="noopener">https://blog.csdn.net/liwf_/article/details/9429349</a> ）连接阿里云服务器，解压文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /opt</span><br><span class="line">   # tar -zxvf JDK的文件名</span><br></pre></td></tr></table></figure>
 </li>
+</ol>
+<ol start="3">
 <li><p>ls 查看解压后的JDK。</p>
 </li>
 <li><p>将JDK移动到/home目录。</p>
@@ -517,6 +520,26 @@
 <p>此结果说明JDK安装配置成功。</p>
 </li>
 </ol>
+<h2 id="5-运行"><a href="#5-运行" class="headerlink" title="5. 运行"></a>5. 运行</h2><h3 id="5-1-阿里云服务器MySQL建表"><a href="#5-1-阿里云服务器MySQL建表" class="headerlink" title="5.1 阿里云服务器MySQL建表"></a>5.1 阿里云服务器MySQL建表</h3><p>使用MySQL Workbench访问阿里云上的数据库，建项目所需要的表。</p>
+<h3 id="5-2-设置MySQL开机自启动"><a href="#5-2-设置MySQL开机自启动" class="headerlink" title="5.2 设置MySQL开机自启动"></a>5.2 设置MySQL开机自启动</h3><p>使用secureCRT设置阿里云服务器上MySQL开机自启动。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># chkconfig mysqld on</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-运行项目"><a href="#5-3-运行项目" class="headerlink" title="5.3 运行项目"></a>5.3 运行项目</h3><ul>
+<li><p>先用FileZilla将本地打包好的项目jar包推送到阿里云服务器。</p>
+</li>
+<li><p>然后用secureCRT在阿里云服务器上以后台进程并用80端口运行项目。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># nohup java -jar 项目jar包名 --servre.port=80 &amp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>至此已经将项目在阿里云服务器全部部署完成，理论上访问阿里云服务器的IP地址，便可以成功访问本项目。</p>
+</li>
+</ul>
+<h3 id="5-4-一些小问题"><a href="#5-4-一些小问题" class="headerlink" title="5.4 一些小问题"></a>5.4 一些小问题</h3><ul>
+<li><p>Linux下MySQL中文乱码（全部显示问号），</p>
+<p>请参考：<a href="https://blog.csdn.net/leen0304/article/details/80534609" target="_blank" rel="noopener">https://blog.csdn.net/leen0304/article/details/80534609</a></p>
+</li>
+<li><p>网页响应特别慢，</p>
+<p>请参考：<a href="https://www.cnblogs.com/zhangyuejia/p/8575080.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhangyuejia/p/8575080.html</a></p>
+</li>
+</ul>
 
           
         
