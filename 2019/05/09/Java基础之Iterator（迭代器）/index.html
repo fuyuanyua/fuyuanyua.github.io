@@ -96,18 +96,22 @@
 
 
 
-  <meta name="description" content="今天我下载了Win版的Redis，解压缩后，双击redis-server.exe，屏幕一闪而过，启动失败，查阅网上资料后找到解决办法。  win+R打开cmd命令。 进入F盘：f: cd到Redis包目录下：cd F:\redis\Redis-x64-3.2.100（在当前目录的地址栏直接输入cmd，可直接进入，更方便） 输入：redis-server.exe redis.windows.conf">
-<meta name="keywords" content="Redis">
+  <meta name="description" content="1. Iterator（迭代器）1.1 简介迭代器作用于集合，是用来遍历集合元素的对象。 1.2 IteratorIterator（迭代器）源自package java.util.Iterator,它是一个接口，源码如下： 12345678910111213141516public interface Iterator&amp;lt;E&amp;gt; &amp;#123;    boolean hasNext();">
+<meta name="keywords" content="Java,Iterator（迭代器）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis-server.exe启动失败解决方案">
-<meta property="og:url" content="http://yoursite.com/2019/04/27/redis-server-exe启动失败解决方案/index.html">
+<meta property="og:title" content="Java基础之Iterator（迭代器）">
+<meta property="og:url" content="http://yoursite.com/2019/05/09/Java基础之Iterator（迭代器）/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="今天我下载了Win版的Redis，解压缩后，双击redis-server.exe，屏幕一闪而过，启动失败，查阅网上资料后找到解决办法。  win+R打开cmd命令。 进入F盘：f: cd到Redis包目录下：cd F:\redis\Redis-x64-3.2.100（在当前目录的地址栏直接输入cmd，可直接进入，更方便） 输入：redis-server.exe redis.windows.conf">
+<meta property="og:description" content="1. Iterator（迭代器）1.1 简介迭代器作用于集合，是用来遍历集合元素的对象。 1.2 IteratorIterator（迭代器）源自package java.util.Iterator,它是一个接口，源码如下： 12345678910111213141516public interface Iterator&amp;lt;E&amp;gt; &amp;#123;    boolean hasNext();">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-02T10:49:42.741Z">
+<meta property="og:image" content="http://yoursite.com/2019/05/09/Java基础之Iterator（迭代器）/QQ截图20190509160402.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/09/Java基础之Iterator（迭代器）/QQ截图20190509160657.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/09/Java基础之Iterator（迭代器）/QQ截图20190509163647.png">
+<meta property="og:updated_time" content="2019-05-09T08:37:11.610Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redis-server.exe启动失败解决方案">
-<meta name="twitter:description" content="今天我下载了Win版的Redis，解压缩后，双击redis-server.exe，屏幕一闪而过，启动失败，查阅网上资料后找到解决办法。  win+R打开cmd命令。 进入F盘：f: cd到Redis包目录下：cd F:\redis\Redis-x64-3.2.100（在当前目录的地址栏直接输入cmd，可直接进入，更方便） 输入：redis-server.exe redis.windows.conf">
+<meta name="twitter:title" content="Java基础之Iterator（迭代器）">
+<meta name="twitter:description" content="1. Iterator（迭代器）1.1 简介迭代器作用于集合，是用来遍历集合元素的对象。 1.2 IteratorIterator（迭代器）源自package java.util.Iterator,它是一个接口，源码如下： 12345678910111213141516public interface Iterator&amp;lt;E&amp;gt; &amp;#123;    boolean hasNext();">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/09/Java基础之Iterator（迭代器）/QQ截图20190509160402.png">
 
 
 
@@ -115,7 +119,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/27/redis-server-exe启动失败解决方案/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/09/Java基础之Iterator（迭代器）/">
 
 
 
@@ -125,7 +129,7 @@
   };
 </script>
 
-  <title>redis-server.exe启动失败解决方案 | Hexo</title>
+  <title>Java基础之Iterator（迭代器） | Hexo</title>
   
 
 
@@ -353,7 +357,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/27/redis-server-exe启动失败解决方案/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/Java基础之Iterator（迭代器）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fuyuanyua">
@@ -370,7 +374,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">redis-server.exe启动失败解决方案
+          <h1 class="post-title" itemprop="name headline">Java基础之Iterator（迭代器）
 
               
             
@@ -396,24 +400,12 @@
                 
               
 
-              <time title="创建时间：2019-04-27 11:53:56" itemprop="dateCreated datePublished" datetime="2019-04-27T11:53:56+08:00">2019-04-27</time>
+              <time title="创建时间：2019-05-09 15:18:06 / 修改时间：16:37:11" itemprop="dateCreated datePublished" datetime="2019-05-09T15:18:06+08:00">2019-05-09</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-02 18:49:42" itemprop="dateModified" datetime="2019-05-02T18:49:42+08:00">2019-05-02</time>
               
             
           </span>
@@ -430,7 +422,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/小坑/" itemprop="url" rel="index"><span itemprop="name">小坑</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
                 
                 
@@ -465,14 +457,26 @@
       
 
       
-        <p>今天我下载了Win版的Redis，解压缩后，双击redis-server.exe，屏幕一闪而过，启动失败，查阅网上资料后找到解决办法。</p>
+        <h2 id="1-Iterator（迭代器）"><a href="#1-Iterator（迭代器）" class="headerlink" title="1. Iterator（迭代器）"></a>1. Iterator（迭代器）</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><p>迭代器作用于集合，是用来遍历集合元素的对象。</p>
+<h3 id="1-2-Iterator"><a href="#1-2-Iterator" class="headerlink" title="1.2 Iterator"></a>1.2 Iterator</h3><p>Iterator（迭代器）源自<code>package java.util.Iterator</code>,它是一个接口，源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function">E <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"remove"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEachRemaining</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> E&gt; action)</span> </span>&#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        <span class="keyword">while</span> (hasNext())</span><br><span class="line">            action.accept(next());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中：</p>
 <ul>
-<li>win+R打开cmd命令。</li>
-<li>进入F盘：<code>f:</code></li>
-<li>cd到Redis包目录下：<code>cd F:\redis\Redis-x64-3.2.100</code>（在当前目录的地址栏直接输入cmd，可直接进入，更方便）</li>
-<li>输入：<code>redis-server.exe redis.windows.conf</code></li>
-<li>启动成功</li>
+<li><code>E next()</code>：返回迭代的下一个元素，返回值是 Object，需要强制转换成自己需要的类型。（如果使用泛型如<code>Iterator&lt;String&gt; iterator = list.iterator()</code>之后返回值会从Object改为指定的引用类型）</li>
+<li><code>boolean hasNext()</code>：判断是否还有元素。</li>
+<li><code>default void remove()</code>：删除新返回的元素。</li>
 </ul>
+<h3 id="1-3-Iterable"><a href="#1-3-Iterable" class="headerlink" title="1.3 Iterable"></a>1.3 Iterable</h3><p>Iterable源自<code>package java.lang.Iterable</code>，它也是一个接口，源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> T&gt; action)</span> </span>&#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        <span class="keyword">for</span> (T t : <span class="keyword">this</span>) &#123;</span><br><span class="line">            action.accept(t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> Spliterator&lt;T&gt; <span class="title">spliterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Spliterators.spliteratorUnknownSize(iterator(), <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该接口定义了方法<code>Iterator&lt;T&gt; iterator()</code>，返回值为迭代器对象，Collection接口继承了Iterable接口，而ArrayList、HashSet等实现类都实现了Collection接口，所以这些实现类的对象均可以<code>.iterator()</code>来创建Iterator对象。</p>
+<p>以ArrayList为例查看继承关系：</p>
+<p><img src="QQ截图20190509160402.png" alt></p>
+<p><img src="QQ截图20190509160657.png" alt></p>
+<h3 id="1-4-以ArrayList为例演示Iterator的用法"><a href="#1-4-以ArrayList为例演示Iterator的用法" class="headerlink" title="1.4 以ArrayList为例演示Iterator的用法"></a>1.4 以ArrayList为例演示Iterator的用法</h3><p>阿里巴巴Java开发手册强制规定了<strong><em>不要在 foreach 循环里进行元素的 remove/add 操作，remove 元素请使用 Iterator方式。</em></strong></p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 新建ArrayList对象并添加元素</span></span><br><span class="line">    List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    list.add(<span class="string">"aa"</span>);</span><br><span class="line">    list.add(<span class="string">"bb"</span>);</span><br><span class="line">    list.add(<span class="string">"cc"</span>);</span><br><span class="line">    System.out.println(list);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 字符串对象，用于以下条件判断</span></span><br><span class="line">    String s = <span class="string">"aa"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ArrayList对象以.iterator()来创建Iterator对象且指定了泛型为String</span></span><br><span class="line">    Iterator&lt;String&gt; iterator = list.iterator();</span><br><span class="line">    <span class="comment">// 判断是否还有元素</span></span><br><span class="line">    <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">        <span class="comment">// 返回迭代的下一个元素</span></span><br><span class="line">        String item = iterator.next();</span><br><span class="line">        <span class="comment">// 条件判断</span></span><br><span class="line">        <span class="keyword">if</span> (s.equals(item)) &#123;</span><br><span class="line">            <span class="comment">// 移除刚返回的元素</span></span><br><span class="line">            iterator.remove();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    System.out.println(list);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>控制台打印信息：</p>
+<p><img src="QQ截图20190509163647.png" alt></p>
 
       
     </div>
@@ -496,7 +500,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Redis/" rel="tag"># Redis</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Iterator（迭代器）/" rel="tag"># Iterator（迭代器）</a>
           
         </div>
       
@@ -509,8 +515,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/25/Spring-Boot缓存操作/" rel="next" title="Spring Boot缓存操作">
-                <i class="fa fa-chevron-left"></i> Spring Boot缓存操作
+              <a href="/2019/05/04/Spring-Boot整合Redis/" rel="next" title="Spring Boot整合Redis">
+                <i class="fa fa-chevron-left"></i> Spring Boot整合Redis
               </a>
             
           </div>
@@ -518,10 +524,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/02/Linux的常用命令/" rel="prev" title="Linux的常用命令">
-                Linux的常用命令 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -565,8 +567,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -690,6 +701,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Iterator（迭代器）"><span class="nav-number">1.</span> <span class="nav-text">1. Iterator（迭代器）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-简介"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Iterator"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Iterator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Iterable"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Iterable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-以ArrayList为例演示Iterator的用法"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 以ArrayList为例演示Iterator的用法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
