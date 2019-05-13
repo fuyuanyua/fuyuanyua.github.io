@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java Object类中有哪些方法]]></title>
+    <url>%2F2019%2F05%2F13%2FJava-Object%E7%B1%BB%E4%B8%AD%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[Java Object类中有哪些方法？ hashCode、equals、clone、toString、notify、notifyAll、wait、finalize等。 Object类源码： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061package java.lang;/** * Class &#123;@code Object&#125; is the root of the class hierarchy. * Every class has &#123;@code Object&#125; as a superclass. All objects, * including arrays, implement the methods of this class. * * @author unascribed * @see java.lang.Class * @since JDK1.0 */public class Object &#123; private static native void registerNatives(); static &#123; registerNatives(); &#125; public final native Class&lt;?&gt; getClass(); public native int hashCode(); public boolean equals(Object obj) &#123; return (this == obj); &#125; protected native Object clone() throws CloneNotSupportedException; public String toString() &#123; return getClass().getName() + "@" + Integer.toHexString(hashCode()); &#125; public final native void notify(); public final native void notifyAll(); public final native void wait(long timeout) throws InterruptedException; public final void wait(long timeout, int nanos) throws InterruptedException &#123; if (timeout &lt; 0) &#123; throw new IllegalArgumentException("timeout value is negative"); &#125; if (nanos &lt; 0 || nanos &gt; 999999) &#123; throw new IllegalArgumentException( "nanosecond timeout value out of range"); &#125; if (nanos &gt; 0) &#123; timeout++; &#125; wait(timeout); &#125; public final void wait() throws InterruptedException &#123; wait(0); &#125; protected void finalize() throws Throwable &#123; &#125;&#125;]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java中抽象类与接口的区别]]></title>
     <url>%2F2019%2F05%2F13%2FJava%E4%B8%AD%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
     <content type="text"><![CDATA[1. 抽象类抽象类：如果一个类中有抽象方法，那么这个类就是抽象类，抽象类必须用abstract关键字修饰。 抽象方法只声明，无具体实现。 抽象类和抽象方法必须被public或protected修饰（如果是private，则不能被子类访问到，自然无法被继承也无法被子类实现抽象方法），缺省情况下默认为public。 不能用抽象类创建对象。 如果一个子类继承一个抽象类的父类，那么子类必须实现父类的所有抽象方法，如果不全部实现，这个子类任然是抽象类，必须仍然用abstract关键字修饰。 2. 接口接口：用interface定义。 接口中所有方法都必须是抽象方法，缺省被public abstract修饰，且只能被public abstract修饰。（推荐缺省即不加修饰词，使代码简洁美观）。 接口中可以有变量，缺省被public abstract final修饰，且只能被public abstract final修饰，即变量必须给初值且不可更改。一般情况下不会在接口中定义变量。 3. 抽象类和接口的区别 抽象类在Java中表示继承关系，只能单继承，class B extends A {} 接口也能继承接口，不需要实现父接口方法，且一个接口能继承多个接口，interface C extends A, B {} 一个类可以单继承，多接口实现，class E extends D implements A, B, C {} 抽象类中可以有非抽象方法，接口中必须全部为抽象方法。 抽象类中可以有static方法（static方法是类方法，不允许子类override），接口中不能有static方法，只能是public abstract方法。]]></content>
