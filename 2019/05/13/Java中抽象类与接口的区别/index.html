@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="1. YAML语言1.1 简介YAML是”YAML Ain’t a Markup Language”（YAML不是一种标记语言）的递归缩写，文件名以.yml结尾。 1.2 基本语法 key: value表示一对键值对（冒号后面必须要有一个空格）。 key和value大小写敏感。 使用空格缩进，不允许使用Tab键缩进，缩进表示层级关系，缩进的空格数量无要求（一般空两格），但同一层级要对齐。 使用#进">
-<meta name="keywords" content="Spring Boot,YAML">
+  <meta name="description" content="1. 抽象类抽象类：如果一个类中有抽象方法，那么这个类就是抽象类，抽象类必须用abstract关键字修饰。  抽象方法只声明，无具体实现。 抽象类和抽象方法必须被public或protected修饰（如果是private，则不能被子类访问到，自然无法被继承也无法被子类实现抽象方法），缺省情况下默认为public。 不能用抽象类创建对象。 如果一个子类继承一个抽象类的父类，那么子类必须实现父类的所有">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于Spring Boot配置文件简介">
-<meta property="og:url" content="http://yoursite.com/2019/03/22/关于Spring-Boot配置文件简介/index.html">
+<meta property="og:title" content="Java中抽象类与接口的区别">
+<meta property="og:url" content="http://yoursite.com/2019/05/13/Java中抽象类与接口的区别/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1. YAML语言1.1 简介YAML是”YAML Ain’t a Markup Language”（YAML不是一种标记语言）的递归缩写，文件名以.yml结尾。 1.2 基本语法 key: value表示一对键值对（冒号后面必须要有一个空格）。 key和value大小写敏感。 使用空格缩进，不允许使用Tab键缩进，缩进表示层级关系，缩进的空格数量无要求（一般空两格），但同一层级要对齐。 使用#进">
+<meta property="og:description" content="1. 抽象类抽象类：如果一个类中有抽象方法，那么这个类就是抽象类，抽象类必须用abstract关键字修饰。  抽象方法只声明，无具体实现。 抽象类和抽象方法必须被public或protected修饰（如果是private，则不能被子类访问到，自然无法被继承也无法被子类实现抽象方法），缺省情况下默认为public。 不能用抽象类创建对象。 如果一个子类继承一个抽象类的父类，那么子类必须实现父类的所有">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-02T10:45:59.330Z">
+<meta property="og:updated_time" content="2019-05-13T08:35:56.581Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于Spring Boot配置文件简介">
-<meta name="twitter:description" content="1. YAML语言1.1 简介YAML是”YAML Ain’t a Markup Language”（YAML不是一种标记语言）的递归缩写，文件名以.yml结尾。 1.2 基本语法 key: value表示一对键值对（冒号后面必须要有一个空格）。 key和value大小写敏感。 使用空格缩进，不允许使用Tab键缩进，缩进表示层级关系，缩进的空格数量无要求（一般空两格），但同一层级要对齐。 使用#进">
+<meta name="twitter:title" content="Java中抽象类与接口的区别">
+<meta name="twitter:description" content="1. 抽象类抽象类：如果一个类中有抽象方法，那么这个类就是抽象类，抽象类必须用abstract关键字修饰。  抽象方法只声明，无具体实现。 抽象类和抽象方法必须被public或protected修饰（如果是private，则不能被子类访问到，自然无法被继承也无法被子类实现抽象方法），缺省情况下默认为public。 不能用抽象类创建对象。 如果一个子类继承一个抽象类的父类，那么子类必须实现父类的所有">
 
 
 
@@ -115,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/03/22/关于Spring-Boot配置文件简介/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/13/Java中抽象类与接口的区别/">
 
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>关于Spring Boot配置文件简介 | Hexo</title>
+  <title>Java中抽象类与接口的区别 | Hexo</title>
   
 
 
@@ -353,7 +353,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/22/关于Spring-Boot配置文件简介/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/Java中抽象类与接口的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fuyuanyua">
@@ -370,7 +370,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于Spring Boot配置文件简介
+          <h1 class="post-title" itemprop="name headline">Java中抽象类与接口的区别
 
               
             
@@ -396,24 +396,12 @@
                 
               
 
-              <time title="创建时间：2019-03-22 19:28:51" itemprop="dateCreated datePublished" datetime="2019-03-22T19:28:51+08:00">2019-03-22</time>
+              <time title="创建时间：2019-05-13 15:45:41 / 修改时间：16:35:56" itemprop="dateCreated datePublished" datetime="2019-05-13T15:45:41+08:00">2019-05-13</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-02 18:45:59" itemprop="dateModified" datetime="2019-05-02T18:45:59+08:00">2019-05-02</time>
               
             
           </span>
@@ -430,7 +418,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot笔记/" itemprop="url" rel="index"><span itemprop="name">Spring Boot笔记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
                 
                 
@@ -465,30 +453,29 @@
       
 
       
-        <h2 id="1-YAML语言"><a href="#1-YAML语言" class="headerlink" title="1. YAML语言"></a>1. YAML语言</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><p>YAML是”YAML Ain’t a Markup Language”（YAML不是一种标记语言）的递归缩写，文件名以<code>.yml</code>结尾。</p>
-<h3 id="1-2-基本语法"><a href="#1-2-基本语法" class="headerlink" title="1.2 基本语法"></a>1.2 基本语法</h3><ol>
-<li><code>key: value</code>表示一对键值对（冒号后面必须要有一个空格）。</li>
-<li><code>key</code>和<code>value</code>大小写敏感。</li>
-<li>使用空格缩进，不允许使用Tab键缩进，缩进表示层级关系，缩进的空格数量无要求（一般空两格），但同一层级要对齐。</li>
-<li>使用<code>#</code>进行注释，从这个字符一直到行尾都会被解析器忽略。</li>
-</ol>
-<h3 id="1-3-示例"><a href="#1-3-示例" class="headerlink" title="1.3 示例"></a>1.3 示例</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#emp的数据配置</span></span><br><span class="line"><span class="attr">emp:</span></span><br><span class="line"><span class="attr">  lastName:</span> <span class="string">Tom</span></span><br><span class="line"><span class="attr">  age:</span> <span class="number">22</span></span><br><span class="line"><span class="attr">  salary:</span> <span class="number">10000</span></span><br><span class="line"><span class="attr">  boss:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  birthday:</span> <span class="number">1997</span><span class="string">/08/20</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-Spring-Boot配置文件"><a href="#2-Spring-Boot配置文件" class="headerlink" title="2. Spring Boot配置文件"></a>2. Spring Boot配置文件</h2><h3 id="2-1-全局配置文件"><a href="#2-1-全局配置文件" class="headerlink" title="2.1 全局配置文件"></a>2.1 全局配置文件</h3><ul>
-<li><p>可以使用<code>.properties</code>文件配置，命名为<code>application.properties</code>。</p>
+        <h3 id="1-抽象类"><a href="#1-抽象类" class="headerlink" title="1. 抽象类"></a>1. 抽象类</h3><p>抽象类：如果一个类中有抽象方法，那么这个类就是抽象类，抽象类必须用abstract关键字修饰。</p>
+<ul>
+<li>抽象方法只声明，无具体实现。</li>
+<li>抽象类和抽象方法必须被public或protected修饰（如果是private，则不能被子类访问到，自然无法被继承也无法被子类实现抽象方法），缺省情况下默认为public。</li>
+<li>不能用抽象类创建对象。</li>
+<li>如果一个子类继承一个抽象类的父类，那么子类必须实现父类的所有抽象方法，如果不全部实现，这个子类任然是抽象类，必须仍然用abstract关键字修饰。</li>
+</ul>
+<h3 id="2-接口"><a href="#2-接口" class="headerlink" title="2. 接口"></a>2. 接口</h3><p>接口：用interface定义。</p>
+<ul>
+<li>接口中所有方法都必须是抽象方法，缺省被public abstract修饰，且只能被public abstract修饰。（推荐缺省即不加修饰词，使代码简洁美观）。</li>
+<li>接口中可以有变量，缺省被public abstract final修饰，且只能被public abstract final修饰，即变量必须给初值且不可更改。一般情况下不会在接口中定义变量。</li>
+</ul>
+<h3 id="3-抽象类和接口的区别"><a href="#3-抽象类和接口的区别" class="headerlink" title="3. 抽象类和接口的区别"></a>3. 抽象类和接口的区别</h3><ul>
+<li><p>抽象类在Java中表示继承关系，只能单继承，<code>class B extends A {}</code></p>
+<p>接口也能继承接口，不需要实现父接口方法，且一个接口能继承多个接口，<code>interface C extends A, B {}</code></p>
+<p>一个类可以单继承，多接口实现，<code>class E extends D implements A, B, C {}</code></p>
 </li>
-<li><p>也可以使用<code>.yml</code>文件配置，命名为<code>application.yml</code>。</p>
+<li><p>抽象类中可以有非抽象方法，接口中必须全部为抽象方法。</p>
+</li>
+<li><p>抽象类中可以有static方法（static方法是类方法，不允许子类override），接口中不能有static方法，只能是public abstract方法。</p>
 </li>
 </ul>
-<h3 id="2-2-注解"><a href="#2-2-注解" class="headerlink" title="2.2 注解"></a>2.2 注解</h3><h4 id="2-2-1-ConfigurationProperties"><a href="#2-2-1-ConfigurationProperties" class="headerlink" title="2.2.1 @ConfigurationProperties"></a>2.2.1 <code>@ConfigurationProperties</code></h4><p>表示默认从全局配置文件<code>application.properties</code>或者<code>application.yml</code>中获取值，告诉Spring Boot将配置文件中的对应的属性值映射到这个组件类中，进行一一绑定。</p>
-<p>全局配置文件<code>application.yml</code>：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#emp的数据配置</span></span><br><span class="line"><span class="attr">emp:</span></span><br><span class="line"><span class="attr">  lastName:</span> <span class="string">Tom</span></span><br><span class="line"><span class="attr">  age:</span> <span class="number">22</span></span><br><span class="line"><span class="attr">  salary:</span> <span class="number">10000</span></span><br><span class="line"><span class="attr">  boss:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  birthday:</span> <span class="number">1997</span><span class="string">/08/20</span></span><br><span class="line"><span class="attr">  map:</span></span><br><span class="line"><span class="attr">    key1:</span> <span class="string">value1</span></span><br><span class="line"><span class="attr">    key2:</span> <span class="string">value2</span></span><br><span class="line"><span class="attr">    key3:</span> <span class="string">value3</span></span><br><span class="line"><span class="attr">  list:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">one</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">two</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">three</span></span><br><span class="line"><span class="attr">  forte:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">java</span></span><br><span class="line"><span class="attr">    time:</span> <span class="number">8</span></span><br></pre></td></tr></table></figure>
-<p>实体类<code>Emp.java</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ConfigurationProperties</span> 加载全局配置文件，告诉SpringBoot将配置文件中的对应属性值，</span></span><br><span class="line"><span class="comment"> * 映射到这个组件类中，进行一一绑定</span></span><br><span class="line"><span class="comment"> * prefix = "emp" 代表与配置文件中的前缀名绑定 ，配置了哪个前缀就会将配置文件的配置与下面的属性一一映射</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Component</span> 必须将当前组件作为SpringBoot中的一个组件来使用，这样才会纳入容器中管理</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"emp"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Emp</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//定义成员变量、Getter和Setter方法以及toString方法的代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="2-2-2-Value"><a href="#2-2-2-Value" class="headerlink" title="2.2.2 @Value"></a>2.2.2 <code>@Value</code></h4><p>在某个业务逻辑中需要获取配置文件中的某个<em>属性值</em>。</p>
-<p>全局配置文件<code>application.properties</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#配置emp的数据</span><br><span class="line">emp.last-name=李四</span><br><span class="line">emp.age=30</span><br><span class="line">emp.salary=20000</span><br><span class="line">emp.birthday=1998/08/30</span><br><span class="line">emp.boss=false</span><br><span class="line">emp.map.key1=value1</span><br><span class="line">emp.map.key2=value2</span><br><span class="line">emp.map.key3=value3</span><br><span class="line">emp.list=one, two, three</span><br><span class="line">emp.forte.name=python</span><br><span class="line">emp.forte.time=5</span><br></pre></td></tr></table></figure>
-<p>控制层<code>empController.java</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">empController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Value</span>好比Spring框架中使用配置文件的数据注入方式</span></span><br><span class="line"><span class="comment">     * &lt;bean class="Emp"&gt;</span></span><br><span class="line"><span class="comment">     *     &lt;property name="lastName" value="字面量"或者</span></span><br><span class="line"><span class="comment">     *                               value=#&#123;spEL&#125;或者</span></span><br><span class="line"><span class="comment">     *                               value=$&#123;key&#125;&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">     * &lt;/bean&gt;</span></span><br><span class="line"><span class="comment">     * #&#123;spEL&#125;即为Spring表达式，比如#&#123;3*10&#125;</span></span><br><span class="line"><span class="comment">     * $&#123;key&#125;用来引用配置文件中的数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;emp.last-name&#125;"</span>)</span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/say"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello "</span> + name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -511,9 +498,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Spring-Boot/" rel="tag"># Spring Boot</a>
-          
-            <a href="/tags/YAML/" rel="tag"># YAML</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -526,15 +511,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/05/09/Java基础之Iterator（迭代器）/" rel="next" title="Java基础之Iterator（迭代器）">
+                <i class="fa fa-chevron-left"></i> Java基础之Iterator（迭代器）
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/24/Spring-Boot整合Thymeleaf（一）/" rel="prev" title="Spring Boot整合Thymeleaf（一）">
-                Spring Boot整合Thymeleaf（一） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -721,7 +706,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-YAML语言"><span class="nav-number">1.</span> <span class="nav-text">1. YAML语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-简介"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-基本语法"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-示例"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Spring-Boot配置文件"><span class="nav-number">2.</span> <span class="nav-text">2. Spring Boot配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-全局配置文件"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 全局配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-注解"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-ConfigurationProperties"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 @ConfigurationProperties</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-Value"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 @Value</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-抽象类"><span class="nav-number">1.</span> <span class="nav-text">1. 抽象类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-接口"><span class="nav-number">2.</span> <span class="nav-text">2. 接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-抽象类和接口的区别"><span class="nav-number">3.</span> <span class="nav-text">3. 抽象类和接口的区别</span></a></li></ol></div>
             
 
           </div>
