@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java重载与重写]]></title>
+    <url>%2F2019%2F05%2F14%2FJava%E9%87%8D%E8%BD%BD%E4%B8%8E%E9%87%8D%E5%86%99%2F</url>
+    <content type="text"><![CDATA[1. 重载可以理解为一个类中方法的多态，就是多个具有不同参数个数、不同参数类型的同名方法同时存在在一个类中。调用方法通过传递不同参数个数及类型来决定调用哪个方法。 2. 重写子类中一个方法与父类的某一方法有相同方法名、返回类型和参数，则子类方法覆盖原有的继承自父类的方法。这称为方法重载，需要在子类方法上添加@Override注解。如需要再用到父类方法，可用super关键字：super.方法名。 3. 区别 重载由静态类型确定，在类加载时即可确定，属于静态分派。 重写由动态类型确定，是在运行时确定的，属于动态分派。动态分派由虚方法表实现，虚方法表中存在着各个方法的实际入口地址 若子类没重写，则父类和子类的方法表中方法地址相同； 若子类重写了，则子类方法表的方法地址指向重写后的地址。]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java用自定义类作为HashMap的键]]></title>
     <url>%2F2019%2F05%2F14%2FJava%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E4%BD%9C%E4%B8%BAHashMap%E7%9A%84%E9%94%AE%2F</url>
     <content type="text"><![CDATA[Java用自定义类作为HashMap的键，在自定义类中重写哪些方法？ 必须要重写hashCode()方法和equals()方法。 自定义类中的hashCode()方法和equals()方法都继承自Object类： Object类的hashCode()方法返回这个对象存储的内存地址的编号。 Object类的equals()比较的是内存地址是否相等。 HashMap中比较key是这样的： 先用hashCode()方法比较两个key的hash值，若相等 再用equals()方法比较两个key的对象是否相等，全部相等才能视为两个key相等。 现实中我们比较，例如定义了一个学生类，有学号属性，只要学号一样，即使是生成了两个对象，但我们也认为是同一个学生。所以我们判断的是逻辑上的相等，而不是内存地址上的相等，所以要重写hashCode()方法和equals()方法。 ps：用String类型作为HashMap的键为什么没有问题呢？ 查看String类源码可发现，其实String类已经重写了hashCode()方法和equals()方法，这是JDK已经帮我们实现了的。]]></content>
