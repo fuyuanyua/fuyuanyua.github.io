@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[简述TCP三次握手和四次挥手]]></title>
+    <url>%2F2019%2F05%2F14%2F%E7%AE%80%E8%BF%B0TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%2F</url>
+    <content type="text"><![CDATA[1. TCP简介 TCP提供一种面向连接的、可靠的字节流服务。 每一条TCP连接只能有两个端点，是一对一的，广播和多播不能用于 TCP。 TCP提供超时重发、丢弃重复数据、校验数据、流量控制等功能。 2. TCP报文格式如图所示： TCP报文首部有几个部分重点关注： 序号字段（Sequence Number）：占32位（4字节），TCP连接中传送的数据流每一个字节都编上一个序号，序号字段的值表示本报文所发送的数据的第一个字节的序号。 确认号字段（Acknowledgement Number）：占32位（4字节），是期望收到对方下一个报文的数据的第一个字节的编号。 标志字段：共6个，URG、ACK、PSH、RST、SYN、FIN。 URG：URG=1时，表明紧急指针字段有效，此报文有紧急数据，应尽快传送。 ACK：ACK=1时，确认号字段才有效。 PSH：PSH=1时，接收方应该尽快将这个报文交给应用层。 RST：RST=1时，表明TCP连接出现严重差错，重置连接。 SYN：SYN=1时，表明这是一个连接请求报文或者连接接受报文。 FIN：FIN=1时，释放连接。 3. TCP连接的建立与释放TCP的连接有三个阶段：连接建立、数据传送和连接释放。 3.1 连接建立（三次握手） 第一次握手：客户端发送一条连接请求报文到服务器端，该报文SYN=1，序号（Sequence Number）=x。 第二次握手：服务器端发送一条确认报文回客户端，该报文SYN=1、ACK=1，序号（Sequence Number）=y、确认号（Acknowledgement Number）=x+1。 第三次握手：客户端再次发送确认报文回服务器端，该报文ACK=1，序号（Sequence Number）=x+1、确认号（Acknowledgement Number）=y+1。之后TCP连接便已经建立。 3.2 数据传送数据传送。 3.3 连接释放（四次挥手）]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+      <tags>
+        <tag>计算机网络</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java中的异常]]></title>
     <url>%2F2019%2F05%2F14%2FJava%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%2F</url>
     <content type="text"><![CDATA[1. Java中异常的结构Throwable类是所有异常的父类，它有两个子类，Error类和Exception类。 查看继承关系图： 2. Error类Error类及其子类都是程序无法处理的错误，大多数错误与代码编写者执行的操作无关，如VirtualMachineError、ThreadDeath等，这些异常发生时，只能交由JVM（Java虚拟机）处理，JVM一般会选择线程终止。 3. Exception类Exception是程序本身可以处理的异常，Exception又分为两种，一种是运行时异常，另一种是非运行时异常： 运行时异常：都是RuntimeException及其子类，如IndexOutOfBoundsException（下标越界异常）、NullPointerException（空指针异常）等，这些异常大多数是由程序逻辑错误引起，这些都是不检查异常，可以选择捕获处理，也可以不处理。 非运行时异常：RuntimeException以外的异常，是受检查异常，必须进行捕获处理，如果不进行捕获处理，编译不能通过，如常见的IOException及其子类，SQLException及其子类等，或者是自定义的异常（当然一般情况不会自定义受检查异常）。]]></content>
