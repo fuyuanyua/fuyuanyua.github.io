@@ -349,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/14/Java中异常的结构/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/14/Java中的异常/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fuyuanyua">
@@ -369,7 +369,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/14/Java中异常的结构/" class="post-title-link" itemprop="url">Java中异常的结构</a>
+                <a href="/2019/05/14/Java中的异常/" class="post-title-link" itemprop="url">Java中的异常</a>
               
             
           </h1>
@@ -394,7 +394,7 @@
                 
               
 
-              <time title="创建时间：2019-05-14 14:49:35 / 修改时间：15:31:24" itemprop="dateCreated datePublished" datetime="2019-05-14T14:49:35+08:00">2019-05-14</time>
+              <time title="创建时间：2019-05-14 14:49:35 / 修改时间：15:39:34" itemprop="dateCreated datePublished" datetime="2019-05-14T14:49:35+08:00">2019-05-14</time>
             
 
             
@@ -460,7 +460,7 @@
 <h3 id="3-Exception类"><a href="#3-Exception类" class="headerlink" title="3. Exception类"></a>3. Exception类</h3><p>Exception是程序本身可以处理的异常，Exception又分为两种，一种是运行时异常，另一种是非运行时异常：</p>
 <ol>
 <li>运行时异常：都是<code>RuntimeException</code>及其子类，如<code>IndexOutOfBoundsException</code>（下标越界异常）、<code>NullPointerException</code>（空指针异常）等，这些异常大多数是由程序逻辑错误引起，<strong>这些都是不检查异常，可以选择捕获处理，也可以不处理</strong>。</li>
-<li>非运行时异常：<code>RuntimeException</code>以外的异常，<strong>是受检查异常，必须进行捕获处理</strong>，如果不进行捕获处理，编译不能通过，如常见的<code>IOException</code>及其子类，<code>SQLException</code>及其子类等，或者是自定义的异常（当然一般情况不会自定义受检查异常）。</li>
+<li>非运行时异常：<code>RuntimeException</code>以外的异常，<strong>是受检查异常，必须进行捕获处理，如果不进行捕获处理，编译不能通过</strong>，如常见的<code>IOException</code>及其子类，<code>SQLException</code>及其子类等，或者是自定义的异常（当然一般情况不会自定义受检查异常）。</li>
 </ol>
 
           
