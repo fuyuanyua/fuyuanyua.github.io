@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java中异常的结构]]></title>
+    <url>%2F2019%2F05%2F14%2FJava%E4%B8%AD%E5%BC%82%E5%B8%B8%E7%9A%84%E7%BB%93%E6%9E%84%2F</url>
+    <content type="text"><![CDATA[1. Java中异常的结构Throwable类是所有异常的父类，它有两个子类，Error类和Exception类。 查看继承关系图： 2. Error类Error类及其子类都是程序无法处理的错误，大多数错误与代码编写者执行的操作无关，如VirtualMachineError、ThreadDeath等，这些异常发生时，只能交由JVM（Java虚拟机）处理，JVM一般会选择线程终止。 3. Exception类Exception是程序本身可以处理的异常，Exception又分为两种，一种是运行时异常，另一种是非运行时异常： 运行时异常：都是RuntimeException及其子类，如IndexOutOfBoundsException（下标越界异常）、NullPointerException（空指针异常）等，这些异常大多数是由程序逻辑错误引起，这些都是不检查异常，可以选择捕获处理，也可以不处理。 非运行时异常：RuntimeException以外的异常，是受检查异常，必须进行捕获处理，如果不进行捕获处理，编译不能通过，如常见的IOException及其子类，SQLException及其子类等，或者是自定义的异常（当然一般情况不会自定义受检查异常）。]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java重载与重写]]></title>
     <url>%2F2019%2F05%2F14%2FJava%E9%87%8D%E8%BD%BD%E4%B8%8E%E9%87%8D%E5%86%99%2F</url>
     <content type="text"><![CDATA[1. 重载可以理解为一个类中方法的多态，就是多个具有不同参数个数、不同参数类型的同名方法同时存在在一个类中。调用方法通过传递不同参数个数及类型来决定调用哪个方法。 2. 重写子类中一个方法与父类的某一方法有相同方法名、返回类型和参数，则子类方法覆盖原有的继承自父类的方法。这称为方法重载，需要在子类方法上添加@Override注解。如需要再用到父类方法，可用super关键字：super.方法名。 3. 区别 重载由静态类型确定，在类加载时即可确定，属于静态分派。 重写由动态类型确定，是在运行时确定的，属于动态分派。动态分派由虚方法表实现，虚方法表中存在着各个方法的实际入口地址 若子类没重写，则父类和子类的方法表中方法地址相同； 若子类重写了，则子类方法表的方法地址指向重写后的地址。]]></content>
