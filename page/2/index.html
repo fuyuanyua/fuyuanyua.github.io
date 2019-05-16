@@ -349,6 +349,306 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/Spring-Boot整合Redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fuyuanyua">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/04/Spring-Boot整合Redis/" class="post-title-link" itemprop="url">Spring Boot整合Redis</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-04 10:59:01 / 修改时间：18:34:21" itemprop="dateCreated datePublished" datetime="2019-05-04T10:59:01+08:00">2019-05-04</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot笔记/" itemprop="url" rel="index"><span itemprop="name">Spring Boot笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-Redis简介"><a href="#1-Redis简介" class="headerlink" title="1. Redis简介"></a>1. Redis简介</h2><ul>
+<li>在实际开发中，一般使用缓存中间件：redis、ehcache、memcache；导入了对应的组件依赖，就可以使用<br>对应的缓存。</li>
+<li>Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets）， 有序集合（sorted sets） 与范围查询， bitmaps， hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis 内置了 复制（replication），LUA脚本（Lua scripting）， LRU驱动事件（LRU eviction），事务（transactions） 和不同级别的 磁盘持久化（persistence）， 并通过 Redis哨兵（Sentinel）和自动 分区（Cluster）提供高可用性（high availability）。</li>
+<li>我使用Redis作为缓存中间件。</li>
+</ul>
+<h2 id="2-安装Redis服务和客户端"><a href="#2-安装Redis服务和客户端" class="headerlink" title="2. 安装Redis服务和客户端"></a>2. 安装Redis服务和客户端</h2><h3 id="2-1-Redis中文官网"><a href="#2-1-Redis中文官网" class="headerlink" title="2.1 Redis中文官网"></a>2.1 Redis中文官网</h3><p><a href="http://www.redis.cn/" target="_blank" rel="noopener">http://www.redis.cn/</a></p>
+<p>提供了各种对Redis的支持和参考文档以及下载，遇到问题时可以访问此网站寻求解决方法。</p>
+<h3 id="2-2-下载与安装"><a href="#2-2-下载与安装" class="headerlink" title="2.2 下载与安装"></a>2.2 下载与安装</h3><ul>
+<li><p>Linux版本：<a href="http://download.redis.io/releases/" target="_blank" rel="noopener">http://download.redis.io/releases/</a></p>
+</li>
+<li><p>Windows版本：<a href="https://github.com/MicrosoftArchive/redis/releases" target="_blank" rel="noopener">https://github.com/MicrosoftArchive/redis/releases</a></p>
+</li>
+<li><p>我在win机上测试，下载win版，解压然后运行redis-server.exe即可。</p>
+<p><img src="QQ截图20190504111807.png" alt></p>
+<p><img src="QQ截图20190504111858.png" alt></p>
+<p>若服务无法运行或者闪退，请参考：</p>
+<p><a href="https://fuyuanyua.github.io/2019/04/27/redis-server-exe%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_blank" rel="noopener">https://fuyuanyua.github.io/2019/04/27/redis-server-exe%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</a></p>
+<p>Redis服务启动成功：</p>
+<p><img src="QQ截图20190504112637.png" alt></p>
+</li>
+<li><p>安装 Redis 可视化客户端 redis-desktop-manager-0.8.8.384.exe。</p>
+<p><img src="QQ截图20190504112347.png" alt></p>
+</li>
+<li><p>运行redis-desktop-manager。</p>
+<p>连接Redis服务，名字任取，Host即127.0.0.1即localhost，端口号默认6379。</p>
+<p><img src="QQ截图20190504113551.png" alt></p>
+</li>
+<li><p>连接成功。</p>
+<p><img src="QQ截图20190504113742.png" alt></p>
+<p>至此Redis服务与客户端已经全部安装运行完成。</p>
+</li>
+</ul>
+<h2 id="3-Redis支持的数据结构"><a href="#3-Redis支持的数据结构" class="headerlink" title="3. Redis支持的数据结构"></a>3. Redis支持的数据结构</h2><h3 id="3-1-常用五种数据结构"><a href="#3-1-常用五种数据结构" class="headerlink" title="3.1 常用五种数据结构"></a>3.1 常用五种数据结构</h3><ul>
+<li><p>String：&lt;key, value&gt;</p>
+</li>
+<li><p>Hash：&lt;key，fields-values&gt;</p>
+</li>
+<li><p>List：有顺序可重复</p>
+</li>
+<li><p>Set：无顺序不可重复</p>
+</li>
+<li><p>Sorted Sets (zset) ：有顺序，不能重复</p>
+</li>
+<li><p>常用五种，当然还有更多数据结构请参考：</p>
+<p><a href="http://www.redis.cn/commands.html" target="_blank" rel="noopener">http://www.redis.cn/commands.html</a></p>
+</li>
+</ul>
+<h3 id="3-2-String：-lt-key-value-gt"><a href="#3-2-String：-lt-key-value-gt" class="headerlink" title="3.2 String：&lt;key, value&gt;"></a>3.2 String：&lt;key, value&gt;</h3><ul>
+<li><p>set：设置key和value。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;set A hello</span><br><span class="line">&quot;OK&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>get：获取指定key的value。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;get A</span><br><span class="line">&quot;hello&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>append：追加值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;append A world</span><br><span class="line">&quot;10&quot;</span><br><span class="line">MyRedis:0&gt;get A</span><br><span class="line">&quot;helloworld&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>incr：整数值加1。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;incr A</span><br><span class="line">&quot;ERR value is not an integer or out of range&quot;</span><br></pre></td></tr></table></figure>
+<p>A不是整型，所以无法执行原子加1操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;set B 1</span><br><span class="line">&quot;OK&quot;</span><br><span class="line"></span><br><span class="line">MyRedis:0&gt;get B</span><br><span class="line">&quot;1&quot;</span><br><span class="line"></span><br><span class="line">MyRedis:0&gt;incr B</span><br><span class="line">&quot;2&quot;</span><br><span class="line"></span><br><span class="line">MyRedis:0&gt;get B</span><br><span class="line">&quot;2&quot;</span><br></pre></td></tr></table></figure>
+<p>B是整型，执行原子加1操作。</p>
+</li>
+<li><p>decr：整数值减1。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;decr B</span><br><span class="line">&quot;1&quot;</span><br><span class="line"></span><br><span class="line">MyRedis:0&gt;get B</span><br><span class="line">&quot;1&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>keys *：查看所有key。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;keys *</span><br><span class="line"> 1)  &quot;B&quot;</span><br><span class="line"> 2)  &quot;A&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>del key_name：删除指定key和他对应的value。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;del B</span><br><span class="line">&quot;1&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>更多语法请参考：</p>
+<p><a href="http://www.redis.cn/commands.html#string" target="_blank" rel="noopener">http://www.redis.cn/commands.html#string</a></p>
+</li>
+</ul>
+<h3 id="3-3-Hash：-lt-key，fields-values-gt"><a href="#3-3-Hash：-lt-key，fields-values-gt" class="headerlink" title="3.3 Hash：&lt;key，fields-values&gt;"></a>3.3 Hash：&lt;key，fields-values&gt;</h3><p>相当于一个key对于一个Map，Map中还有key-value, 使用hash对key进行归类。</p>
+<ul>
+<li><p>hset：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;hset myhash a1 1</span><br><span class="line">&quot;1&quot;</span><br><span class="line"></span><br><span class="line">MyRedis:0&gt;hset myhash a2 2</span><br><span class="line">&quot;1&quot;</span><br><span class="line"></span><br><span class="line">MyRedis:0&gt;hset myhash a3 3</span><br><span class="line">&quot;1&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="QQ截图20190504144228.png" alt></p>
+</li>
+<li><p>hget：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;hget myhash a2</span><br><span class="line">&quot;2&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hgetall key_name：获取指定key的hash中所有key-value。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;hgetall myhash</span><br><span class="line"> 1)  &quot;a1&quot;</span><br><span class="line"> 2)  &quot;1&quot;</span><br><span class="line"> 3)  &quot;a2&quot;</span><br><span class="line"> 4)  &quot;2&quot;</span><br><span class="line"> 5)  &quot;a3&quot;</span><br><span class="line"> 6)  &quot;3&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更多语法请参考：</p>
+<p><a href="http://www.redis.cn/commands.html#hash" target="_blank" rel="noopener">http://www.redis.cn/commands.html#hash</a></p>
+</li>
+</ul>
+<h3 id="3-4-List：有顺序可重复"><a href="#3-4-List：有顺序可重复" class="headerlink" title="3.4 List：有顺序可重复"></a>3.4 List：有顺序可重复</h3><ul>
+<li><p>lpush：向左边添加值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;lpush mylist a b c d</span><br><span class="line">&quot;4&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>lrange：获取指定key的list的所有值（0表示下标从0开始，-1表示获取所有）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;lrange mylist 0 -1</span><br><span class="line"> 1)  &quot;d&quot;</span><br><span class="line"> 2)  &quot;c&quot;</span><br><span class="line"> 3)  &quot;b&quot;</span><br><span class="line"> 4)  &quot;a&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rpush：向右边添加值。</p>
+</li>
+<li><p>lpop：弹出左边第一个值。</p>
+</li>
+<li><p>rpop：弹出右边的第一个值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;rpush mylist e f g</span><br><span class="line">&quot;7&quot;</span><br><span class="line"></span><br><span class="line">MyRedis:0&gt;lrange mylist 0 -1</span><br><span class="line"> 1)  &quot;d&quot;</span><br><span class="line"> 2)  &quot;c&quot;</span><br><span class="line"> 3)  &quot;b&quot;</span><br><span class="line"> 4)  &quot;a&quot;</span><br><span class="line"> 5)  &quot;e&quot;</span><br><span class="line"> 6)  &quot;f&quot;</span><br><span class="line"> 7)  &quot;g&quot;</span><br><span class="line">MyRedis:0&gt;lpop mylist</span><br><span class="line">&quot;d&quot;</span><br><span class="line"></span><br><span class="line">MyRedis:0&gt;rpop mylist</span><br><span class="line">&quot;g&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="QQ截图20190504154811.png" alt></p>
+</li>
+<li><p>更多语法请参考：</p>
+<p><a href="http://www.redis.cn/commands.html#list" target="_blank" rel="noopener">http://www.redis.cn/commands.html#list</a></p>
+</li>
+</ul>
+<h3 id="3-5-Set：无顺序不可重复"><a href="#3-5-Set：无顺序不可重复" class="headerlink" title="3.5 Set：无顺序不可重复"></a>3.5 Set：无顺序不可重复</h3><ul>
+<li><p>sadd：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;sadd myset a b c d e</span><br><span class="line">&quot;5&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>smembers：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;smembers myset</span><br><span class="line"> 1)  &quot;c&quot;</span><br><span class="line"> 2)  &quot;d&quot;</span><br><span class="line"> 3)  &quot;b&quot;</span><br><span class="line"> 4)  &quot;a&quot;</span><br><span class="line"> 5)  &quot;e&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>srem：移除指定元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;srem myset a</span><br><span class="line">&quot;1&quot;</span><br><span class="line">MyRedis:0&gt;smembers myset</span><br><span class="line"> 1)  &quot;d&quot;</span><br><span class="line"> 2)  &quot;b&quot;</span><br><span class="line"> 3)  &quot;c&quot;</span><br><span class="line"> 4)  &quot;e&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="QQ截图20190504155018.png" alt></p>
+</li>
+<li><p>更多语法请参考：</p>
+<p><a href="http://www.redis.cn/commands.html#set" target="_blank" rel="noopener">http://www.redis.cn/commands.html#set</a></p>
+</li>
+</ul>
+<h3 id="3-6-Sorted-Sets-zset-：有顺序，不能重复"><a href="#3-6-Sorted-Sets-zset-：有顺序，不能重复" class="headerlink" title="3.6 Sorted Sets (zset) ：有顺序，不能重复"></a>3.6 Sorted Sets (zset) ：有顺序，不能重复</h3><ul>
+<li><p>zadd <code>key</code> <code>score</code> <code>member</code>：将所有指定成员添加到键为<code>key</code>有序集合（sorted set）里面。 添加时可以指定多个分数/成员（score/member）对。 如果指定添加的成员已经是有序集合里面的成员，则会更新改成员的分数（scrore）并更新到正确的排序位置，按成员得分由小到大排列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;zadd myzset 1 a 2 b 3 c</span><br><span class="line">&quot;3&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>zrange：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">MyRedis:0&gt;zadd myzset 1 d 1 e</span><br><span class="line">&quot;2&quot;</span><br><span class="line"></span><br><span class="line">MyRedis:0&gt;zrange myzset 0 -1</span><br><span class="line"> 1)  &quot;a&quot;</span><br><span class="line"> 2)  &quot;d&quot;</span><br><span class="line"> 3)  &quot;e&quot;</span><br><span class="line"> 4)  &quot;b&quot;</span><br><span class="line"> 5)  &quot;c&quot;</span><br><span class="line">MyRedis:0&gt;zadd myzset 10 a</span><br><span class="line">&quot;0&quot;</span><br><span class="line"></span><br><span class="line">MyRedis:0&gt;zrange myzset 0 -1 withscores</span><br><span class="line"> 1)  &quot;d&quot;</span><br><span class="line"> 2)  &quot;1&quot;</span><br><span class="line"> 3)  &quot;e&quot;</span><br><span class="line"> 4)  &quot;1&quot;</span><br><span class="line"> 5)  &quot;b&quot;</span><br><span class="line"> 6)  &quot;2&quot;</span><br><span class="line"> 7)  &quot;c&quot;</span><br><span class="line"> 8)  &quot;3&quot;</span><br><span class="line"> 9)  &quot;a&quot;</span><br><span class="line"> 10)  &quot;10&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="QQ截图20190504183044.png" alt></p>
+</li>
+<li><p>更多语法请参考：</p>
+<p><a href="http://www.redis.cn/commands.html#sorted_set" target="_blank" rel="noopener">http://www.redis.cn/commands.html#sorted_set</a></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/02/Spring-Boot项目部署到云服务器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2515,198 +2815,6 @@ BillMapper billMapper;</code></p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/04/配置Druid数据库连接池/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fuyuanyua">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/04/配置Druid数据库连接池/" class="post-title-link" itemprop="url">配置Druid数据库连接池</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-04 16:22:50" itemprop="dateCreated datePublished" datetime="2019-04-04T16:22:50+08:00">2019-04-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-02 18:45:22" itemprop="dateModified" datetime="2019-05-02T18:45:22+08:00">2019-05-02</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot笔记/" itemprop="url" rel="index"><span itemprop="name">Spring Boot笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-配置Druid数据库连接池"><a href="#1-配置Druid数据库连接池" class="headerlink" title="1. 配置Druid数据库连接池"></a>1. 配置Druid数据库连接池</h2><p>什么是数据库连接池？</p>
-<p>参考：<a href="https://www.cnblogs.com/aspirant/p/6747238.html" target="_blank" rel="noopener">https://www.cnblogs.com/aspirant/p/6747238.html</a></p>
-<ul>
-<li><strong>Spring Boot 2.0 </strong>默认使用 <strong>HikariCP</strong> 作为数据库连接池。</li>
-<li><strong>Druid</strong> 是阿里巴巴推出的国产数据库连接池，据网上测试对比，比目前的 <strong>DBCP</strong> 或 <strong>C3P0</strong> 数据库连接池性能更好，并且 <strong>Druid</strong> 能够提供强大的监控和扩展功能。</li>
-</ul>
-<h3 id="1-1-在pom-xml中引入依赖"><a href="#1-1-在pom-xml中引入依赖" class="headerlink" title="1.1 在pom.xml中引入依赖"></a>1.1 在<code>pom.xml</code>中引入依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.alibaba/druid --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.15<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-2-在全局配置文件application-yml中配置"><a href="#1-2-在全局配置文件application-yml中配置" class="headerlink" title="1.2 在全局配置文件application.yml中配置"></a>1.2 在全局配置文件<code>application.yml</code>中配置</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">root</span></span><br><span class="line">    <span class="comment"># mysql-connector-java 8.0版本以上的驱动包要指定时区</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://localhost:3306/jdbc?serverTimezone=GMT%2B8</span></span><br><span class="line">    <span class="comment"># mysql-connector-java 8.0版本以上指定了新的驱动类</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="comment"># 使用阿里的Druid（德鲁伊）数据源</span></span><br><span class="line"><span class="attr">    type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 数据源其他配置</span></span><br><span class="line"><span class="attr">    initialSize:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">    minIdle:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">    maxActive:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">    maxWait:</span> <span class="number">60000</span></span><br><span class="line"><span class="attr">    timeBetweenEvictionRunsMillis:</span> <span class="number">60000</span></span><br><span class="line"><span class="attr">    minEvictableIdleTimeMillis:</span> <span class="number">300000</span></span><br><span class="line"><span class="attr">    validationQuery:</span> <span class="string">SELECT</span> <span class="number">1</span> <span class="string">FROM</span> <span class="string">DUAL</span></span><br><span class="line"><span class="attr">    testWhileIdle:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    testOnBorrow:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    testOnReturn:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    poolPreparedStatements:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙</span></span><br><span class="line"><span class="attr">    filters:</span> <span class="string">stat,wall,logback</span></span><br><span class="line"><span class="attr">    maxPoolPreparedStatementPerConnectionSize:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">    useGlobalDataSourceStat:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    connectionProperties:</span> <span class="string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-3-绑定Druid相关信息"><a href="#1-3-绑定Druid相关信息" class="headerlink" title="1.3 绑定Druid相关信息"></a>1.3 绑定Druid相关信息</h3><p>在config目录下新建类<code>DruidConfig</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DruidConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"spring.datasource"</span>)</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DataSource <span class="title">druid</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DruidDataSource();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>至此Druid数据库连接池配置完毕。</p>
-<h2 id="2-配置Druid的监控"><a href="#2-配置Druid的监控" class="headerlink" title="2. 配置Druid的监控"></a>2. 配置Druid的监控</h2><p><strong>Druid</strong> 自带监控管理系统，要配置一个Druid监控：</p>
-<ol>
-<li>配置一个Druid的Servlet</li>
-<li>配置一个Druid的Filter</li>
-<li>完成</li>
-</ol>
-<h3 id="2-1-配置一个Druid的Servlet"><a href="#2-1-配置一个Druid的Servlet" class="headerlink" title="2.1 配置一个Druid的Servlet"></a>2.1 配置一个Druid的Servlet</h3><p>在config目录下<code>DruidConfig</code>类下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//配置一个Druid的后台管理系统的Servlet</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ServletRegistrationBean <span class="title">statViewServlet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//请求是/druid/*</span></span><br><span class="line">    ServletRegistrationBean&lt;StatViewServlet&gt; bean = <span class="keyword">new</span> ServletRegistrationBean&lt;&gt;(<span class="keyword">new</span> StatViewServlet(), <span class="string">"/druid/*"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置初始化参数值</span></span><br><span class="line">    Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(StatViewServlet.PARAM_NAME_USERNAME, <span class="string">"root"</span>);</span><br><span class="line">    map.put(StatViewServlet.PARAM_NAME_PASSWORD, <span class="string">"123456"</span>);</span><br><span class="line">    <span class="comment">//如果不写，则默认所有IP地址都可以访问</span></span><br><span class="line">    map.put(StatViewServlet.PARAM_NAME_ALLOW, <span class="string">""</span>);</span><br><span class="line">    <span class="comment">//指定IP地址禁止访问</span></span><br><span class="line">    map.put(StatViewServlet.PARAM_NAME_DENY, <span class="string">"192.168.1.1"</span>);</span><br><span class="line">    bean.setInitParameters(map);</span><br><span class="line">    <span class="keyword">return</span> bean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-2-配置一个Druid的Filter"><a href="#2-2-配置一个Druid的Filter" class="headerlink" title="2.2 配置一个Druid的Filter"></a>2.2 配置一个Druid的Filter</h3><p>在config目录下<code>DruidConfig</code>类下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//配置一个Druid的Filter</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> FilterRegistrationBean <span class="title">webStatFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    FilterRegistrationBean&lt;Filter&gt; bean = <span class="keyword">new</span> FilterRegistrationBean&lt;&gt;();</span><br><span class="line">    bean.setFilter(<span class="keyword">new</span> WebStatFilter());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置不拦截的请求</span></span><br><span class="line">    Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(WebStatFilter.PARAM_NAME_EXCLUSIONS, <span class="string">"*.js, *.css, /druid/*"</span>);</span><br><span class="line">    bean.setInitParameters(map);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置拦截请求, /* 表示拦截所有请求</span></span><br><span class="line">    bean.setUrlPatterns(Arrays.asList(<span class="string">"/*"</span>));</span><br><span class="line">    <span class="keyword">return</span> bean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2753,7 +2861,7 @@ BillMapper billMapper;</code></p>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2782,7 +2890,9 @@ BillMapper billMapper;</code></p>
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2837,7 +2947,11 @@ BillMapper billMapper;</code></p>
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
