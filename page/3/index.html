@@ -349,6 +349,218 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/25/Spring-Boot缓存操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fuyuanyua">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/25/Spring-Boot缓存操作/" class="post-title-link" itemprop="url">Spring Boot缓存操作</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-25 15:59:11" itemprop="dateCreated datePublished" datetime="2019-04-25T15:59:11+08:00">2019-04-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-02 18:44:07" itemprop="dateModified" datetime="2019-05-02T18:44:07+08:00">2019-05-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot笔记/" itemprop="url" rel="index"><span itemprop="name">Spring Boot笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-缓存"><a href="#1-缓存" class="headerlink" title="1. 缓存"></a>1. 缓存</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><p>在开发中，如果有经常频繁访问的数据，那么一般都使用缓存，以此来减少访问数据库，减轻压力。</p>
+<h3 id="1-2-引入缓存启动器依赖"><a href="#1-2-引入缓存启动器依赖" class="headerlink" title="1.2 引入缓存启动器依赖"></a>1.2 引入缓存启动器依赖</h3><p><code>pom.xml</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-cache<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-3-application-yml全局配置文件"><a href="#1-3-application-yml全局配置文件" class="headerlink" title="1.3 application.yml全局配置文件"></a>1.3 <code>application.yml</code>全局配置文件</h3><p>创建数据库bill并在user表中添加几条数据。</p>
+<p>然后配置<code>application.yml</code>：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://localhost:3306/bill?serverTimezone=GMT%2B8</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># com.example.springboot.mapper.UserMapper包下打印日志级别为debug</span></span><br><span class="line"><span class="attr">logging:</span></span><br><span class="line"><span class="attr">  level:</span></span><br><span class="line">    <span class="string">com.example.springboot.mapper.UserMapper:</span> <span class="string">debug</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启自动驼峰命名方式</span></span><br><span class="line"><span class="attr">mybatis:</span></span><br><span class="line"><span class="attr">  configuration:</span></span><br><span class="line"><span class="attr">    map-underscore-to-camel-case:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-4-EnableCaching注解"><a href="#1-4-EnableCaching注解" class="headerlink" title="1.4 @EnableCaching注解"></a>1.4 <code>@EnableCaching</code>注解</h3><p>在启动类上使用注解<code>@EnableCaching</code>以开启注解版缓存。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableCaching</span> <span class="comment">//开启注解版缓存</span></span><br><span class="line"><span class="meta">@MapperScan</span>(<span class="string">"com.example.springboot.mapper"</span>)</span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBoot13CacheApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringBoot13CacheApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-5-Cacheable注解"><a href="#1-5-Cacheable注解" class="headerlink" title="1.5 @Cacheable注解"></a>1.5 <code>@Cacheable</code>注解</h3><p><code>@Cacheable</code>注解标注在方法上（一般写在Service层），该方法的返回结果就会进行缓存。</p>
+<p>把缓存理解为一个“缓存容器”，里面有一条条key，每个key对应的value为方法返回的值。</p>
+<p><code>@Cacheable</code>的属性：</p>
+<ul>
+<li><code>cacheNames</code>指定“缓存容器”的名字。</li>
+<li><code>key</code>指定缓存中的key值，<code>key = &quot;#id&quot;</code>即将方法中的参数<code>id</code>当做key。</li>
+</ul>
+<p>Service层中代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * cacheNames：缓存容器名字</span></span><br><span class="line"><span class="comment"> * key：缓存容器中的key值，方法返回值为value值</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Cacheable</span>(cacheNames = <span class="string">"user"</span>, key = <span class="string">"#id"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">getUserById</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">    User user = userMapper.getUserById(id);</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-6-CachePut注解"><a href="#1-6-CachePut注解" class="headerlink" title="1.6 @CachePut注解"></a>1.6 <code>@CachePut</code>注解</h3><p><code>@CachePut</code>注解保证了修改了表中的数据后，同时更新缓存中的数据，使得别人查询这条已更新的数据直接从缓存中获取。</p>
+<p>测试：</p>
+<ul>
+<li>先查询id=1的用户，数据会放在缓存中。</li>
+<li>后面查询id=1的用户数据都从缓存中获取。</li>
+<li>更新id=1的用户，同时会更新缓存中的数据。</li>
+<li>后面查询id=1的用户数据依然直接从缓存中获取。</li>
+</ul>
+<p>Service层中代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CachePut</span>(cacheNames = <span class="string">"user"</span>, key = <span class="string">"#user.id"</span>)</span><br><span class="line"><span class="comment">//cacheNames = "user" 必须指定一个缓存的名称，不然报500错误</span></span><br><span class="line"><span class="comment">//缓存都是在调用方法之后执行，而不是调用方法之前执行</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">updateUser</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">    userMapper.updateUser(user);</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-7-CacheEvict注解"><a href="#1-7-CacheEvict注解" class="headerlink" title="1.7 @CacheEvict注解"></a>1.7 <code>@CacheEvict</code>注解</h3><p>默认情况下删除数据不会将缓存中的数据删除，使用<code>@CacheEvict</code>注解，使得删除数据的同时也将缓存中的数据删除。</p>
+<p><code>@CacheEvict</code>的属性：</p>
+<ul>
+<li><code>cacheNames</code>指定“缓存容器”的名字。</li>
+<li><code>key</code>指定缓存中的key值，<code>key = &quot;#id&quot;</code>即将方法中的参数<code>id</code>当做key。</li>
+<li><code>allEntries = true</code> 会将缓存中所有数据清除，默认false。</li>
+<li><code>beforeInvocation = true</code> 在调用方法之前清理缓存，默认false（在调用方法之后再清理缓存）。</li>
+</ul>
+<p>Service层中代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 默认情况下删除数据不会将缓存中的数据删除</span></span><br><span class="line"><span class="comment"> * allEntries = true 会将缓存中所有数据清除，默认false</span></span><br><span class="line"><span class="comment"> * beforeInvocation = true 在调用方法之前清理缓存，默认false（在调用方法之后再清理缓存）</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@CacheEvict</span>(cacheNames = <span class="string">"user"</span>, key = <span class="string">"#id"</span>, allEntries = <span class="keyword">true</span>, beforeInvocation = <span class="keyword">true</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">deleteUserById</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">    userMapper.deleteUserById(id);</span><br><span class="line">    <span class="keyword">return</span> id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-8-CacheConfig注解"><a href="#1-8-CacheConfig注解" class="headerlink" title="1.8 @CacheConfig注解"></a>1.8 <code>@CacheConfig</code>注解</h3><p><code>@CacheConfig(cacheNames = &quot;user&quot;)</code>配置了该类下所有方法的缓存名都为”user”，这样就不用在下面每个方法的注解上指定<code>cacheNames = &quot;user&quot;</code>了。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CacheConfig</span>(cacheNames = <span class="string">"user"</span>)</span><br><span class="line"><span class="comment">//此注解配置了类下所有方法缓存名都为"user",就不用在下面每个方法的注解上指定cacheNames = "user"了</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * cacheNames：缓存容器名字</span></span><br><span class="line"><span class="comment">     * key：缓存容器中的key值，方法返回值为value值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Cacheable</span>(<span class="comment">/*cacheNames = "user",*/</span> key = <span class="string">"#id"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getUserById</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        User user = userMapper.getUserById(id);</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/20/2019-04-21-23上海旅行规划/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2361,200 +2573,6 @@ BillMapper billMapper;</code></p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/31/Spring-Boot整合Thymeleaf（二）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fuyuanyua">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/31/Spring-Boot整合Thymeleaf（二）/" class="post-title-link" itemprop="url">Spring Boot整合Thymeleaf（二）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-31 13:42:54" itemprop="dateCreated datePublished" datetime="2019-03-31T13:42:54+08:00">2019-03-31</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-02 18:45:46" itemprop="dateModified" datetime="2019-05-02T18:45:46+08:00">2019-05-02</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot笔记/" itemprop="url" rel="index"><span itemprop="name">Spring Boot笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-声明公共代码片段"><a href="#1-声明公共代码片段" class="headerlink" title="1. 声明公共代码片段"></a>1. 声明公共代码片段</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><p>有两种方式声明公共代码片段：</p>
-<ol>
-<li>通过<code>th:fragment</code>声明公共代码片段。</li>
-<li>通过id选择器声明公共代码片段。</li>
-</ol>
-<h3 id="1-2-通过th-fragment声明"><a href="#1-2-通过th-fragment声明" class="headerlink" title="1.2 通过th:fragment声明"></a>1.2 通过<code>th:fragment</code>声明</h3><p>示例：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 通过th:fragment声明公共代码片段 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:fragment</span>=<span class="string">"header_common"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        文字内容</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-3-通过id选择器声明"><a href="#1-3-通过id选择器声明" class="headerlink" title="1.3 通过id选择器声明"></a>1.3 通过id选择器声明</h3><p>示例：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 通过id选择器进行声明公共代码片段 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"header_common_id"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        文字内容</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-引入公共代码片段"><a href="#2-引入公共代码片段" class="headerlink" title="2. 引入公共代码片段"></a>2. 引入公共代码片段</h2><h3 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1 简介"></a>2.1 简介</h3><p>有两种方式引入申明过的公共代码片段：</p>
-<ol>
-<li>通过<code>th:replace</code>引入：不保留引入公共代码片段时当前所使用的标签，即用引入的标签 <strong>替换</strong> 当前标签。</li>
-<li>通过<code>th:insert</code>引入：保留引入公共代码片段时当前所使用的标签，即将公共代码块 <strong>插入</strong> 当前标签，变成当前标签的子标签。</li>
-</ol>
-<h3 id="2-2-通过th-replace引入"><a href="#2-2-通过th-replace引入" class="headerlink" title="2.2 通过th:replace引入"></a>2.2 通过<code>th:replace</code>引入</h3><h4 id="2-2-1-引入通过th-fragment声明的公共代码片段"><a href="#2-2-1-引入通过th-fragment声明的公共代码片段" class="headerlink" title="2.2.1 引入通过th:fragment声明的公共代码片段"></a>2.2.1 引入通过<code>th:fragment</code>声明的公共代码片段</h4><p>示例：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 通过th:replace引入通过th:fragment声明公共代码片段</span></span><br><span class="line"><span class="comment">     注意header是文件名，header_common就是声明的属性值</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:replace</span>=<span class="string">"header :: header_common"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="2-2-2-引入通过id选择器声明的公共代码片段"><a href="#2-2-2-引入通过id选择器声明的公共代码片段" class="headerlink" title="2.2.2 引入通过id选择器声明的公共代码片段"></a>2.2.2 引入通过id选择器声明的公共代码片段</h4><p>示例：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 通过th:replace引入通过id选择器进行声明公共代码片段</span></span><br><span class="line"><span class="comment">	 注意header是文件名，#header_common_id就是声明的id值</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:replace</span>=<span class="string">"header :: #header_common_id"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-3-通过th-insert引入"><a href="#2-3-通过th-insert引入" class="headerlink" title="2.3 通过th:insert引入"></a>2.3 通过<code>th:insert</code>引入</h3><h4 id="2-3-1-引入通过th-fragment声明的公共代码片段"><a href="#2-3-1-引入通过th-fragment声明的公共代码片段" class="headerlink" title="2.3.1 引入通过th:fragment声明的公共代码片段"></a>2.3.1 引入通过<code>th:fragment</code>声明的公共代码片段</h4><p>示例：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">th:insert</span>=<span class="string">"header :: #header_common"</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="2-3-2-引入通过id选择器声明的公共代码片段"><a href="#2-3-2-引入通过id选择器声明的公共代码片段" class="headerlink" title="2.3.2 引入通过id选择器声明的公共代码片段"></a>2.3.2 引入通过id选择器声明的公共代码片段</h4><p>示例：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">th:insert</span>=<span class="string">"header :: #header_common_id"</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2601,7 +2619,7 @@ BillMapper billMapper;</code></p>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
