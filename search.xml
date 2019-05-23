@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[简述分派]]></title>
+    <url>%2F2019%2F05%2F23%2F%E7%AE%80%E8%BF%B0%E5%88%86%E6%B4%BE%2F</url>
+    <content type="text"><![CDATA[1. 分派分派指的是在Java中对方法的调用，分派可分为： 静态分派 动态分派 2. 静态分派先区分静态类型和实际类型：假设Animal为父类，Dog为子类，Animal animal = new Dog(); 则对象animal的静态类型为Animal，在编译时便确定。 实际类型为Dog，在运行时才确定。 根据对象的静态类型来确定执行哪个方法版本，叫做静态分派，典型应用为方法重载。 发生在编译阶段，静态分派的动作不是JVM来执行的。 3. 动态分派根据对象的实际类型来确定执行哪个方法版本，叫做动态分派，典型应用为方法重写。 发生在运行时期，动态分派由JVM来执行。 动态分派的实现是在方法区建立方法表： 如果子类没有重写父类该方法，则子类虚方法表中该方法指向父类该方法的入口地址。 如果子类重写了父类该方法，则子类虚方法中该方法指向子类重写后的该方法入口地址。]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[事务的隔离级别]]></title>
     <url>%2F2019%2F05%2F23%2F%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%2F</url>
     <content type="text"><![CDATA[详见本博文： https://fuyuanyua.github.io/2019/04/09/Spring-Boot%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/]]></content>
       <categories>
         <category>数据库</category>
       </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>事务管理</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Java多线程start方法和run方法的区别]]></title>
