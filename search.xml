@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[深入理解HashMap]]></title>
+    <url>%2F2019%2F05%2F27%2F%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3HashMap%2F</url>
+    <content type="text"><![CDATA[HashMap的默认初始容量为16。 1. HashMap的数据结构Java中HashMap的数据结构其实是数组+链表（或者红黑树）的组合。 2. HashMap的构造方法HashMap部分源码： 123456789101112131415161718192021222324252627282930313233343536373839public class HashMap&lt;K,V&gt; extends AbstractMap&lt;K,V&gt; implements Map&lt;K,V&gt;, Cloneable, Serializable &#123; /** * The default initial capacity - MUST be a power of two. */ static final int DEFAULT_INITIAL_CAPACITY = 1 &lt;&lt; 4; // aka 16 /** * The load factor used when none specified in constructor. */ static final float DEFAULT_LOAD_FACTOR = 0.75f; public HashMap(int initialCapacity, float loadFactor) &#123; if (initialCapacity &lt; 0) throw new IllegalArgumentException("Illegal initial capacity: " + initialCapacity); if (initialCapacity &gt; MAXIMUM_CAPACITY) initialCapacity = MAXIMUM_CAPACITY; if (loadFactor &lt;= 0 || Float.isNaN(loadFactor)) throw new IllegalArgumentException("Illegal load factor: " + loadFactor); this.loadFactor = loadFactor; this.threshold = tableSizeFor(initialCapacity); &#125; public HashMap(int initialCapacity) &#123; this(initialCapacity, DEFAULT_LOAD_FACTOR); &#125; public HashMap() &#123; this.loadFactor = DEFAULT_LOAD_FACTOR; // all other fields defaulted &#125; public HashMap(Map&lt;? extends K, ? extends V&gt; m) &#123; this.loadFactor = DEFAULT_LOAD_FACTOR; putMapEntries(m, false); &#125;&#125; HashMap的四个构造方法： public HashMap(int initialCapacity, float loadFactor)：构造一个指定初始容量和加载因子的空HashMap。 public HashMap(int initialCapacity)：构造一个指定初始容量和默认加载因子（0.75）的空HashMap。 public HashMap()：构造一个默认初始容量（16）和默认加载因子（0.75）的空HashMap。 public HashMap(Map&lt;? extends K, ? extends V&gt; m)：用现有的一个Map来构造一个默认加载因子（0.75）的HashMap。 以上提到了两个参数：initialCapacity（初始容量）和loadFactor（加载因子）。 初始容量表示HashMap中桶的数量，默认初始容量为16。 加载因子是衡量一个散列表的空间使用程度，如果加载因子越大，表示对空间利用越充分，但查找效率越低；加载因子很小又会导致对空间的浪费。默认值为0.75。 当然，我们设置一个初始容量，HashMap并不一定直接采用我们设置的值，通过分析源码可以知道： 如果我们设置的初始容量是2的幂，则HashMap直接采用我们设置的值。 若不是，HashMap会采用大于该值的第一个2的幂（比如我们设置3，则是4；设置7，则是8）。 《阿里巴巴Java开发手册》推荐：]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[简述分派]]></title>
     <url>%2F2019%2F05%2F23%2F%E7%AE%80%E8%BF%B0%E5%88%86%E6%B4%BE%2F</url>
     <content type="text"><![CDATA[1. 分派分派指的是在Java中对方法的调用，分派可分为： 静态分派 动态分派 2. 静态分派先区分静态类型和实际类型：假设Animal为父类，Dog为子类，Animal animal = new Dog(); 则对象animal的静态类型为Animal，在编译时便确定。 实际类型为Dog，在运行时才确定。 根据对象的静态类型来确定执行哪个方法版本，叫做静态分派，典型应用为方法重载。 发生在编译阶段，静态分派的动作不是JVM来执行的。 3. 动态分派根据对象的实际类型来确定执行哪个方法版本，叫做动态分派，典型应用为方法重写。 发生在运行时期，动态分派由JVM来执行。 动态分派的实现是在方法区建立方法表： 如果子类没有重写父类该方法，则子类虚方法表中该方法指向父类该方法的入口地址。 如果子类重写了父类该方法，则子类虚方法中该方法指向子类重写后的该方法入口地址。]]></content>
