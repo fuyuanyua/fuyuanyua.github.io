@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[MySQL索引]]></title>
+    <url>%2F2019%2F05%2F31%2FMySQL%E7%B4%A2%E5%BC%95%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[简单介绍Solr]]></title>
     <url>%2F2019%2F05%2F30%2F%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8DSolr%2F</url>
     <content type="text"><![CDATA[1. solr简介Lucene是apache下的一个开源的全文检索引擎工具包，而Solr则是基于Lucene的企业级开源全文检索平台，Solr可以独立运行在Jetty、Tomcat等这些Servlet容器中。 2. 最大特点：倒排索引]]></content>
@@ -112,7 +123,6 @@
         <category>数据结构与算法</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>算法</tag>
       </tags>
   </entry>
