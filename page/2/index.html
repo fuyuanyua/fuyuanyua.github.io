@@ -1143,12 +1143,24 @@
                 
               
 
-              <time title="创建时间：2019-05-14 10:29:52 / 修改时间：11:01:20" itemprop="dateCreated datePublished" datetime="2019-05-14T10:29:52+08:00">2019-05-14</time>
+              <time title="创建时间：2019-05-14 10:29:52" itemprop="dateCreated datePublished" datetime="2019-05-14T10:29:52+08:00">2019-05-14</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-31 14:47:18" itemprop="dateModified" datetime="2019-05-31T14:47:18+08:00">2019-05-31</time>
               
             
           </span>
@@ -1206,15 +1218,18 @@
 <p>必须要重写<code>hashCode()</code>方法和<code>equals()</code>方法。</p>
 <p>自定义类中的hashCode()方法和equals()方法都继承自Object类：</p>
 <ul>
-<li>Object类的hashCode()方法返回这个对象存储的内存地址的编号。</li>
+<li>Object类的hashCode()方法返回这个对象存储的内存地址的哈希码。</li>
 <li>Object类的equals()比较的是内存地址是否相等。</li>
 </ul>
-<p>HashMap中比较key是这样的：</p>
-<ul>
-<li>先用hashCode()方法比较两个key的hash值，若相等</li>
-<li>再用equals()方法比较两个key的对象是否相等，全部相等才能视为两个key相等。</li>
-</ul>
+<p>HashMap中进行put操作时要比较待存储的key和对应桶中的key是否相等，然后再决定将Node放到桶中的链表尾还是将新value替换旧value，key相等要满足下面两个条件：</p>
+<ol>
+<li>两个key的hash值相等。（key的hash值通过hash方法得到，hash方法对key.hashCode()进行了再次运算）</li>
+<li>两个key’==’或者’.equals’。</li>
+</ol>
+<p>具体可以参考：</p>
+<p><a href="https://fuyuanyua.github.io/2019/05/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3HashMap/" target="_blank" rel="noopener">https://fuyuanyua.github.io/2019/05/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3HashMap/</a></p>
 <p>现实中我们比较，例如定义了一个学生类，有学号属性，只要学号一样，即使是生成了两个对象，但我们也认为是同一个学生。所以我们判断的是逻辑上的相等，而不是内存地址上的相等，所以要重写<code>hashCode()</code>方法和<code>equals()</code>方法。</p>
+<p>综上所述：所以要重写<code>hashCode()</code>方法和<code>equals()</code>方法。</p>
 <p>ps：用String类型作为HashMap的键为什么没有问题呢？</p>
 <p>查看String类源码可发现，其实String类已经重写了<code>hashCode()</code>方法和<code>equals()</code>方法，这是JDK已经帮我们实现了的。</p>
 

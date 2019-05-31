@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title><![CDATA[简单介绍Solr]]></title>
-    <url>%2F2019%2F05%2F30%2F%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8Dsolr%2F</url>
+    <url>%2F2019%2F05%2F30%2F%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8DSolr%2F</url>
     <content type="text"><![CDATA[1. solr简介Lucene是apache下的一个开源的全文检索引擎工具包，而Solr则是基于Lucene的企业级开源全文检索平台，Solr可以独立运行在Jetty、Tomcat等这些Servlet容器中。 2. 最大特点：倒排索引]]></content>
       <categories>
         <category>Solr</category>
@@ -163,7 +163,7 @@
   <entry>
     <title><![CDATA[Java用自定义类作为HashMap的键]]></title>
     <url>%2F2019%2F05%2F14%2FJava%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E4%BD%9C%E4%B8%BAHashMap%E7%9A%84%E9%94%AE%2F</url>
-    <content type="text"><![CDATA[Java用自定义类作为HashMap的键，在自定义类中重写哪些方法？ 必须要重写hashCode()方法和equals()方法。 自定义类中的hashCode()方法和equals()方法都继承自Object类： Object类的hashCode()方法返回这个对象存储的内存地址的编号。 Object类的equals()比较的是内存地址是否相等。 HashMap中比较key是这样的： 先用hashCode()方法比较两个key的hash值，若相等 再用equals()方法比较两个key的对象是否相等，全部相等才能视为两个key相等。 现实中我们比较，例如定义了一个学生类，有学号属性，只要学号一样，即使是生成了两个对象，但我们也认为是同一个学生。所以我们判断的是逻辑上的相等，而不是内存地址上的相等，所以要重写hashCode()方法和equals()方法。 ps：用String类型作为HashMap的键为什么没有问题呢？ 查看String类源码可发现，其实String类已经重写了hashCode()方法和equals()方法，这是JDK已经帮我们实现了的。]]></content>
+    <content type="text"><![CDATA[Java用自定义类作为HashMap的键，在自定义类中重写哪些方法？ 必须要重写hashCode()方法和equals()方法。 自定义类中的hashCode()方法和equals()方法都继承自Object类： Object类的hashCode()方法返回这个对象存储的内存地址的哈希码。 Object类的equals()比较的是内存地址是否相等。 HashMap中进行put操作时要比较待存储的key和对应桶中的key是否相等，然后再决定将Node放到桶中的链表尾还是将新value替换旧value，key相等要满足下面两个条件： 两个key的hash值相等。（key的hash值通过hash方法得到，hash方法对key.hashCode()进行了再次运算） 两个key’==’或者’.equals’。 具体可以参考： https://fuyuanyua.github.io/2019/05/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3HashMap/ 现实中我们比较，例如定义了一个学生类，有学号属性，只要学号一样，即使是生成了两个对象，但我们也认为是同一个学生。所以我们判断的是逻辑上的相等，而不是内存地址上的相等，所以要重写hashCode()方法和equals()方法。 综上所述：所以要重写hashCode()方法和equals()方法。 ps：用String类型作为HashMap的键为什么没有问题呢？ 查看String类源码可发现，其实String类已经重写了hashCode()方法和equals()方法，这是JDK已经帮我们实现了的。]]></content>
       <categories>
         <category>Java</category>
       </categories>
