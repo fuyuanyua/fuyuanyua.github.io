@@ -104,12 +104,12 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="要了解B+树，我们首先了解B树。 1. B树B树即B-树（中间不是减号，Balance Tree），是一种多路平衡查找树。 我们描述一颗B树要指定它的阶数，阶数表示了一个结点最多可以有多少个孩子结点。 比如：  当阶数m=3时，则表示该B树一个结点最多有三个孩子结点。 当阶数m=2时，则表示该B树一个结点最多有两个孩子结点，该B树其实就是平衡二叉树。  1.1 定义规定了一颗m阶的B树要有以下特征">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="f:/Blog/Hexo/source/_posts/090038_73170.png">
-<meta property="og:updated_time" content="2019-05-31T13:20:48.425Z">
+<meta property="og:image" content="http://yoursite.com/2019/05/31/B树和B-树/090038_73170.png">
+<meta property="og:updated_time" content="2019-05-31T13:23:24.464Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="B树和B+树">
 <meta name="twitter:description" content="要了解B+树，我们首先了解B树。 1. B树B树即B-树（中间不是减号，Balance Tree），是一种多路平衡查找树。 我们描述一颗B树要指定它的阶数，阶数表示了一个结点最多可以有多少个孩子结点。 比如：  当阶数m=3时，则表示该B树一个结点最多有三个孩子结点。 当阶数m=2时，则表示该B树一个结点最多有两个孩子结点，该B树其实就是平衡二叉树。  1.1 定义规定了一颗m阶的B树要有以下特征">
-<meta name="twitter:image" content="f:/Blog/Hexo/source/_posts/090038_73170.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/31/B树和B-树/090038_73170.png">
 
 
 
@@ -398,7 +398,7 @@
                 
               
 
-              <time title="创建时间：2019-05-31 21:19:32 / 修改时间：21:20:48" itemprop="dateCreated datePublished" datetime="2019-05-31T21:19:32+08:00">2019-05-31</time>
+              <time title="创建时间：2019-05-31 21:19:32 / 修改时间：21:23:24" itemprop="dateCreated datePublished" datetime="2019-05-31T21:19:32+08:00">2019-05-31</time>
             
 
             
@@ -474,7 +474,7 @@
 </ol>
 <p>B树还有卫星数据（Satellite Information），卫星数据就是索引元素所指向的数据记录，比如指向数据库中的某一行。在B树中，所有节点都有卫星数据。</p>
 <h3 id="1-2-图示"><a href="#1-2-图示" class="headerlink" title="1.2 图示"></a>1.2 图示</h3><p>以下是一颗3阶B树。</p>
-<p><img src="F:/Blog/Hexo/source/_posts/090038_73170.png" alt></p>
+<p><img src="090038_73170.png" alt></p>
 <h3 id="1-3-B树的操作"><a href="#1-3-B树的操作" class="headerlink" title="1.3 B树的操作"></a>1.3 B树的操作</h3><p>可以参考以下博文：</p>
 <p><a href="https://www.yiibai.com/data_structure/b-tree.html" target="_blank" rel="noopener">https://www.yiibai.com/data_structure/b-tree.html</a></p>
 <h3 id="1-4-应用"><a href="#1-4-应用" class="headerlink" title="1.4 应用"></a>1.4 应用</h3><p>现实应用B树，B树是非常“矮胖”的，即树的阶数特别大，如m = 1000，那么树的一个结点最多可以储存999个元素，这样一来树的高度就特别小。</p>
