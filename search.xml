@@ -14,7 +14,7 @@
   <entry>
     <title><![CDATA[MySQL索引]]></title>
     <url>%2F2019%2F05%2F31%2FMySQL%E7%B4%A2%E5%BC%95%2F</url>
-    <content type="text"><![CDATA[在MySQL中，不同引擎的表，其索引的实现方式也不同，下面介绍MyISAM存储引擎的表和InnoDB存储引擎的表他们的索引的实现方式。 1. MyISAMMySQL 5.x以前，使用MyISAM作为默认存储引擎，MyISAM使用表级锁。 MyISAM使用B+树作为索引的数据结构。 假设数据库中有一张MyISAM存储引擎的表，有三个列（字段）col1、col2、col3，表每一行最前面的数字代表这一行数据的物理地址。 上图就是对col1字段建立索引。叶子结点key存储col1字段中的值，data存放key所对应的记录的地址。这种索引叫非聚集索引。]]></content>
+    <content type="text"><![CDATA[在MySQL中，不同引擎的表，其索引的实现方式也不同，下面介绍MyISAM存储引擎的表和InnoDB存储引擎的表他们的索引的实现方式。 1. MyISAMMySQL 5.x以前，使用MyISAM作为默认存储引擎，MyISAM使用表级锁。 MyISAM使用B+树作为索引的数据结构。 假设数据库中有一张MyISAM存储引擎的表，有三个列（字段）col1、col2、col3，表每一行最前面的数字代表这一行数据的物理地址。 上图就是对col1字段建立索引。叶子结点key存储col1字段中的值，data域存放key所对应的记录的地址。这种索引叫非聚集索引。 所以对col1字段建立索引后，查询过程是先查询指定key，若存在，得到对应的data域中的值，然后再以data域中的值作为物理地址，读取到这一行的数据。 2. InnoDBMySQL 5.x以后，使用InnoDB作为默认存储引擎，InnoDB使用行级锁。 InnoDB也使用B+树作为索引的数据结构。但具体实现方式与MyISAM不同。 MyISAM数据文件和索引文件是两个文件，索引文件仅仅保存key和key对应那一行数据的地址，不保存数据。但是InnoDB数据文件本身就使用了B+树数据结构，InnoDB数据文件是数据文件本身同时也是以主键建立的索引文件。 假设数据库中有一张InnoDB存储引擎的表，有三个列（字段）col1、col2、col3，假设col1为主键。表每一行最前面的数字代表这一行数据的物理地址。 以上图就是以主键col1建立的索引。叶子结点key存储主键的值，data域直接保存了除了主键的完整的一条数据。 这种索引叫聚集索引，所以InnoDB表必须要有主键（MyISAM可以没有），如果没有显式指定，MySQL会自动选择一个可以唯一标识数据记录的列作为主键，若没有这种列，MySQL会自动为InnoDB生成一个隐含字段作为主键，这个字段长度为6个字节，类型为长整形。]]></content>
       <categories>
         <category>数据库</category>
       </categories>
@@ -339,8 +339,8 @@
         <category>Spring Boot笔记</category>
       </categories>
       <tags>
-        <tag>MySQL</tag>
         <tag>Spring Boot</tag>
+        <tag>MySQL</tag>
         <tag>MyBatis</tag>
       </tags>
   </entry>
