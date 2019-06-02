@@ -394,12 +394,24 @@
                 
               
 
-              <time title="创建时间：2019-05-31 21:19:32 / 修改时间：21:23:24" itemprop="dateCreated datePublished" datetime="2019-05-31T21:19:32+08:00">2019-05-31</time>
+              <time title="创建时间：2019-05-31 21:19:32" itemprop="dateCreated datePublished" datetime="2019-05-31T21:19:32+08:00">2019-05-31</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-02 19:07:16" itemprop="dateModified" datetime="2019-06-02T19:07:16+08:00">2019-06-02</time>
               
             
           </span>
@@ -470,9 +482,9 @@
 <li>每个结点中的元素都按照从左到右从小到大的顺序排列，每个元素的左子树中的所有元素都小于它，每个元素的右子树中的所有元素都大于它。</li>
 <li>所有叶子结点都位于同一层。</li>
 </ol>
-<p>B树还有卫星数据（Satellite Information），卫星数据就是索引元素所指向的数据记录，比如指向数据库中的某一行。在B树中，所有节点都有卫星数据。</p>
 <h3 id="1-2-图示"><a href="#1-2-图示" class="headerlink" title="1.2 图示"></a>1.2 图示</h3><p>以下是一颗3阶B树。</p>
-<p><img src="090038_73170.png" alt></p>
+<p><img src="3f739e4edff200e682ec28f1a55979255e1.jpg" alt></p>
+<p>B树中所有节点都存储data。</p>
 <h3 id="1-3-B树的操作"><a href="#1-3-B树的操作" class="headerlink" title="1.3 B树的操作"></a>1.3 B树的操作</h3><p>可以参考以下博文：</p>
 <p><a href="https://www.yiibai.com/data_structure/b-tree.html" target="_blank" rel="noopener">https://www.yiibai.com/data_structure/b-tree.html</a></p>
 <h3 id="1-4-应用"><a href="#1-4-应用" class="headerlink" title="1.4 应用"></a>1.4 应用</h3><p>现实应用B树，B树是非常“矮胖”的，即树的阶数特别大，如m = 1000，那么树的一个结点最多可以储存999个元素，这样一来树的高度就特别小。</p>
@@ -485,13 +497,16 @@
 <li>B树在查询的比较次数并不比平衡二叉树少，因为单一结点里存储的元素特别多。但是相比磁盘IO，内存中的耗时几乎可以忽略，所以只要树高度足够低，IO次数足够少，就大大提高性能。想象一下，上百万的数据中查询只发生了3次IO，性能是如何的强大啊！</li>
 </ul>
 <h2 id="2-B-树"><a href="#2-B-树" class="headerlink" title="2. B+树"></a>2. B+树</h2><h3 id="2-1-定义"><a href="#2-1-定义" class="headerlink" title="2.1 定义"></a>2.1 定义</h3><p>B+树其实是B树的一种变体，有着比B树更高的查询性能。</p>
-<p>B+树特点：</p>
+<p>B+树除了有B树的行政，还有以下特点：</p>
 <ol>
 <li>有k个子树的中间节点包含有k个元素（B树中是k-1个元素），每个元素不保存数据，只用来索引，所有数据都保存在叶子节点。</li>
 <li>所有的叶子结点中包含了全部元素的信息，及指向含这些元素记录的指针，且叶子结点本身依关键字的大小自小而大顺序链接。</li>
 <li>所有的中间节点元素都同时存在于子节点，在子节点元素中是最大（或最小）元素。</li>
 </ol>
-<h3 id="2-2-应用"><a href="#2-2-应用" class="headerlink" title="2.2 应用"></a>2.2 应用</h3><p>关系型数据库如MySQL的索引就是使用了B+树的数据结构，B+树相比于B树：</p>
+<h3 id="2-2-图示"><a href="#2-2-图示" class="headerlink" title="2.2 图示"></a>2.2 图示</h3><p>以下是一颗3阶B+树。</p>
+<p><img src="4097430ecac43a90cf31eeea92d8820cf3a.jpg" alt></p>
+<p>B+树只有叶子结点存储data。MyISAM中data存储key对应的那行数据的物理地址。InnoDB中data存储key所对应那行除key外的所有数据。</p>
+<h3 id="2-2-应用"><a href="#2-2-应用" class="headerlink" title="2.2 应用"></a>2.2 应用</h3><p>关系型数据库如MySQL的MyISAM表和InnoDB表等的索引就是使用了B+树的数据结构，B+树相比于B树：</p>
 <ul>
 <li>总数据量相等的情况下，B+树单一结点存储更多元素，使树高度降低，IO次数减少。</li>
 <li>查询性能稳定，因为每一次查询都要查询到叶子结点。而B树不稳定，最优查询到根节点，最坏查询到叶子结点。</li>
@@ -615,7 +630,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-02 18:30:49" itemprop="dateModified" datetime="2019-06-02T18:30:49+08:00">2019-06-02</time>
+                <time title="修改时间：2019-06-02 18:34:29" itemprop="dateModified" datetime="2019-06-02T18:34:29+08:00">2019-06-02</time>
               
             
           </span>
@@ -675,7 +690,7 @@
 <p><img src="QQ截图20190602154659.png" alt></p>
 <p><img src="QQ截图20190602151811.png" alt></p>
 <p>假设数据库中有一张MyISAM存储引擎的表，有三个列（字段）col1、col2、col3，表每一行最前面的数字代表这一行数据的物理地址。</p>
-<p>上图就是对col1字段建立索引。叶子结点key存储col1字段中的值，data域存放key所对应的记录的地址。这种索引叫<strong>非聚集索引</strong>。</p>
+<p>上图就是对col1字段建立索引。B+树的叶子结点key存储col1字段中的值，data域存放key所对应的记录的地址。这种索引叫<strong>非聚集索引</strong>。</p>
 <p>所以对col1字段建立索引后，查询过程是先查询指定key，若存在，得到对应的data域中的值，然后再以data域中的值作为物理地址，读取到这一行的数据。</p>
 <h2 id="2-InnoDB"><a href="#2-InnoDB" class="headerlink" title="2. InnoDB"></a>2. InnoDB</h2><p>MySQL 5.x以后，使用InnoDB作为默认存储引擎，InnoDB使用行级锁。</p>
 <p>InnoDB也使用B+树作为索引的数据结构。但具体实现方式与MyISAM不同。</p>
@@ -683,7 +698,7 @@
 <p><img src="QQ截图20190602154659.png" alt></p>
 <p><img src="QQ截图20190602154757.png" alt></p>
 <p>假设数据库中有一张InnoDB存储引擎的表，有三个列（字段）col1、col2、col3，假设col1为主键。表每一行最前面的数字代表这一行数据的物理地址。</p>
-<p>以上图就是以主键col1建立的索引。叶子结点key存储主键的值，data域直接保存了除了主键的完整的一条数据。</p>
+<p>以上图就是以主键col1建立的索引。B+树的叶子结点key存储主键的值，data域直接保存了除了主键的完整的一条数据。</p>
 <p>这种索引叫<strong>聚集索引</strong>，所以InnoDB表必须要有主键（MyISAM可以没有），如果没有显式指定，MySQL会自动选择一个可以唯一标识数据记录的列作为主键，若没有这种列，MySQL会自动为InnoDB生成一个隐含字段作为主键，这个字段长度为6个字节，类型为长整形。</p>
 
           
