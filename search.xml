@@ -14,7 +14,7 @@
   <entry>
     <title><![CDATA[MySQL索引]]></title>
     <url>%2F2019%2F05%2F31%2FMySQL%E7%B4%A2%E5%BC%95%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[在MySQL中，不同引擎的表，其索引的实现方式也不同，下面介绍MyISAM存储引擎的表和InnoDB存储引擎的表他们的索引的实现方式。 1. MyISAMMySQL 5.x以前，使用MyISAM作为默认存储引擎，MyISAM使用表级锁。 MyISAM使用B+树作为索引的数据结构。 假设数据库中有一张MyISAM存储引擎的表，有三个列（字段）col1、col2、col3，表每一行最前面的数字代表这一行数据的物理地址。 上图就是对col1字段建立索引。叶子结点key存储col1字段中的值，data存放key所对应的记录的地址。这种索引叫非聚集索引。]]></content>
       <categories>
         <category>数据库</category>
       </categories>
@@ -118,7 +118,7 @@
   <entry>
     <title><![CDATA[MySQL的表有哪些存储引擎以及区别]]></title>
     <url>%2F2019%2F05%2F19%2FMySQL%E7%9A%84%E8%A1%A8%E6%9C%89%E5%93%AA%E4%BA%9B%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%BB%A5%E5%8F%8A%E5%8C%BA%E5%88%AB%2F</url>
-    <content type="text"><![CDATA[1. MySQL的表的存储引擎MySQL中的数据用各种不同的技术存储在文件（或者内存）中。这些技术中的每一种技术都使用不同的存储机制、索引技巧、锁定水平并且最终提供广泛的不同的功能和能力。这些不同的技术以及配套的相关功能在MySQL中被称作存储引擎(也称作表类型)。MySQL默认配置了许多不同的存储引擎。 常用的存储引擎有MyISAM、InnoDB、MEMORY、MERGE等。 2. MyISAM 是MySQL的默认存储引擎，使用的是表级锁。 每建立一个MyISAM存储引擎的表，都会在本地磁盘建立三个文件，比如创建了tb_demo表，则生成以下三个文件： tb_demo.frm，存储表定义。 tb_demo.MYD，存储数据。 tb_demo.MYI，存储索引。 无法处理事务。 筛选大量数据时非常迅速，这是它最突出的优点。 3. InnoDB 健壮的事务型存储引擎，使用行级锁。 适合处理多重并发的更新请求。 支持外键，MySQL支持外键的存储引擎只有InnoDB。 支持事务。 支持自动增加列AUTO_INCREMENT属性。 4. MEMORY 速度很快，为了得到最快的响应时间，数据存储在内存中，可以修改my.cnf配置文件中的max_heap_table_size参数来指定内存表的最大内存。 一般在以下情况使用MEMORY存储引擎： 目标数据较小，而且被非常频繁访问。 数据是临时的，而且要求立即可用。 数据如果突然消失，不会对应用服务产生实质的负面影响。 5. MERGE MERGE存储引擎是一组MyISAM表的组合，每张MyISAM表的结构必须相同（即每张表的字段顺序、字段名称、字段类型、索引定义的顺序及其定义的方式必须相同）。 MERGE表不存储数据，数据都存储在底层MyISAM表中。 每建立一个MERGE存储引擎的表，都会在本地磁盘建立两个文件，比如创建了tb_log表，则生成以下两个个文件，不会有.MYD和.MYI文件： tb_log.frm，存储表定义。 tb_log.mrg，存储底层MyISAM表的名字。 对MERGE表可以进行查询、更新、删除操作，实际是对底层MyISAM表进行操作。可以进行插入操作，但默认不允许，因为插入的数据不知道放在底层的哪张表里。]]></content>
+    <content type="text"><![CDATA[1. MySQL的表的存储引擎MySQL中的数据用各种不同的技术存储在文件（或者内存）中。这些技术中的每一种技术都使用不同的存储机制、索引技巧、锁定水平并且最终提供广泛的不同的功能和能力。这些不同的技术以及配套的相关功能在MySQL中被称作存储引擎(也称作表类型)。MySQL默认配置了许多不同的存储引擎。 常用的存储引擎有MyISAM、InnoDB、MEMORY、MERGE等。 2. MyISAM MySQL 5.x以前的默认存储引擎，使用的是表级锁。 每建立一个MyISAM存储引擎的表，都会在本地磁盘建立三个文件，比如创建了tb_demo表，则生成以下三个文件： tb_demo.frm，存储表定义。 tb_demo.MYD，存储数据。 tb_demo.MYI，存储索引。 无法处理事务。 筛选大量数据时非常迅速，这是它最突出的优点。 3. InnoDB MySQL 5.x以后的默认存储引擎，健壮的事务型存储引擎，使用行级锁。 适合处理多重并发的更新请求。 支持外键，MySQL支持外键的存储引擎只有InnoDB。 支持事务。 支持自动增加列AUTO_INCREMENT属性。 4. MEMORY 速度很快，为了得到最快的响应时间，数据存储在内存中，可以修改my.cnf配置文件中的max_heap_table_size参数来指定内存表的最大内存。 一般在以下情况使用MEMORY存储引擎： 目标数据较小，而且被非常频繁访问。 数据是临时的，而且要求立即可用。 数据如果突然消失，不会对应用服务产生实质的负面影响。 5. MERGE MERGE存储引擎是一组MyISAM表的组合，每张MyISAM表的结构必须相同（即每张表的字段顺序、字段名称、字段类型、索引定义的顺序及其定义的方式必须相同）。 MERGE表不存储数据，数据都存储在底层MyISAM表中。 每建立一个MERGE存储引擎的表，都会在本地磁盘建立两个文件，比如创建了tb_log表，则生成以下两个个文件，不会有.MYD和.MYI文件： tb_log.frm，存储表定义。 tb_log.mrg，存储底层MyISAM表的名字。 对MERGE表可以进行查询、更新、删除操作，实际是对底层MyISAM表进行操作。可以进行插入操作，但默认不允许，因为插入的数据不知道放在底层的哪张表里。]]></content>
       <categories>
         <category>数据库</category>
       </categories>

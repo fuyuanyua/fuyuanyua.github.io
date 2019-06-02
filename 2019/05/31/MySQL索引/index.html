@@ -96,15 +96,21 @@
 
 
 
-  <meta name="keywords" content="MySQL">
+  <meta name="description" content="在MySQL中，不同引擎的表，其索引的实现方式也不同，下面介绍MyISAM存储引擎的表和InnoDB存储引擎的表他们的索引的实现方式。 1. MyISAMMySQL 5.x以前，使用MyISAM作为默认存储引擎，MyISAM使用表级锁。 MyISAM使用B+树作为索引的数据结构。   假设数据库中有一张MyISAM存储引擎的表，有三个列（字段）col1、col2、col3，表每一行最前面的数字代表">
+<meta name="keywords" content="MySQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL索引">
 <meta property="og:url" content="http://yoursite.com/2019/05/31/MySQL索引/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在MySQL中，不同引擎的表，其索引的实现方式也不同，下面介绍MyISAM存储引擎的表和InnoDB存储引擎的表他们的索引的实现方式。 1. MyISAMMySQL 5.x以前，使用MyISAM作为默认存储引擎，MyISAM使用表级锁。 MyISAM使用B+树作为索引的数据结构。   假设数据库中有一张MyISAM存储引擎的表，有三个列（字段）col1、col2、col3，表每一行最前面的数字代表">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-31T07:23:35.863Z">
+<meta property="og:image" content="http://yoursite.com/2019/05/31/MySQL索引/QQ截图20190602154659.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/31/MySQL索引/QQ截图20190602151811.png">
+<meta property="og:updated_time" content="2019-06-02T08:14:04.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL索引">
+<meta name="twitter:description" content="在MySQL中，不同引擎的表，其索引的实现方式也不同，下面介绍MyISAM存储引擎的表和InnoDB存储引擎的表他们的索引的实现方式。 1. MyISAMMySQL 5.x以前，使用MyISAM作为默认存储引擎，MyISAM使用表级锁。 MyISAM使用B+树作为索引的数据结构。   假设数据库中有一张MyISAM存储引擎的表，有三个列（字段）col1、col2、col3，表每一行最前面的数字代表">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/31/MySQL索引/QQ截图20190602154659.png">
 
 
 
@@ -393,12 +399,24 @@
                 
               
 
-              <time title="创建时间：2019-05-31 15:20:28 / 修改时间：15:23:35" itemprop="dateCreated datePublished" datetime="2019-05-31T15:20:28+08:00">2019-05-31</time>
+              <time title="创建时间：2019-05-31 15:20:28" itemprop="dateCreated datePublished" datetime="2019-05-31T15:20:28+08:00">2019-05-31</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-02 16:14:04" itemprop="dateModified" datetime="2019-06-02T16:14:04+08:00">2019-06-02</time>
               
             
           </span>
@@ -450,7 +468,14 @@
       
 
       
-        
+        <p>在MySQL中，不同引擎的表，其索引的实现方式也不同，下面介绍MyISAM存储引擎的表和InnoDB存储引擎的表他们的索引的实现方式。</p>
+<h2 id="1-MyISAM"><a href="#1-MyISAM" class="headerlink" title="1. MyISAM"></a>1. MyISAM</h2><p>MySQL 5.x以前，使用MyISAM作为默认存储引擎，MyISAM使用表级锁。</p>
+<p>MyISAM使用B+树作为索引的数据结构。</p>
+<p><img src="QQ截图20190602154659.png" alt></p>
+<p><img src="QQ截图20190602151811.png" alt></p>
+<p>假设数据库中有一张MyISAM存储引擎的表，有三个列（字段）col1、col2、col3，表每一行最前面的数字代表这一行数据的物理地址。</p>
+<p>上图就是对col1字段建立索引。叶子结点key存储col1字段中的值，data存放key所对应的记录的地址。这种索引叫<strong>非聚集索引</strong>。</p>
+
       
     </div>
 
@@ -542,8 +567,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -685,6 +719,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-MyISAM"><span class="nav-number">1.</span> <span class="nav-text">1. MyISAM</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
