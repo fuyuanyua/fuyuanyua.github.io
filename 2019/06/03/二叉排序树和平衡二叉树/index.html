@@ -111,7 +111,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/06/03/二叉排序树和平衡二叉树/w1vwnol5or.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/03/二叉排序树和平衡二叉树/7dsbhmmv3p.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/03/二叉排序树和平衡二叉树/QQ截图20190604145528.png">
-<meta property="og:updated_time" content="2019-06-04T07:51:45.883Z">
+<meta property="og:updated_time" content="2019-06-04T10:55:29.697Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二叉排序树和平衡二叉树">
 <meta name="twitter:description" content="1. 二叉排序树1.1 定义二叉排序树（Binary Sort Tree）又称二叉查找树（Binary search Tree），简称BST，它有以下性质：  若一棵二叉排序树的左子树不为空，则左子树所有结点的值都小于这棵二叉排序树的根节点的值。 若一棵二叉排序树的右子树不为空，则右子树所有结点的值都大于这棵二叉排序树的根节点的值。 这棵二叉排序树的左右子树也分别都是二叉排序树。  1.2 图示以">
@@ -421,7 +421,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-04 15:51:45" itemprop="dateModified" datetime="2019-06-04T15:51:45+08:00">2019-06-04</time>
+                <time title="修改时间：2019-06-04 18:55:29" itemprop="dateModified" datetime="2019-06-04T18:55:29+08:00">2019-06-04</time>
               
             
           </span>
@@ -524,7 +524,7 @@
 <ol>
 <li>对于情况1，直接删除结点A即可。</li>
 <li>对于情况2，结点A的父结点绕过结点A，指向结点A的右子树（如果结点A的左子树为空），或指向结点A的左子树（如果结点A的右子树为空），然后删除结点A即可。</li>
-<li>对于情况3，用结点A的左子树中最大的结点或者结点A右子树中最小的结点来跟结点A替换，然后删除结点A。</li>
+<li>对于情况3，找到结点A的前驱（左子树中值最大的结点）或者结点A的后继（右子树中值最小的结点），并把前驱或者后继的值复制到结点A中，最后将前驱或者后继删除。</li>
 </ol>
 <p><u>平衡二叉树的删除策略和二叉排序树一样，不过最后可能会失去平衡，需要对树进行平衡化操作。</u></p>
 
