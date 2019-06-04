@@ -349,6 +349,209 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/Java中线程的生命周期/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fuyuanyua">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/19/Java中线程的生命周期/" class="post-title-link" itemprop="url">Java中线程的生命周期</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-19 15:39:21" itemprop="dateCreated datePublished" datetime="2019-05-19T15:39:21+08:00">2019-05-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-21 15:04:18" itemprop="dateModified" datetime="2019-05-21T15:04:18+08:00">2019-05-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-进程与线程"><a href="#1-进程与线程" class="headerlink" title="1. 进程与线程"></a>1. 进程与线程</h2><h3 id="1-1-进程（Process）"><a href="#1-1-进程（Process）" class="headerlink" title="1.1 进程（Process）"></a>1.1 进程（Process）</h3><p>对于Windows、Mac OS X等操作系统，比如打开一个浏览器就是启动一个浏览器进程，打开一个Word文档就是启动一个Word进程。</p>
+<ul>
+<li>进程是系统进行资源分配和调度的一个独立单位，<strong>进程是资源分配的最小单位</strong>。</li>
+<li>多个进程可以在单个处理器上并发执行，互不影响。</li>
+<li>一个进程可以有多个线程。</li>
+</ul>
+<h3 id="1-2-线程（Thread）"><a href="#1-2-线程（Thread）" class="headerlink" title="1.2 线程（Thread）"></a>1.2 线程（Thread）</h3><p>有些进程还不止同时干一件事，比如Word，它可以同时进行打字、拼写检查、打印等事情。在一个进程内部，要同时干多件事，就需要同时运行多个“子任务”，我们把进程内的这些“子任务”称为线程。</p>
+<ul>
+<li><strong>线程是cpu调度的最小单位</strong>。</li>
+<li>线程不拥有系统资源。</li>
+<li>一个进程可以有多个线程，多个线程共享该进程内存和资源（共享的内存是堆内存和方法区内存，栈内存不共享，每个线程有自己的栈内存）。</li>
+<li>多个线程能并发执行。</li>
+</ul>
+<h2 id="2-线程的生命周期"><a href="#2-线程的生命周期" class="headerlink" title="2. 线程的生命周期"></a>2. 线程的生命周期</h2><p>线程生命周期有五种状态：</p>
+<ul>
+<li>新建状态（New）</li>
+<li>就绪状态（Runnable）：</li>
+<li>运行状态（Running）</li>
+<li>阻塞状态（Blocked）</li>
+<li>死亡状态（Dead）</li>
+</ul>
+<p><img src="20150309140927553.png" alt></p>
+<h3 id="2-1-新建状态（New）"><a href="#2-1-新建状态（New）" class="headerlink" title="2.1 新建状态（New）"></a>2.1 新建状态（New）</h3><p>新建了一个线程对象。</p>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注：假设MyThread1类是实现了Runable接口的类</span></span><br><span class="line">MyThread1 myThread1 = <span class="keyword">new</span> MyThread1(<span class="string">"c"</span>);</span><br><span class="line">Thread thread = <span class="keyword">new</span> Thread(myThread1);</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-就绪状态（Runnable）"><a href="#2-2-就绪状态（Runnable）" class="headerlink" title="2.2 就绪状态（Runnable）"></a>2.2 就绪状态（Runnable）</h3><p>线程对象创建后，其他线程（比如主线程）调用了该线程对象的<code>start()</code>方法，该线程就启动了，变成Runnable状态，位于可运行线程池中，等待系统调度获取CPU使用权。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread.start();</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-运行状态（Running）"><a href="#2-3-运行状态（Running）" class="headerlink" title="2.3 运行状态（Running）"></a>2.3 运行状态（Running）</h3><p>Runnable状态的线程，根据系统调度获取到了CPU，于是执行<code>run()</code>方法，线程执行的代码都写在<code>run()</code>方法里。</p>
+<h3 id="2-4-阻塞状态（Blocked）"><a href="#2-4-阻塞状态（Blocked）" class="headerlink" title="2.4 阻塞状态（Blocked）"></a>2.4 阻塞状态（Blocked）</h3><p>线程因为某些原因，放弃了CPU使用权，暂停运行。</p>
+<h3 id="2-5-死亡状态（Dead）"><a href="#2-5-死亡状态（Dead）" class="headerlink" title="2.5 死亡状态（Dead）"></a>2.5 死亡状态（Dead）</h3><p>线程执行完了<code>run()</code>方法，或者因为异常退出了<code>run()</code>方法，该线程结束生命周期。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/简述Java中的内部类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2103,171 +2306,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/Java-Object类中有哪些方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fuyuanyua">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/13/Java-Object类中有哪些方法/" class="post-title-link" itemprop="url">Java Object类中有哪些方法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-13 16:46:50 / 修改时间：16:59:56" itemprop="dateCreated datePublished" datetime="2019-05-13T16:46:50+08:00">2019-05-13</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Java Object类中有哪些方法？</p>
-<p><img src="QQ截图20190513164736.png" alt></p>
-<p>hashCode、equals、clone、toString、notify、notifyAll、wait、finalize等。</p>
-<p>Object类源码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.lang;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Class &#123;<span class="doctag">@code</span> Object&#125; is the root of the class hierarchy.</span></span><br><span class="line"><span class="comment"> * Every class has &#123;<span class="doctag">@code</span> Object&#125; as a superclass. All objects,</span></span><br><span class="line"><span class="comment"> * including arrays, implement the methods of this class.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>  unascribed</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>     java.lang.Class</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span>   JDK1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Object</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">registerNatives</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        registerNatives();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> Class&lt;?&gt; getClass();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">native</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException</span>;</span><br><span class="line">   </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> getClass().getName() + <span class="string">"@"</span> + Integer.toHexString(hashCode());</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">notify</span><span class="params">()</span></span>;</span><br><span class="line">   </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">notifyAll</span><span class="params">()</span></span>;</span><br><span class="line">   </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout)</span> <span class="keyword">throws</span> InterruptedException</span>;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout, <span class="keyword">int</span> nanos)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (timeout &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"timeout value is negative"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (nanos &lt; <span class="number">0</span> || nanos &gt; <span class="number">999999</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(</span><br><span class="line">                                <span class="string">"nanosecond timeout value out of range"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (nanos &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            timeout++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        wait(timeout);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">wait</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        wait(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2314,7 +2352,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

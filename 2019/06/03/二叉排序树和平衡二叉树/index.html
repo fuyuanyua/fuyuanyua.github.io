@@ -96,13 +96,13 @@
 
 
 
-  <meta name="description" content="1. 二叉排序树1.1 定义二叉排序树（Binary Sort Tree）又称二叉查找树，它有以下性质：  若一棵二叉排序树的左子树不为空，则左子树所有结点的值都小于这棵二叉排序树的根节点的值。 若一棵二叉排序树的右子树不为空，则右子树所有结点的值都大于这棵二叉排序树的根节点的值。 这棵二叉排序树的左右子树也分别都是二叉排序树。  1.2 图示以下就是一棵二叉排序树：  1.3 其他对一棵二叉排序">
+  <meta name="description" content="1. 二叉排序树1.1 定义二叉排序树（Binary Sort Tree）又称二叉查找树（Binary search Tree），简称BST，它有以下性质：  若一棵二叉排序树的左子树不为空，则左子树所有结点的值都小于这棵二叉排序树的根节点的值。 若一棵二叉排序树的右子树不为空，则右子树所有结点的值都大于这棵二叉排序树的根节点的值。 这棵二叉排序树的左右子树也分别都是二叉排序树。  1.2 图示以">
 <meta name="keywords" content="数据结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二叉排序树和平衡二叉树">
 <meta property="og:url" content="http://yoursite.com/2019/06/03/二叉排序树和平衡二叉树/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1. 二叉排序树1.1 定义二叉排序树（Binary Sort Tree）又称二叉查找树，它有以下性质：  若一棵二叉排序树的左子树不为空，则左子树所有结点的值都小于这棵二叉排序树的根节点的值。 若一棵二叉排序树的右子树不为空，则右子树所有结点的值都大于这棵二叉排序树的根节点的值。 这棵二叉排序树的左右子树也分别都是二叉排序树。  1.2 图示以下就是一棵二叉排序树：  1.3 其他对一棵二叉排序">
+<meta property="og:description" content="1. 二叉排序树1.1 定义二叉排序树（Binary Sort Tree）又称二叉查找树（Binary search Tree），简称BST，它有以下性质：  若一棵二叉排序树的左子树不为空，则左子树所有结点的值都小于这棵二叉排序树的根节点的值。 若一棵二叉排序树的右子树不为空，则右子树所有结点的值都大于这棵二叉排序树的根节点的值。 这棵二叉排序树的左右子树也分别都是二叉排序树。  1.2 图示以">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/06/03/二叉排序树和平衡二叉树/20181127230519538.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/03/二叉排序树和平衡二叉树/800px-Unbalanced_binary_tree.svg.png">
@@ -111,10 +111,10 @@
 <meta property="og:image" content="http://yoursite.com/2019/06/03/二叉排序树和平衡二叉树/w1vwnol5or.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/03/二叉排序树和平衡二叉树/7dsbhmmv3p.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/03/二叉排序树和平衡二叉树/QQ截图20190604145528.png">
-<meta property="og:updated_time" content="2019-06-04T06:56:20.775Z">
+<meta property="og:updated_time" content="2019-06-04T07:51:45.883Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二叉排序树和平衡二叉树">
-<meta name="twitter:description" content="1. 二叉排序树1.1 定义二叉排序树（Binary Sort Tree）又称二叉查找树，它有以下性质：  若一棵二叉排序树的左子树不为空，则左子树所有结点的值都小于这棵二叉排序树的根节点的值。 若一棵二叉排序树的右子树不为空，则右子树所有结点的值都大于这棵二叉排序树的根节点的值。 这棵二叉排序树的左右子树也分别都是二叉排序树。  1.2 图示以下就是一棵二叉排序树：  1.3 其他对一棵二叉排序">
+<meta name="twitter:description" content="1. 二叉排序树1.1 定义二叉排序树（Binary Sort Tree）又称二叉查找树（Binary search Tree），简称BST，它有以下性质：  若一棵二叉排序树的左子树不为空，则左子树所有结点的值都小于这棵二叉排序树的根节点的值。 若一棵二叉排序树的右子树不为空，则右子树所有结点的值都大于这棵二叉排序树的根节点的值。 这棵二叉排序树的左右子树也分别都是二叉排序树。  1.2 图示以">
 <meta name="twitter:image" content="http://yoursite.com/2019/06/03/二叉排序树和平衡二叉树/20181127230519538.png">
 
 
@@ -421,7 +421,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-04 14:56:20" itemprop="dateModified" datetime="2019-06-04T14:56:20+08:00">2019-06-04</time>
+                <time title="修改时间：2019-06-04 15:51:45" itemprop="dateModified" datetime="2019-06-04T15:51:45+08:00">2019-06-04</time>
               
             
           </span>
@@ -473,7 +473,7 @@
       
 
       
-        <h2 id="1-二叉排序树"><a href="#1-二叉排序树" class="headerlink" title="1. 二叉排序树"></a>1. 二叉排序树</h2><h3 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h3><p>二叉排序树（Binary Sort Tree）又称二叉查找树，它有以下性质：</p>
+        <h2 id="1-二叉排序树"><a href="#1-二叉排序树" class="headerlink" title="1. 二叉排序树"></a>1. 二叉排序树</h2><h3 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h3><p>二叉排序树（Binary Sort Tree）又称二叉查找树（Binary search Tree），简称BST，它有以下性质：</p>
 <ul>
 <li>若一棵二叉排序树的左子树不为空，则左子树所有结点的值都小于这棵二叉排序树的根节点的值。</li>
 <li>若一棵二叉排序树的右子树不为空，则右子树所有结点的值都大于这棵二叉排序树的根节点的值。</li>
@@ -502,17 +502,31 @@
 </ul>
 <h4 id="2-3-1-单次右旋"><a href="#2-3-1-单次右旋" class="headerlink" title="2.3.1 单次右旋"></a>2.3.1 单次右旋</h4><p>如下图：</p>
 <p><img src="olpbovvey6.png" alt></p>
-<p>在一棵平衡二叉树的<strong>左子树</strong>的根节点的<strong>左叶子结点</strong>新插入结点（LL），这样破坏了树的平衡，需要进行单次右旋使树重新平衡。</p>
+<p>发生在LL的时候，即在一棵平衡二叉树的<strong>左子树</strong>的根节点的<strong>左叶子结点</strong>新插入结点，这样破坏了树的平衡，需要进行单次右旋使树重新平衡。</p>
 <p>单次右旋如何操作直接看图：</p>
 <p><img src="w1vwnol5or.png" alt></p>
-<h4 id="2-3-2-单次左旋"><a href="#2-3-2-单次左旋" class="headerlink" title="2.3.2 单次左旋"></a>2.3.2 单次左旋</h4><p>在一棵平衡二叉树的<strong>右子树</strong>的根节点的<strong>右叶子结点</strong>新插入结点（RR），这样破坏了树的平衡，需要进行单次左旋使树重新平衡。</p>
+<h4 id="2-3-2-单次左旋"><a href="#2-3-2-单次左旋" class="headerlink" title="2.3.2 单次左旋"></a>2.3.2 单次左旋</h4><p>发生在RR的时候，即在一棵平衡二叉树的<strong>右子树</strong>的根节点的<strong>右叶子结点</strong>新插入结点，这样破坏了树的平衡，需要进行单次左旋使树重新平衡。</p>
 <p>单次左旋和单次右旋的思想是一样的，直接看图：</p>
 <p><img src="7dsbhmmv3p.png" alt></p>
-<h4 id="2-3-3-先左旋后右旋"><a href="#2-3-3-先左旋后右旋" class="headerlink" title="2.3.3 先左旋后右旋"></a>2.3.3 先左旋后右旋</h4><p>在一棵平衡二叉树的<strong>左子树</strong>的根节点的<strong>右叶子结点</strong>新插入结点（LR），这样破坏了树的平衡，需要进行先左旋后右旋使树重新平衡。</p>
+<h4 id="2-3-3-先左旋后右旋"><a href="#2-3-3-先左旋后右旋" class="headerlink" title="2.3.3 先左旋后右旋"></a>2.3.3 先左旋后右旋</h4><p>发生在LR的时候，即在一棵平衡二叉树的<strong>左子树</strong>的根节点的<strong>右叶子结点</strong>新插入结点，这样破坏了树的平衡，需要进行先左旋后右旋使树重新平衡。</p>
 <p>图略，思想和先右旋后左旋一样。</p>
-<h4 id="2-3-4-先右旋后左旋"><a href="#2-3-4-先右旋后左旋" class="headerlink" title="2.3.4 先右旋后左旋"></a>2.3.4 先右旋后左旋</h4><p>在一棵平衡二叉树的<strong>右子树</strong>的根节点的<strong>左叶子结点</strong>新插入结点（RL），这样破坏了树的平衡，需要进行先右旋后左旋使树重新平衡。</p>
+<h4 id="2-3-4-先右旋后左旋"><a href="#2-3-4-先右旋后左旋" class="headerlink" title="2.3.4 先右旋后左旋"></a>2.3.4 先右旋后左旋</h4><p>发生在RL的时候，即在一棵平衡二叉树的<strong>右子树</strong>的根节点的<strong>左叶子结点</strong>新插入结点，这样破坏了树的平衡，需要进行先右旋后左旋使树重新平衡。</p>
 <p>直接看图：</p>
 <p><img src="QQ截图20190604145528.png" alt></p>
+<h3 id="2-4-删除"><a href="#2-4-删除" class="headerlink" title="2.4 删除"></a>2.4 删除</h3><p>要了解一棵平衡二叉树如何删除一个结点，首先我们要了解二叉排序树如何删除一个结点。</p>
+<p>对于二叉排序树，假设要删除结点A，有三种情况：</p>
+<ol>
+<li>结点A是叶子结点。</li>
+<li>结点A的左子树或右子树为空。</li>
+<li>结点A的左子树和右子树都不为空。</li>
+</ol>
+<p>分别有三种对策：</p>
+<ol>
+<li>对于情况1，直接删除结点A即可。</li>
+<li>对于情况2，结点A的父结点绕过结点A，指向结点A的右子树（如果结点A的左子树为空），或指向结点A的左子树（如果结点A的右子树为空），然后删除结点A即可。</li>
+<li>对于情况3，用结点A的左子树中最大的结点或者结点A右子树中最小的结点来跟结点A替换，然后删除结点A。</li>
+</ol>
+<p><u>平衡二叉树的删除策略和二叉排序树一样，不过最后可能会失去平衡，需要对树进行平衡化操作。</u></p>
 
       
     </div>
@@ -558,6 +572,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/04/红黑树/" rel="prev" title="红黑树">
+                红黑树 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -626,7 +644,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -764,7 +782,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-二叉排序树"><span class="nav-number">1.</span> <span class="nav-text">1. 二叉排序树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-定义"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-图示"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-其他"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-平衡二叉树"><span class="nav-number">2.</span> <span class="nav-text">2. 平衡二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-定义"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-图示"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-插入"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 插入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-单次右旋"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 单次右旋</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-单次左旋"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 单次左旋</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-先左旋后右旋"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3 先左旋后右旋</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-4-先右旋后左旋"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.3.4 先右旋后左旋</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-二叉排序树"><span class="nav-number">1.</span> <span class="nav-text">1. 二叉排序树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-定义"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-图示"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-其他"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-平衡二叉树"><span class="nav-number">2.</span> <span class="nav-text">2. 平衡二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-定义"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-图示"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-插入"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 插入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-单次右旋"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 单次右旋</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-单次左旋"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 单次左旋</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-先左旋后右旋"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3 先左旋后右旋</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-4-先右旋后左旋"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.3.4 先右旋后左旋</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-删除"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 删除</span></a></li></ol></li></ol></div>
             
 
           </div>
