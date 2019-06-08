@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Spring的核心容器]]></title>
+    <url>%2F2019%2F06%2F08%2FSpring%E7%9A%84%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[1. Spring的核心容器Spring框架的主要功能都是通过Spring的核心容器来实现的，Spring提供了两种核心容器： BeanFactory ApplicationContext 1.1 BeanFactory（基本不用这个方式，了解即可） BeanFactory是一个接口，来自org.springframework.beans.factory包，是基础的IoC（控制反转）容器，提供了完整的IoC服务支持，主要负责初始化各种Bean，并调用他们的生命周期方法。 XmlBeanFactory类来自org.springframework.beans.factory.xml包，是BeanFactory接口的实现类，但是在最新Spring中（我用的是5.1.5版本）已经被弃用，我们也无需再讨论了。 1.2 ApplicationContextApplicationContext也是一个接口，来自org.springframework.context，它是BeanFactory接口的子接口，不仅包含BeanFactory所有功能，还添加了对国际化、资源访问等功能的支持。 ApplicationContext接口的继承关系图： ApplicationContext接口有很多实现类比如ClassPathXmlApplicationContext类，通过new实现类即可完成ApplicationContext对象的实例化。 ClassPathXmlApplicationContext类的继承关系图：]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Spring框架简介]]></title>
+    <url>%2F2019%2F06%2F08%2FSpring%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Spring @Bean注解]]></title>
+    <url>%2F2019%2F06%2F07%2FSpring-Bean%E6%B3%A8%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[1. @Bean注解的作用@Bean是作用在方法上的注解，将此方法纳入容器。 主要作用在@Configuration注解的类的方法上，或者是@Component注解的类的方法上。 代码示例： 12345678910// 标识配置类@Configurationpublic class ConfigBean &#123; // 向容器中添加RestTemplate组件,直接通过此组件可调用REST接口 @Bean public RestTemplate getRestTemplate() &#123; return new RestTemplate(); &#125;&#125;]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MySQL 数据类型(m)括号内数字m的作用]]></title>
     <url>%2F2019%2F06%2F06%2FMySQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-m-%E6%8B%AC%E5%8F%B7%E5%86%85%E6%95%B0%E5%AD%97m%E7%9A%84%E4%BD%9C%E7%94%A8%2F</url>
     <content type="text"><![CDATA[比如我在MySQL中建表： 123456789101112131415drop table if exists `bill`;create table `bill` ( `bill_id` int(8) not null auto_increment, `sneaker_name` varchar(50) default null, `sneaker_amount` int(8) default null, `purchase_price` double(8,2) default null, `selling_price` double(8,2) default null, `express_price` double(8,2) default null, `profit` double(8,2) default null, `provider_id` int(8) not null, `gmt_create` datetime default current_timestamp, `gmt_modified` datetime default current_timestamp, primary key (`bill_id`), foreign key (`provider_id`) references `provider`(`provider_id`) ) engine=InnoDB auto_increment=1 default charset=utf8; 1. int(8)其中的int(8)是指int占8字节吗？ 显然不是，在MySQL中int型是规定了长度的，即32位，4字节，表示十进制数字范围从-2^31 ~ 2^31。无论int(m)，m的数字是多少，比如int(8)和int(11)，他们一样都占4字节。 int(m)只是规定了显示的最小长度，int(8)表示规定了显示的最小长度为8，int(8) zerofill，表示长度不足时自动补足0，比如你插入1，他会显示00000001。 int(8)只有在后面跟了zerofill时才有意义，不足会自动补0，否则毫无意义，比如我上面建表的int(8)是毫无意义的，直接int即可。 如果直接写int，系统默认是int(11)。 2. varchar(50)在MySQL5.0以后，varchar(50)表示最大可以存储50个字符的可变长字符串。 是50字符而不是50字节。 字符可以是数字、英文和utf-8汉字（一个汉字3字节）等。 3. double(8,2)double(m,d)，m表示总位数（包括整数位和小数位）最长为m，d是小数位的长度限制，如果省略m和d，将值存储到硬件允许的限制。 double(8,2)表示允许存储最长总共8位的数字，小数点占2位。]]></content>
