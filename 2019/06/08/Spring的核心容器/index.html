@@ -106,7 +106,8 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/06/08/Spring的核心容器/QQ截图20190608145054.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/08/Spring的核心容器/QQ截图20190608150821.png">
-<meta property="og:updated_time" content="2019-06-08T07:09:34.816Z">
+<meta property="og:image" content="http://yoursite.com/2019/06/08/Spring的核心容器/QQ截图20190608152612.png">
+<meta property="og:updated_time" content="2019-06-08T07:26:24.041Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring的核心容器">
 <meta name="twitter:description" content="1. Spring的核心容器Spring框架的主要功能都是通过Spring的核心容器来实现的，Spring提供了两种核心容器：  BeanFactory ApplicationContext  1.1 BeanFactory（基本不用这个方式，了解即可） BeanFactory是一个接口，来自org.springframework.beans.factory包，是基础的IoC（控制反转）容器，提供">
@@ -399,7 +400,7 @@
                 
               
 
-              <time title="创建时间：2019-06-08 14:34:54 / 修改时间：15:09:34" itemprop="dateCreated datePublished" datetime="2019-06-08T14:34:54+08:00">2019-06-08</time>
+              <time title="创建时间：2019-06-08 14:34:54 / 修改时间：15:26:24" itemprop="dateCreated datePublished" datetime="2019-06-08T14:34:54+08:00">2019-06-08</time>
             
 
             
@@ -464,12 +465,16 @@
 <h3 id="1-1-BeanFactory"><a href="#1-1-BeanFactory" class="headerlink" title="1.1 BeanFactory"></a>1.1 <code>BeanFactory</code></h3><p>（基本不用这个方式，了解即可）</p>
 <p><code>BeanFactory</code>是一个接口，来自<code>org.springframework.beans.factory</code>包，是基础的IoC（控制反转）容器，提供了完整的IoC服务支持，主要负责初始化各种Bean，并调用他们的生命周期方法。</p>
 <p><code>XmlBeanFactory</code>类来自<code>org.springframework.beans.factory.xml</code>包，是<code>BeanFactory</code>接口的实现类，但是在最新Spring中（我用的是5.1.5版本）已经被弃用，我们也无需再讨论了。</p>
-<h3 id="1-2-ApplicationContext"><a href="#1-2-ApplicationContext" class="headerlink" title="1.2 ApplicationContext"></a>1.2 <code>ApplicationContext</code></h3><p><code>ApplicationContext</code>也是一个接口，来自<code>org.springframework.context</code>，它是<code>BeanFactory</code>接口的子接口，不仅包含<code>BeanFactory</code>所有功能，还添加了对国际化、资源访问等功能的支持。</p>
+<h3 id="1-2-ApplicationContext"><a href="#1-2-ApplicationContext" class="headerlink" title="1.2 ApplicationContext"></a>1.2 <code>ApplicationContext</code></h3><p><code>ApplicationContext</code>也是一个接口，来自<code>org.springframework.context</code>包，它是<code>BeanFactory</code>接口的子接口，不仅包含<code>BeanFactory</code>所有功能，还添加了对国际化、资源访问等功能的支持。</p>
 <p><code>ApplicationContext</code>接口的继承关系图：</p>
 <p><img src="QQ截图20190608145054.png" alt></p>
-<p><code>ApplicationContext</code>接口有很多实现类比如<code>ClassPathXmlApplicationContext</code>类，通过new实现类即可完成<code>ApplicationContext</code>对象的实例化。</p>
+<p><code>ApplicationContext</code>接口有很多实现类比如常用的<code>ClassPathXmlApplicationContext</code>类和<code>FileSystemXmlApplicationContext</code>类，通过new实现类即可完成<code>ApplicationContext</code>对象的实例化。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类路径中去查找并加载配置文件applicationContext.xml</span></span><br><span class="line">ApplicationContext applicationContext = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 绝对路径中去查找并加载配置文件applicationContext.xml</span></span><br><span class="line">ApplicationContext applicationContext = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"D:/User/applicationContext.xml"</span>);</span><br></pre></td></tr></table></figure>
 <p><code>ClassPathXmlApplicationContext</code>类的继承关系图：</p>
 <p><img src="QQ截图20190608150821.png" alt></p>
+<p><code>FileSystemXmlApplicationContext</code>类的继承关系图：</p>
+<p><img src="QQ截图20190608152612.png" alt></p>
 
       
     </div>
