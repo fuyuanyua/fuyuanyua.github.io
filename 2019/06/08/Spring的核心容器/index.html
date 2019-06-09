@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/06/08/Spring的核心容器/QQ截图20190608145054.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/08/Spring的核心容器/QQ截图20190608150821.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/08/Spring的核心容器/QQ截图20190608152612.png">
-<meta property="og:updated_time" content="2019-06-08T07:26:24.041Z">
+<meta property="og:updated_time" content="2019-06-09T02:53:29.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring的核心容器">
 <meta name="twitter:description" content="1. Spring的核心容器Spring框架的主要功能都是通过Spring的核心容器来实现的，Spring提供了两种核心容器：  BeanFactory ApplicationContext  1.1 BeanFactory（基本不用这个方式，了解即可） BeanFactory是一个接口，来自org.springframework.beans.factory包，是基础的IoC（控制反转）容器，提供">
@@ -400,12 +400,24 @@
                 
               
 
-              <time title="创建时间：2019-06-08 14:34:54 / 修改时间：15:26:24" itemprop="dateCreated datePublished" datetime="2019-06-08T14:34:54+08:00">2019-06-08</time>
+              <time title="创建时间：2019-06-08 14:34:54" itemprop="dateCreated datePublished" datetime="2019-06-08T14:34:54+08:00">2019-06-08</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-09 10:53:29" itemprop="dateModified" datetime="2019-06-09T10:53:29+08:00">2019-06-09</time>
               
             
           </span>
@@ -469,6 +481,7 @@
 <p><code>ApplicationContext</code>接口的继承关系图：</p>
 <p><img src="QQ截图20190608145054.png" alt></p>
 <p><code>ApplicationContext</code>接口有很多实现类比如常用的<code>ClassPathXmlApplicationContext</code>类和<code>FileSystemXmlApplicationContext</code>类，通过new实现类即可完成<code>ApplicationContext</code>对象的实例化。</p>
+<p><u><strong>这样就完成了Spring容器的创建。</strong></u></p>
 <p>代码示例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类路径中去查找并加载配置文件applicationContext.xml</span></span><br><span class="line">ApplicationContext applicationContext = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 绝对路径中去查找并加载配置文件applicationContext.xml</span></span><br><span class="line">ApplicationContext applicationContext = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"D:/User/applicationContext.xml"</span>);</span><br></pre></td></tr></table></figure>
 <p><code>ClassPathXmlApplicationContext</code>类的继承关系图：</p>
@@ -520,6 +533,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/09/Spring中的IoC和DI/" rel="prev" title="Spring中的IoC和DI">
+                Spring中的IoC和DI <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -588,7 +605,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">45</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

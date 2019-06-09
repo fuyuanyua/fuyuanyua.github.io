@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Spring中的Bean]]></title>
+    <url>%2F2019%2F06%2F09%2FSpring%E4%B8%AD%E7%9A%84Bean%2F</url>
+    <content type="text"><![CDATA[1. Bean的注册Spring中配置Bean有两种途径： 基于配置文件注册 基于注解注册（推荐） 1.1 基于xml配置文件注册Spring支持.xml和.properties两种格式的配置文件来注册Bean，xml文件比较常用。 示例： 比如在com.example.springcloud.dao包下有一个UserDao类，则xml文件这样配置 1&lt;bean id="userDao" class="com.example.springcloud.dao.UserDao" /&gt; 注册一个Bean通常指定id和class即可，如果没有指定id也没指定name，Spring默认将class名当作id名。 1.2 基于注解注册Spring Boot推荐无xml文件来进行开发，所以推荐使用注解来注册Bean，Spring对Bean的注册有一系列的注解： @Component：可以标注在任何层的类上。 @Repository：标注在DAO层的类上。 @Service：标注在Service层的类上。 @Controller：标注在Controller层的类上。 以上四个注解功能是相同的，标识在类上，Spring就会自动把这个类注册为Bean，但是实际开发中分层开发，所以各层的类用各层对应的注解。 示例： 123456@Repository("userDao")public class UserDao &#123; /** * **/&#125; 以上注册Bean和1.1中基于xml注册Bean是等价的。 如果不指定Bean名，即直接@Repository，Bean的id默认为类名（首字母会变小写）。 2. Bean的装配Bean的装配即Bean的依赖注入（DI），依赖注入在我上一篇博文中已经讲过，除了讲过的基于xml文件的两种方法： setter方法注入 构造方法注入 其实还有： 基于注解的装配（推荐） 2.1 基于xml配置文件装配在我上一篇博文已经讲过，我便不再重复叙述，链接： 2.2 基于注解装配Spring Boot推荐无xml文件来进行开发，所以推荐使用注解来装配Bean，Spring对Bean的装配有一系列的注解： @Autowired：可以标注在属性、方法或者构造方法上。标注在属性上是最常用最简便的，根据Bean的类型自动装配（Spring自动找到容器中对应属性类型的Bean并注入）。 @Qualifier：配合@Autowired使用，当容器中有多个相同类型的Bean时，Spring不知道装配哪个Bean，于是用@Qualifier指定Bean的id来确定装配哪个Bean。 @Resource：功能和@Autowired一样，但是@Resource默认根据Bean的id进行自动装配。]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Spring中的IoC和DI]]></title>
+    <url>%2F2019%2F06%2F09%2FSpring%E4%B8%AD%E7%9A%84IoC%E5%92%8CDI%2F</url>
+    <content type="text"><![CDATA[1. IoC简介IoC（Inversion of Control）即控制反转，它不是一种技术，而是一种思想，是Spring的核心思想。 不使用Spring之前，在一个类的对象中要调用其他类的对象，通常直接用new来创建被调用者对象实例，这样大大增加耦合性。 使用Spring之后，我们只声明被调用者对象，new被调用者对象实例的工作全部交给Spring容器，无需自己去new，也就是控制权交给了Spring容器，这就是控制反转。 2. DI简介DI（Dependency Injection）即依赖注入，是IoC的具体实现方式。 2.1 DI的实现依赖注入有两种实现方式： setter方法注入 构造方法注入 setter方法注入比较常用。具体参考以下博文： https://blog.csdn.net/SunnyYoona/article/details/50631178]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Spring的核心容器]]></title>
     <url>%2F2019%2F06%2F08%2FSpring%E7%9A%84%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8%2F</url>
-    <content type="text"><![CDATA[1. Spring的核心容器Spring框架的主要功能都是通过Spring的核心容器来实现的，Spring提供了两种核心容器： BeanFactory ApplicationContext 1.1 BeanFactory（基本不用这个方式，了解即可） BeanFactory是一个接口，来自org.springframework.beans.factory包，是基础的IoC（控制反转）容器，提供了完整的IoC服务支持，主要负责初始化各种Bean，并调用他们的生命周期方法。 XmlBeanFactory类来自org.springframework.beans.factory.xml包，是BeanFactory接口的实现类，但是在最新Spring中（我用的是5.1.5版本）已经被弃用，我们也无需再讨论了。 1.2 ApplicationContextApplicationContext也是一个接口，来自org.springframework.context包，它是BeanFactory接口的子接口，不仅包含BeanFactory所有功能，还添加了对国际化、资源访问等功能的支持。 ApplicationContext接口的继承关系图： ApplicationContext接口有很多实现类比如常用的ClassPathXmlApplicationContext类和FileSystemXmlApplicationContext类，通过new实现类即可完成ApplicationContext对象的实例化。 代码示例： 12345// 类路径中去查找并加载配置文件applicationContext.xmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");// 绝对路径中去查找并加载配置文件applicationContext.xmlApplicationContext applicationContext = new FileSystemXmlApplicationContext("D:/User/applicationContext.xml"); ClassPathXmlApplicationContext类的继承关系图： FileSystemXmlApplicationContext类的继承关系图：]]></content>
+    <content type="text"><![CDATA[1. Spring的核心容器Spring框架的主要功能都是通过Spring的核心容器来实现的，Spring提供了两种核心容器： BeanFactory ApplicationContext 1.1 BeanFactory（基本不用这个方式，了解即可） BeanFactory是一个接口，来自org.springframework.beans.factory包，是基础的IoC（控制反转）容器，提供了完整的IoC服务支持，主要负责初始化各种Bean，并调用他们的生命周期方法。 XmlBeanFactory类来自org.springframework.beans.factory.xml包，是BeanFactory接口的实现类，但是在最新Spring中（我用的是5.1.5版本）已经被弃用，我们也无需再讨论了。 1.2 ApplicationContextApplicationContext也是一个接口，来自org.springframework.context包，它是BeanFactory接口的子接口，不仅包含BeanFactory所有功能，还添加了对国际化、资源访问等功能的支持。 ApplicationContext接口的继承关系图： ApplicationContext接口有很多实现类比如常用的ClassPathXmlApplicationContext类和FileSystemXmlApplicationContext类，通过new实现类即可完成ApplicationContext对象的实例化。 这样就完成了Spring容器的创建。 代码示例： 12345// 类路径中去查找并加载配置文件applicationContext.xmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");// 绝对路径中去查找并加载配置文件applicationContext.xmlApplicationContext applicationContext = new FileSystemXmlApplicationContext("D:/User/applicationContext.xml"); ClassPathXmlApplicationContext类的继承关系图： FileSystemXmlApplicationContext类的继承关系图：]]></content>
       <categories>
         <category>Spring</category>
       </categories>
