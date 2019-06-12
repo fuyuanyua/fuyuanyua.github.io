@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[详解Spring Boot主启动类]]></title>
+    <url>%2F2019%2F06%2F12%2F%E8%AF%A6%E8%A7%A3Spring-Boot%E4%B8%BB%E5%90%AF%E5%8A%A8%E7%B1%BB%2F</url>
+    <content type="text"><![CDATA[1. Spring Boot主启动类Spring Boot主启动类以xxxApplication来命名，类中定义一个main方法来启动Spring Boot项目。 示例： 123456@SpringBootApplicationpublic class SneakerBillApplication &#123; public static void main(String[] args) &#123; SpringApplication.run(SneakerBillApplication.class, args); &#125;&#125; 2. @SpringBootApplication注解通过上面可以看出Spring Boot主启动类标注了@SpringBootApplication注解，点击它进入源码，我们可以看出@SpringBootApplication其实是一个组合注解： 1234567891011121314151617181920212223242526272829303132333435363738@Target(&#123;ElementType.TYPE&#125;)@Retention(RetentionPolicy.RUNTIME)@Documented@Inherited@SpringBootConfiguration@EnableAutoConfiguration@ComponentScan( excludeFilters = &#123;@Filter( type = FilterType.CUSTOM, classes = &#123;TypeExcludeFilter.class&#125;), @Filter( type = FilterType.CUSTOM, classes = &#123;AutoConfigurationExcludeFilter.class&#125;)&#125;)public @interface SpringBootApplication &#123; @AliasFor( annotation = EnableAutoConfiguration.class ) Class&lt;?&gt;[] exclude() default &#123;&#125;; @AliasFor( annotation = EnableAutoConfiguration.class ) String[] excludeName() default &#123;&#125;; @AliasFor( annotation = ComponentScan.class, attribute = "basePackages" ) String[] scanBasePackages() default &#123;&#125;; @AliasFor( annotation = ComponentScan.class, attribute = "basePackageClasses" ) Class&lt;?&gt;[] scanBasePackageClasses() default &#123;&#125;;&#125; @SpringBootApplication由很多注解组成，我们主要关注下面这三个注解： @SpringBootConfiguration @EnableAutoConfiguration @ComponentScan 2.1 @SpringBootConfiguration注解@SpringBootConfiguration注解也是一个组合注解，点击 @SpringBootConfiguration进入源码： 123456@Target(&#123;ElementType.TYPE&#125;)@Retention(RetentionPolicy.RUNTIME)@Documented@Configurationpublic @interface SpringBootConfiguration &#123;&#125; 主要注解的层级关系： @SpringBootConfiguration @Configuration @SpringBootConfiguration注解内部最重要的还是@Configuration注解，被@Configuration标注的类表示这是一个配置类同时配置类自身也会被纳入容器，类中用@Bean标注的方法其返回值将会被注册纳入容器当作组件（Bean），该组件的id默认为方法名。 2.2 @EnableAutoConfiguration注解@EnableAutoConfiguration注解也是一个组合注解，点击 @EnableAutoConfiguration进入源码： 12345678910111213@Target(&#123;ElementType.TYPE&#125;)@Retention(RetentionPolicy.RUNTIME)@Documented@Inherited@AutoConfigurationPackage@Import(&#123;AutoConfigurationImportSelector.class&#125;)public @interface EnableAutoConfiguration &#123; String ENABLED_OVERRIDE_PROPERTY = "spring.boot.enableautoconfiguration"; Class&lt;?&gt;[] exclude() default &#123;&#125;; String[] excludeName() default &#123;&#125;;&#125; 主要注解的层级关系: @EnableAutoConfiguration @AutoConfigurationPackage @Import({Registrar.class}) @Import({AutoConfigurationImportSelector.class}) 主要关注@Import({AutoConfigurationImportSelector.class})注解，它导入了AutoConfigurationImportSelector类，AutoConfigurationImportSelector类会将项目需要的所有自动配置类（比如项目引入了Redis依赖，那么会自动将Redis自动配置类纳入Spring容器，无需我们手动去配置Redis了）纳入Spring容器。免去了我们手动写xml配置文件。 2.3 @ComponentScan注解完成自动扫描组件的功能。 会将Spring Boot项目主启动类所在包及其子包下的所有组件（Bean）扫描到容器，比如被@Component、@Controller等注解标注的类，都会被自动扫描到并被纳入Spring容器。 2.4 总结 @SpringBootApplication @SpringBootConfiguration @Configuration @EnableAutoConfiguration @AutoConfigurationPackage @Import({Registrar.class}) @Import({AutoConfigurationImportSelector.class}) @ComponentScan]]></content>
+      <categories>
+        <category>Spring Boot</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring</tag>
+        <tag>Spring Boot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Spring中的AOP]]></title>
+    <url>%2F2019%2F06%2F10%2FSpring%E4%B8%AD%E7%9A%84AOP%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Spring中的Bean]]></title>
     <url>%2F2019%2F06%2F09%2FSpring%E4%B8%AD%E7%9A%84Bean%2F</url>
     <content type="text"><![CDATA[1. Bean的注册Spring中注册Bean有两种途径： 基于配置文件注册 基于注解注册（推荐） 1.1 基于xml配置文件注册Spring支持.xml和.properties两种格式的配置文件来注册Bean，xml文件比较常用。 示例： 比如在com.example.springcloud.dao包下有一个UserDao类，则xml文件这样配置 1&lt;bean id="userDao" class="com.example.springcloud.dao.UserDao" /&gt; 注册一个Bean通常指定id和class即可，如果没有指定id也没指定name，Spring默认将class名当作id名。 1.2 基于注解注册Spring Boot推荐无xml文件来进行开发，所以推荐使用注解来注册Bean，Spring对Bean的注册有一系列的注解： @Component：可以标注在任何层的类上。 @Repository：标注在DAO层的类上。 @Service：标注在Service层的类上。 @Controller：标注在Controller层的类上。 以上四个注解功能是相同的，标识在类上，Spring就会自动把这个类注册为Bean，但是实际开发中分层开发，所以各层的类用各层对应的注解。 示例： 123456@Repository("userDao")public class UserDao &#123; /** * 其余代码省略 **/&#125; 以上注册Bean和1.1中基于xml注册Bean是等价的。 如果不指定Bean名，即直接@Repository，Bean的id默认为类名（首字母会变小写）。 2. Bean的装配Bean的装配即Bean的依赖注入（DI），依赖注入在我上一篇博文中已经讲过，除了讲过的基于xml文件的两种方法： setter方法注入 构造方法注入 其实还有： 基于注解的装配（推荐） 2.1 基于xml配置文件装配在我上一篇博文已经讲过，我便不再重复叙述，链接： https://fuyuanyua.github.io/2019/06/09/Spring%E4%B8%AD%E7%9A%84IoC%E5%92%8CDI/ 2.2 基于注解装配Spring Boot推荐无xml文件来进行开发，所以推荐使用注解来装配Bean，Spring对Bean的装配有一系列的注解： @Autowired：可以标注在属性、方法或者构造方法上。标注在属性上是最常用最简便的，根据Bean的类型自动装配（Spring自动找到容器中对应属性类型的Bean并注入）。 示例： 1234567891011@Servicepublic class UserServiceImpl implements UserService &#123; // 标注在属性上，Spring自动在容器中找到UserDao类型的Bean注入 @Autowired private UserDao userDao; /** * 其余代码省略 **/&#125; @Qualifier：配合@Autowired使用，当容器中有多个相同类型的Bean时，Spring不知道装配哪个Bean，于是用@Qualifier指定Bean的id来确定装配哪个Bean。 示例： 123456789101112131415@Servicepublic class UserServiceImpl implements UserService &#123; /** * @Qualifier配合@Autowired一起标注在属性上 * Spring自动在容器中找到id为userDao的Bean注入 **/ @Autowired @Qualifier("userDao") private UserDao userDao; /** * 其余代码省略 **/&#125; @Resource：功能和@Autowired一样，但是@Resource默认根据Bean的id进行自动装配。 示例： 1234567891011@Servicepublic class UserServiceImpl implements UserService &#123; //标注在属性上，Spring自动在容器中找到id为userDao的Bean注入 @Resource（name = "userDao"） private UserDao userDao; /** * 其余代码省略 **/&#125;]]></content>

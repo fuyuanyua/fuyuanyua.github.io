@@ -349,6 +349,380 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/Java中抽象类与接口的区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fuyuanyua">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/13/Java中抽象类与接口的区别/" class="post-title-link" itemprop="url">Java中抽象类与接口的区别</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-13 15:45:41 / 修改时间：16:35:56" itemprop="dateCreated datePublished" datetime="2019-05-13T15:45:41+08:00">2019-05-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-抽象类"><a href="#1-抽象类" class="headerlink" title="1. 抽象类"></a>1. 抽象类</h3><p>抽象类：如果一个类中有抽象方法，那么这个类就是抽象类，抽象类必须用abstract关键字修饰。</p>
+<ul>
+<li>抽象方法只声明，无具体实现。</li>
+<li>抽象类和抽象方法必须被public或protected修饰（如果是private，则不能被子类访问到，自然无法被继承也无法被子类实现抽象方法），缺省情况下默认为public。</li>
+<li>不能用抽象类创建对象。</li>
+<li>如果一个子类继承一个抽象类的父类，那么子类必须实现父类的所有抽象方法，如果不全部实现，这个子类任然是抽象类，必须仍然用abstract关键字修饰。</li>
+</ul>
+<h3 id="2-接口"><a href="#2-接口" class="headerlink" title="2. 接口"></a>2. 接口</h3><p>接口：用interface定义。</p>
+<ul>
+<li>接口中所有方法都必须是抽象方法，缺省被public abstract修饰，且只能被public abstract修饰。（推荐缺省即不加修饰词，使代码简洁美观）。</li>
+<li>接口中可以有变量，缺省被public abstract final修饰，且只能被public abstract final修饰，即变量必须给初值且不可更改。一般情况下不会在接口中定义变量。</li>
+</ul>
+<h3 id="3-抽象类和接口的区别"><a href="#3-抽象类和接口的区别" class="headerlink" title="3. 抽象类和接口的区别"></a>3. 抽象类和接口的区别</h3><ul>
+<li><p>抽象类在Java中表示继承关系，只能单继承，<code>class B extends A {}</code></p>
+<p>接口也能继承接口，不需要实现父接口方法，且一个接口能继承多个接口，<code>interface C extends A, B {}</code></p>
+<p>一个类可以单继承，多接口实现，<code>class E extends D implements A, B, C {}</code></p>
+</li>
+<li><p>抽象类中可以有非抽象方法，接口中必须全部为抽象方法。</p>
+</li>
+<li><p>抽象类中可以有static方法（static方法是类方法，不允许子类override），接口中不能有static方法，只能是public abstract方法。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/Java基础之Iterator（迭代器）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fuyuanyua">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/09/Java基础之Iterator（迭代器）/" class="post-title-link" itemprop="url">Java基础之Iterator（迭代器）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-09 15:18:06" itemprop="dateCreated datePublished" datetime="2019-05-09T15:18:06+08:00">2019-05-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-13 16:36:04" itemprop="dateModified" datetime="2019-05-13T16:36:04+08:00">2019-05-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-Iterator（迭代器）"><a href="#1-Iterator（迭代器）" class="headerlink" title="1. Iterator（迭代器）"></a>1. Iterator（迭代器）</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><p>迭代器作用于集合，是用来遍历集合元素的对象。</p>
+<h3 id="1-2-Iterator"><a href="#1-2-Iterator" class="headerlink" title="1.2 Iterator"></a>1.2 Iterator</h3><p>Iterator（迭代器）源自<code>package java.util.Iterator</code>,它是一个接口，源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function">E <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"remove"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEachRemaining</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> E&gt; action)</span> </span>&#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        <span class="keyword">while</span> (hasNext())</span><br><span class="line">            action.accept(next());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中：</p>
+<ul>
+<li><code>E next()</code>：返回迭代的下一个元素，返回值是 Object，需要强制转换成自己需要的类型。（如果使用泛型如<code>Iterator&lt;String&gt; iterator = list.iterator()</code>之后返回值会从Object改为指定的引用类型）</li>
+<li><code>boolean hasNext()</code>：判断是否还有元素。</li>
+<li><code>default void remove()</code>：删除新返回的元素。</li>
+</ul>
+<h3 id="1-3-Iterable"><a href="#1-3-Iterable" class="headerlink" title="1.3 Iterable"></a>1.3 Iterable</h3><p>Iterable源自<code>package java.lang.Iterable</code>，它也是一个接口，源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> T&gt; action)</span> </span>&#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        <span class="keyword">for</span> (T t : <span class="keyword">this</span>) &#123;</span><br><span class="line">            action.accept(t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> Spliterator&lt;T&gt; <span class="title">spliterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Spliterators.spliteratorUnknownSize(iterator(), <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该接口定义了方法<code>Iterator&lt;T&gt; iterator()</code>，返回值为迭代器对象，Collection接口继承了Iterable接口，而ArrayList、HashSet等实现类都实现了Collection接口，所以这些实现类的对象均可以<code>.iterator()</code>来创建Iterator对象。</p>
+<p>以ArrayList为例查看继承关系：</p>
+<p><img src="QQ截图20190509160402.png" alt></p>
+<p><img src="QQ截图20190509160657.png" alt></p>
+<h3 id="1-4-以ArrayList为例演示Iterator的用法"><a href="#1-4-以ArrayList为例演示Iterator的用法" class="headerlink" title="1.4 以ArrayList为例演示Iterator的用法"></a>1.4 以ArrayList为例演示Iterator的用法</h3><p>阿里巴巴Java开发手册强制规定了<strong><em>不要在 foreach 循环里进行元素的 remove/add 操作，remove 元素请使用 Iterator方式。</em></strong></p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 新建ArrayList对象并添加元素</span></span><br><span class="line">    List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    list.add(<span class="string">"aa"</span>);</span><br><span class="line">    list.add(<span class="string">"bb"</span>);</span><br><span class="line">    list.add(<span class="string">"cc"</span>);</span><br><span class="line">    System.out.println(list);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 字符串对象，用于以下条件判断</span></span><br><span class="line">    String s = <span class="string">"aa"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ArrayList对象以.iterator()来创建Iterator对象且指定了泛型为String</span></span><br><span class="line">    Iterator&lt;String&gt; iterator = list.iterator();</span><br><span class="line">    <span class="comment">// 判断是否还有元素</span></span><br><span class="line">    <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">        <span class="comment">// 返回迭代的下一个元素</span></span><br><span class="line">        String item = iterator.next();</span><br><span class="line">        <span class="comment">// 条件判断</span></span><br><span class="line">        <span class="keyword">if</span> (s.equals(item)) &#123;</span><br><span class="line">            <span class="comment">// 移除刚返回的元素</span></span><br><span class="line">            iterator.remove();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    System.out.println(list);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>控制台打印信息：</p>
+<p><img src="QQ截图20190509163647.png" alt></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/Spring-Boot整合Redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2286,535 +2660,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/Spring-Boot整合MyBatis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fuyuanyua">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/10/Spring-Boot整合MyBatis/" class="post-title-link" itemprop="url">Spring Boot整合MyBatis</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-10 18:53:30" itemprop="dateCreated datePublished" datetime="2019-04-10T18:53:30+08:00">2019-04-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-02 18:44:44" itemprop="dateModified" datetime="2019-05-02T18:44:44+08:00">2019-05-02</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot笔记/" itemprop="url" rel="index"><span itemprop="name">Spring Boot笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-Spring-Boot整合MyBatis配置文件版"><a href="#1-Spring-Boot整合MyBatis配置文件版" class="headerlink" title="1. Spring Boot整合MyBatis配置文件版"></a>1. Spring Boot整合MyBatis配置文件版</h2><h3 id="1-1-建表"><a href="#1-1-建表" class="headerlink" title="1.1 建表"></a>1.1 建表</h3><p>使用MySQL数据库，新建一个名为“mybatis”的schema，分别建“bill“、”provider“和”user“表并添加数据。</p>
-<h3 id="1-2-application-yml全局配置文件"><a href="#1-2-application-yml全局配置文件" class="headerlink" title="1.2 application.yml全局配置文件"></a>1.2 <code>application.yml</code>全局配置文件</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">root</span></span><br><span class="line">    <span class="comment"># mysql-connector-java 8.0版本以上的驱动包要指定时区</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://localhost:3306/mybatis?serverTimezone=GMT%2B8</span></span><br><span class="line">    <span class="comment"># mysql-connector-java 8.0版本以上指定了新的驱动类</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="comment"># 使用阿里的Druid（德鲁伊）数据源</span></span><br><span class="line"><span class="attr">    type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 数据源其他配置</span></span><br><span class="line"><span class="attr">    initialSize:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">    minIdle:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">    maxActive:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">    maxWait:</span> <span class="number">60000</span></span><br><span class="line"><span class="attr">    timeBetweenEvictionRunsMillis:</span> <span class="number">60000</span></span><br><span class="line"><span class="attr">    minEvictableIdleTimeMillis:</span> <span class="number">300000</span></span><br><span class="line"><span class="attr">    validationQuery:</span> <span class="string">SELECT</span> <span class="number">1</span> <span class="string">FROM</span> <span class="string">DUAL</span></span><br><span class="line"><span class="attr">    testWhileIdle:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    testOnBorrow:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    testOnReturn:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    poolPreparedStatements:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙</span></span><br><span class="line"><span class="attr">    filters:</span> <span class="string">stat,wall,logback</span></span><br><span class="line"><span class="attr">    maxPoolPreparedStatementPerConnectionSize:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">    useGlobalDataSourceStat:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    connectionProperties:</span> <span class="string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-3-创建实体类"><a href="#1-3-创建实体类" class="headerlink" title="1.3 创建实体类"></a>1.3 创建实体类</h3><p>在 com.example.springboot.entities 包下创建Provider实体类和Bill实体类。</p>
-<ul>
-<li><p>Provider类：</p>
-<p>为减少篇幅，这里只给出成员变量，有参、无参构造方法，get，set，toString方法均省略。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class Provider &#123;</span><br><span class="line">    private Integer pid;</span><br><span class="line">    //供应商编码</span><br><span class="line">    private String providerCode;</span><br><span class="line">    //供应商名称</span><br><span class="line">    private String providerName;</span><br><span class="line">    //联系人</span><br><span class="line">    private String people;</span><br><span class="line">    //联系电话</span><br><span class="line">    private String phone;</span><br><span class="line">    //联系地址</span><br><span class="line">    private String address;</span><br><span class="line">    //传真</span><br><span class="line">    private String fax;</span><br><span class="line">    //描述</span><br><span class="line">    private String describe;</span><br><span class="line">    // 创建时间</span><br><span class="line">    private Date createDate;</span><br><span class="line"></span><br><span class="line">	其余代码省略。。。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Bill类：</p>
-<p>为减少篇幅，这里只给出成员变量，有参、无参构造方法，get，set，toString方法均省略。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class Bill &#123;</span><br><span class="line"></span><br><span class="line">    private Integer bid;</span><br><span class="line">    // 账单编码</span><br><span class="line">    private String billCode;</span><br><span class="line">    // 商品名称</span><br><span class="line">    private String billName;</span><br><span class="line">    // 商品单位</span><br><span class="line">    private String billCom;</span><br><span class="line">    // 商品数量</span><br><span class="line">    private Integer billNum;</span><br><span class="line">    // 总金额</span><br><span class="line">    private Double money;</span><br><span class="line">    // 供应商</span><br><span class="line">    private Provider provider;</span><br><span class="line">    // 是否付款 0 未付款， 1已付款</span><br><span class="line">    private Integer pay;</span><br><span class="line">    // 创建时间</span><br><span class="line">    private Date createDate;</span><br><span class="line">	</span><br><span class="line">	其余代码省略。。。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="1-4-创建Mapper接口"><a href="#1-4-创建Mapper接口" class="headerlink" title="1.4 创建Mapper接口"></a>1.4 创建Mapper接口</h3><p>在 com.example.springboot.mapper 包下创建 BillMapper 接口：</p>
-<ul>
-<li>可在各Mapper接口上使用<code>@Mapper</code>注解，表明这是一个Mapper接口。</li>
-<li>也可在启动类上直接使用注解<code>@MapperScan(&quot;com.example.springboot.mapper&quot;)</code>，便能扫描该包下的所有Mapper自动装到容器当中，而不用在各Mapper上加上注解<code>@Mapper</code>。</li>
-</ul>
-<p>代码示例：</p>
-<ul>
-<li><p>BillMapper接口：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用MyBatis配置文件版</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//@Mapper 或者在启动类上使用注解 @MapperScan("com.example.springboot.mapper")</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BillMapper</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//接口方法默认被public修饰</span></span><br><span class="line">    <span class="function">Bill <span class="title">getBillByBid</span><span class="params">(Integer bid)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">addBill</span><span class="params">(Bill bill)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">updateBill</span><span class="params">(Bill bill)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">deleteBill</span><span class="params">(Integer bid)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MapperScan</span>(<span class="string">"com.example.springboot.mapper"</span>)</span><br><span class="line"><span class="comment">//扫描该包下的所有Mapper自动装到容器当中，而不用在各Mapper上加上注解@Mapper</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBoot08DataMybatisApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringBoot08DataMybatisApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="1-5-创建MyBatis核心配置文件"><a href="#1-5-创建MyBatis核心配置文件" class="headerlink" title="1.5 创建MyBatis核心配置文件"></a>1.5 创建MyBatis核心配置文件</h3><p>在resources目录下新建mybatis目录，在该目录下创建<code>mybatis-config.xml</code>，这便是MyBatis核心配置文件，我在这仅仅配置了开启自动驼峰命名规则映射，文件编写参考官方文档：<a href="http://www.mybatis.org/mybatis-3/zh/getting-started.html" target="_blank" rel="noopener">http://www.mybatis.org/mybatis-3/zh/getting-started.html</a></p>
-<p>代码示例：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE configuration</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 这是mybatis核心配置文件 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 是否开启自动驼峰命名规则（camel case）映射，</span></span><br><span class="line"><span class="comment">        即从经典数据库列名 A_COLUMN 到经典 Java 属性名 aColumn 的类似映射 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"mapUnderscoreToCamelCase"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-6-创建Mapper映射配置文件"><a href="#1-6-创建Mapper映射配置文件" class="headerlink" title="1.6 创建Mapper映射配置文件"></a>1.6 创建Mapper映射配置文件</h3><p>在resources目录的mybatis目录下新建mapper目录，在该目录下创建<code>BillMapper.xml</code>，在此文件中编写sql语句，文件编写也参考官网文档：<a href="http://www.mybatis.org/mybatis-3/zh/getting-started.html" target="_blank" rel="noopener">http://www.mybatis.org/mybatis-3/zh/getting-started.html</a></p>
-<p>代码示例：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.example.springboot.mapper.BillMapper"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getBillByBid"</span> <span class="attr">resultType</span>=<span class="string">"com.example.springboot.entities.Bill"</span>&gt;</span></span><br><span class="line">        select * from bill where bid = #&#123;bid&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"addBill"</span>&gt;</span></span><br><span class="line">        insert into bill(bill_code, bill_name, bill_com, bill_num)</span><br><span class="line">        values (#&#123;billCode&#125;, #&#123;billName&#125;, #&#123;billCom&#125;, #&#123;billNum&#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>&lt;mapper namespace=&quot;com.example.springboot.mapper.BillMapper&quot;&gt;</code>定义了对应接口<code>BillMapper</code>的路径。</li>
-<li>以查询为例，<code>select id=&quot;getBillByBid&quot;</code>，<code>getBillByBid</code>与接口中的方法<code>Bill getBillByBid(Integer bid);</code>对应，<code>resultType=&quot;com.example.springboot.entities.Bill&quot;</code>则是方法返回值的实体类<code>Bill</code>的路径。</li>
-<li><code>#{}</code>用于表示一个占位符，相当于<code>?</code>，而<code>#{bid}</code>则表示该占位符待接收参数的名称为bid。</li>
-</ul>
-<h3 id="1-7-重新配置application-yml全局配置文件"><a href="#1-7-重新配置application-yml全局配置文件" class="headerlink" title="1.7 重新配置application.yml全局配置文件"></a>1.7 重新配置<code>application.yml</code>全局配置文件</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">root</span></span><br><span class="line">    <span class="comment"># mysql-connector-java 8.0版本以上的驱动包要指定时区</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://localhost:3306/mybatis?serverTimezone=GMT%2B8</span></span><br><span class="line">    <span class="comment"># mysql-connector-java 8.0版本以上指定了新的驱动类</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="comment"># 使用阿里的Druid（德鲁伊）数据源</span></span><br><span class="line"><span class="attr">    type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 数据源其他配置</span></span><br><span class="line"><span class="attr">    initialSize:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">    minIdle:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">    maxActive:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">    maxWait:</span> <span class="number">60000</span></span><br><span class="line"><span class="attr">    timeBetweenEvictionRunsMillis:</span> <span class="number">60000</span></span><br><span class="line"><span class="attr">    minEvictableIdleTimeMillis:</span> <span class="number">300000</span></span><br><span class="line"><span class="attr">    validationQuery:</span> <span class="string">SELECT</span> <span class="number">1</span> <span class="string">FROM</span> <span class="string">DUAL</span></span><br><span class="line"><span class="attr">    testWhileIdle:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    testOnBorrow:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    testOnReturn:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    poolPreparedStatements:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙</span></span><br><span class="line"><span class="attr">    filters:</span> <span class="string">stat,wall,logback</span></span><br><span class="line"><span class="attr">    maxPoolPreparedStatementPerConnectionSize:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">    useGlobalDataSourceStat:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    connectionProperties:</span> <span class="string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># mybatis配置文件版，配置相关文件路径</span></span><br><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="comment"># 映射文件路径</span></span><br><span class="line"><span class="attr">  mapper-locations:</span> <span class="attr">classpath:mybatis/mapper/*.xml</span></span><br><span class="line">  <span class="comment"># mybatis核心配置文件路径</span></span><br><span class="line"><span class="attr">  config-location:</span> <span class="attr">classpath:mybatis/mybatis-config.xml</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>classpath:</code>表示类路径，在Spring Boot项目里等同于<code>resources</code>目录，在其他项目也可等同于<code>res</code>目录。</li>
-<li><code>*.xml</code>表示该目录下所有.xml文件。</li>
-</ul>
-<h3 id="1-8-创建控制层"><a href="#1-8-创建控制层" class="headerlink" title="1.8 创建控制层"></a>1.8 创建控制层</h3><p>在com.example.springboot.controller包下新建类BillController：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BillController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    BillMapper billMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/bill/&#123;bid&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Bill <span class="title">getBillByBid</span><span class="params">(@PathVariable(<span class="string">"bid"</span>)</span> Integer bid) </span>&#123;</span><br><span class="line">        Bill bill = billMapper.getBillByBid(bid);</span><br><span class="line">        <span class="keyword">return</span> bill;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/bill"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Bill <span class="title">addBill</span><span class="params">(Bill bill)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = billMapper.addBill(bill);</span><br><span class="line">        <span class="keyword">return</span> bill;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p><code>@RestController</code>注解等同于<code>@Controller</code>+<code>@ResponseBody</code>这两个注解合在一起的作用，表示不返回jsp或html页面，直接返回return的内容。</p>
-</li>
-<li><p><code>@Autowired
-BillMapper billMapper;</code></p>
-<p>表示直接将BillMapper接口注入。</p>
-</li>
-</ul>
-<h3 id="1-9-测试"><a href="#1-9-测试" class="headerlink" title="1.9 测试"></a>1.9 测试</h3><p>启动启动类SpringBoot08DataMybatisApplication，在浏览器输入：<a href="http://localhost:8080/bill/1" target="_blank" rel="noopener">http://localhost:8080/bill/1</a></p>
-<p>效果显示：</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1555045035693.png" alt="1555045035693"></p>
-<p>数据库中bill表：</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1555042069834.png" alt="1555042069834"></p>
-<p>网页中数据与数据库中均一一对应，表明成功。</p>
-<h2 id="2-Spring-Boot整合MyBatis注解版"><a href="#2-Spring-Boot整合MyBatis注解版" class="headerlink" title="2. Spring Boot整合MyBatis注解版"></a>2. Spring Boot整合MyBatis注解版</h2><h3 id="2-1-建表"><a href="#2-1-建表" class="headerlink" title="2.1 建表"></a>2.1 建表</h3><p>同1.1，表已经建好。</p>
-<h3 id="2-2-application-yml全局配置文件"><a href="#2-2-application-yml全局配置文件" class="headerlink" title="2.2 application.yml全局配置文件"></a>2.2 <code>application.yml</code>全局配置文件</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">root</span></span><br><span class="line">    <span class="comment"># mysql-connector-java 8.0版本以上的驱动包要指定时区</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://localhost:3306/mybatis?serverTimezone=GMT%2B8</span></span><br><span class="line">    <span class="comment"># mysql-connector-java 8.0版本以上指定了新的驱动类</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="comment"># 使用阿里的Druid（德鲁伊）数据源</span></span><br><span class="line"><span class="attr">    type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 数据源其他配置</span></span><br><span class="line"><span class="attr">    initialSize:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">    minIdle:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">    maxActive:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">    maxWait:</span> <span class="number">60000</span></span><br><span class="line"><span class="attr">    timeBetweenEvictionRunsMillis:</span> <span class="number">60000</span></span><br><span class="line"><span class="attr">    minEvictableIdleTimeMillis:</span> <span class="number">300000</span></span><br><span class="line"><span class="attr">    validationQuery:</span> <span class="string">SELECT</span> <span class="number">1</span> <span class="string">FROM</span> <span class="string">DUAL</span></span><br><span class="line"><span class="attr">    testWhileIdle:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    testOnBorrow:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    testOnReturn:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    poolPreparedStatements:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙</span></span><br><span class="line"><span class="attr">    filters:</span> <span class="string">stat,wall,logback</span></span><br><span class="line"><span class="attr">    maxPoolPreparedStatementPerConnectionSize:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">    useGlobalDataSourceStat:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    connectionProperties:</span> <span class="string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-3-创建实体类"><a href="#2-3-创建实体类" class="headerlink" title="2.3 创建实体类"></a>2.3 创建实体类</h3><p>同1.3，实体类均已创建好。</p>
-<h3 id="2-4-创建Mapper接口"><a href="#2-4-创建Mapper接口" class="headerlink" title="2.4 创建Mapper接口"></a>2.4 创建Mapper接口</h3><p>在 com.example.springboot.mapper 包下创建 ProviderMapper 接口。</p>
-<p>代码示例：</p>
-<ul>
-<li><p>ProviderMapper接口：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用mybatis注解版</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Mapper</span> <span class="comment">//这是指定操作数据的Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ProviderMapper</span> </span>&#123;</span><br><span class="line">    <span class="comment">//接口默认public修饰</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//查</span></span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"select * from provider where pid = #&#123;pid&#125;"</span>)</span><br><span class="line">    <span class="function">Provider <span class="title">getProviderByPid</span><span class="params">(Integer pid)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//增</span></span><br><span class="line">    <span class="meta">@Insert</span>(<span class="string">"insert into provider(providerName) values (#&#123;providerName&#125;)"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">addProvider</span><span class="params">(Provider provider)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删</span></span><br><span class="line">    <span class="meta">@Delete</span>(<span class="string">"delete from provider where pid = #&#123;pid&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">deleteProviderByPid</span><span class="params">(Integer pid)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//改</span></span><br><span class="line">    <span class="meta">@Update</span>(<span class="string">"update provider set providerName = #&#123;providerName&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">updateProvider</span><span class="params">(Provider provider)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBoot08DataMybatisApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringBoot08DataMybatisApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="2-5-创建控制层"><a href="#2-5-创建控制层" class="headerlink" title="2.5 创建控制层"></a>2.5 创建控制层</h3><p>在 com.example.springboot.controller 包下创建ProviderController类。</p>
-<p>代码示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProviderController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    ProviderMapper providerMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/provider/&#123;pid&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Provider <span class="title">getProvider</span><span class="params">(@PathVariable(<span class="string">"pid"</span>)</span> Integer pid) </span>&#123;</span><br><span class="line">        Provider provider = providerMapper.getProviderByPid(pid);</span><br><span class="line">        <span class="keyword">return</span> provider;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-6-创建MyBatis配置类"><a href="#2-6-创建MyBatis配置类" class="headerlink" title="2.6 创建MyBatis配置类"></a>2.6 创建MyBatis配置类</h3><p>因为MyBatis注解版没有xml配置文件，所以需要使用配置类来配置，我在 com.example.springboot.config 包下创建MyBatisConfig类，主要配置了开启了自动驼峰命名规则映射。</p>
-<p>代码示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBatisConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ConfigurationCustomizer <span class="title">ConfigurationCustomizer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ConfigurationCustomizer configurationCustomizer = <span class="keyword">new</span> ConfigurationCustomizer() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">customize</span><span class="params">(org.apache.ibatis.session.Configuration configuration)</span> </span>&#123;</span><br><span class="line">                <span class="comment">//是否开启自动驼峰命名规则（camel case）映射，</span></span><br><span class="line">                <span class="comment">// 即从经典数据库列名 A_COLUMN 到经典 Java 属性名 aColumn 的类似映射。</span></span><br><span class="line">                configuration.setMapUnderscoreToCamelCase(<span class="keyword">true</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> configurationCustomizer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-7-测试"><a href="#2-7-测试" class="headerlink" title="2.7 测试"></a>2.7 测试</h3><p>启动启动类SpringBoot08DataMybatisApplication，在浏览器输入：<a href="http://localhost:8080/provider/1" target="_blank" rel="noopener">http://localhost:8080/provider/1</a></p>
-<p>网页效果：</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1555066856653.png" alt="1555066856653"></p>
-<p>数据表：</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1555066918948.png" alt="1555066918948"></p>
-<p>测试成功。</p>
-<h2 id="3-心得"><a href="#3-心得" class="headerlink" title="3. 心得"></a>3. 心得</h2><p>无论Mybatis注解版还是配置文件版，都能实现相同功能，所以都需要掌握。</p>
-<p>但是本人更倾向于配置文件版，因为如果遇到复杂的sql语句，写在注解上让代码显得特别繁琐复杂，而单独写在mapper映射文件中则显得简洁许多。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/Spring-Boot事务管理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fuyuanyua">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/09/Spring-Boot事务管理/" class="post-title-link" itemprop="url">Spring Boot事务管理</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-09 18:30:59" itemprop="dateCreated datePublished" datetime="2019-04-09T18:30:59+08:00">2019-04-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-02 18:45:09" itemprop="dateModified" datetime="2019-05-02T18:45:09+08:00">2019-05-02</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot笔记/" itemprop="url" rel="index"><span itemprop="name">Spring Boot笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-事务管理"><a href="#1-事务管理" class="headerlink" title="1. 事务管理"></a>1. 事务管理</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><p>事务是应用程序中一系列严密的操作，所有操作必须成功完成，否则在每个操作中所作的所有更改都会被撤消。也就是事务具有原子性，一个事务中的一系列的操作要么全部成功，要么一个都不做。<br>事务的结束有两种，当事务中的所以步骤全部成功执行时，事务提交。如果其中一个步骤失败，将发生回滚操作，撤消撤消之前到事务开始时的所以操作。<br>在Spring Boot中，使用了<code>spring-boot-starter-jdbc</code>或者<code>spring-boot-starter-data-jpa</code>依赖时，框架会自动默认注入<code>DataSourceTransactionManager</code>或者<code>jpaTransactionManager</code>。所以我们不需要任何额外配置就可以用<code>@Transactional</code>注解进行事务的使用。</p>
-<h3 id="1-2-事务管理步骤"><a href="#1-2-事务管理步骤" class="headerlink" title="1.2 事务管理步骤"></a>1.2 事务管理步骤</h3><ol>
-<li><p>在启动类中，使用<code>@EnableTransactionManagement</code>开启注解方式事务管理支持。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableTransactionManagement</span> <span class="comment">//开启注解方式事务支持</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBoot08DataJpaApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringBoot08DataJpaApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="2">
-<li><p>在Service层方法上使用<code>@Transactional</code>注解。</p>
-<ul>
-<li><p><code>@Transactional</code>也可直接注解在类上，这样默认该类下所有方法都开启事务注解。</p>
-</li>
-<li><p>但实际中一般只对 <strong>增</strong>、<strong>删</strong>、<strong>改</strong> 进行事务管理，不对 <strong>查</strong> 进行事务管理，所以注解在方法上。</p>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="1-3-注意"><a href="#1-3-注意" class="headerlink" title="1.3 注意"></a>1.3 注意</h3><ol>
-<li><p><code>application.yml</code>配置文件</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://localhost:3306/jpa?serverTimezone=GMT%2B8</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># jpa相关配置</span></span><br><span class="line"><span class="attr">  jpa:</span></span><br><span class="line"><span class="attr">    hibernate:</span></span><br><span class="line">      <span class="comment"># 会根据映射实体类自动创建会更新数据表</span></span><br><span class="line"><span class="attr">      ddl-auto:</span> <span class="string">update</span></span><br><span class="line">    <span class="comment"># 控制台打印sql语句</span></span><br><span class="line"><span class="attr">    show-sql:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果使用 JPA（Java Persistence API），hibernate在自动创建表时，创建的表引擎是 <strong>MyISAM</strong>，是非事务安全的，无法实现事务回滚。需要指定 <strong>InnoDB</strong> 引擎才可以进行事务管理。</p>
-</li>
-<li><p>在<code>application.yml</code>配置文件中添加配置</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://localhost:3306/jpa?serverTimezone=GMT%2B8</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># jpa相关配置</span></span><br><span class="line"><span class="attr">  jpa:</span></span><br><span class="line"><span class="attr">    hibernate:</span></span><br><span class="line">      <span class="comment"># 会根据映射实体类自动创建会更新数据表</span></span><br><span class="line"><span class="attr">      ddl-auto:</span> <span class="string">update</span></span><br><span class="line">    <span class="comment"># 控制台打印sql语句</span></span><br><span class="line"><span class="attr">    show-sql:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 指定表的引擎为InnoDB，如果不指定，则默认表引擎为MyISAM,MyISAM是不支持事务管理的</span></span><br><span class="line"><span class="attr">    database-platform:</span> <span class="string">org.hibernate.dialect.MySQL57Dialect</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="2-事务的隔离级别"><a href="#2-事务的隔离级别" class="headerlink" title="2. 事务的隔离级别"></a>2. 事务的隔离级别</h2><h3 id="2-1-脏读、不可重复读和幻读"><a href="#2-1-脏读、不可重复读和幻读" class="headerlink" title="2.1 脏读、不可重复读和幻读"></a>2.1 脏读、不可重复读和幻读</h3><ol>
-<li>脏读：A事务执行过程中修改了id=1的数据，未提交前，B事务读取了A事务修改的id=1的数据，而这时A事务却回滚了，这样B事务就形成了脏读。</li>
-<li>不可重复读：A事务先读取了一条数据，然后执行逻辑，这时B事务将这条数据改变了，然后A事务再次读取这条数据，发现数据不匹配了，这就是不可重复读。</li>
-<li>幻读：A事务先根据条件查询到了N调数据，然后这时B事务新增了M条符合A事务查询条件的数据，A事务再次查询时发现有N+M条数据了，就产生了幻读。</li>
-</ol>
-<h3 id="2-2-隔离级别"><a href="#2-2-隔离级别" class="headerlink" title="2.2 隔离级别"></a>2.2 隔离级别</h3><p>数据库事务的隔离级别有4个，由低到高依次为Read uncommitted 、Read committed 、Repeatable read 、Serializable ，这四个级别可以逐个解决脏读 、不可重复读 、幻读这几类问题。</p>
-<table>
-<thead>
-<tr>
-<th>隔离级别</th>
-<th>脏读</th>
-<th>不可重复读</th>
-<th>幻读</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Read uncommitted（读未提交）</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>Read committed（读提交）</td>
-<td>×</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>Repeatable read（重复读）</td>
-<td>×</td>
-<td>×</td>
-<td>√</td>
-</tr>
-<tr>
-<td>Serializable（序列化）</td>
-<td>×</td>
-<td>×</td>
-<td>×</td>
-</tr>
-</tbody>
-</table>
-<h3 id="2-3-源码"><a href="#2-3-源码" class="headerlink" title="2.3 源码"></a>2.3 源码</h3><p>查看<code>org.springframework.transaction.annotation</code>包中的枚举类<code>Isolation</code>定义了五个表示隔离级别的值：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.springframework.transaction.annotation;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Isolation &#123;</span><br><span class="line">    DEFAULT(-<span class="number">1</span>),</span><br><span class="line">    READ_UNCOMMITTED(<span class="number">1</span>),</span><br><span class="line">    READ_COMMITTED(<span class="number">2</span>),</span><br><span class="line">    REPEATABLE_READ(<span class="number">4</span>),</span><br><span class="line">    SERIALIZABLE(<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Isolation</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">value</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>DEFAULT：默认值，表示使用底层数据库的默认隔离级别，大多数数据库的默认隔离级别是READ_COMMITTED。</li>
-<li>READ_UNCOMMITTED：通常很少使用该隔离级别，因为避免不了脏读、不可重复读和幻读。</li>
-<li><strong>READ_COMMITTED：可以防止脏读，也是大多数数据库的默认隔离级别，比如SQL Server , Oracle，性能最好。</strong></li>
-<li>REPEATABLE_READ：可以避免脏读和不可重复读，是MySQL的默认隔离级别。</li>
-<li>SERIALIZABLE：可以避免脏读、不可重复读和幻读，但严重影响程序性能，通常不会用到该级别。</li>
-</ol>
-<h3 id="2-4-指定隔离级别"><a href="#2-4-指定隔离级别" class="headerlink" title="2.4 指定隔离级别"></a>2.4 指定隔离级别</h3><p>在<code>@Transactional</code>注解上设置属性：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span>(isolation = Isolation.DEFAULT) </span><br><span class="line">   <span class="comment">//当前方法开启事务管理</span></span><br><span class="line">   <span class="comment">//isolation指定隔离级别，当前指定为默认</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-事务的传播行为"><a href="#3-事务的传播行为" class="headerlink" title="3. 事务的传播行为"></a>3. 事务的传播行为</h2><h3 id="3-1-源码"><a href="#3-1-源码" class="headerlink" title="3.1 源码"></a>3.1 源码</h3><p>查看<code>org.springframework.transaction.annotation</code>包中的枚举类<code>Propagation</code>定义了七个表示传播行为的值：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.springframework.transaction.annotation;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Propagation &#123;</span><br><span class="line">    REQUIRED(<span class="number">0</span>),</span><br><span class="line">    SUPPORTS(<span class="number">1</span>),</span><br><span class="line">    MANDATORY(<span class="number">2</span>),</span><br><span class="line">    REQUIRES_NEW(<span class="number">3</span>),</span><br><span class="line">    NOT_SUPPORTED(<span class="number">4</span>),</span><br><span class="line">    NEVER(<span class="number">5</span>),</span><br><span class="line">    NESTED(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Propagation</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">value</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>REQUIRED：支持当前事务，如果当前没有事务，就新建一个事务。<br>如果A方法有事务，那么B方法就使用A方法的事务。<br>如果A方法没有事务，那么B方法就创建一个新事物。<br><strong>是Spring提供的默认事务传播行为，适合绝大数情况。</strong></p>
-</li>
-<li><p>SUPPORTS：支持当前事务，如果当前没有事务，就以非事务方式执行。<br>如果A方法有事务，那么B方法就使用A方法的事务。<br>如果A方法没有事务，那么B方法就不使用事务的方式执行</p>
-</li>
-<li><p>MANDATORY：支持当前事务，如果当前没有事务，就抛出异常。<br>如果A方法有事务，那么A方法就使用A方法事务。<br>如果A方法没有事务，那么就抛出异常。<br><strong>该事务传播行为要求A方法必须以事务的方式运行。</strong></p>
-</li>
-<li><p>REQUIRES_NEW：新建事务，如果当前存在事务，把当前事务挂起。<br>如果A方法有事务，就把A方法的事务挂起，B方法新创建一个事务。<br>如果A方法没有事务，那么B方法就创建一个新事务。</p>
-</li>
-<li><p>NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。<br>如果A方法有事务，那么就把A方法的事务挂起，B方法以非事务的方式执行。<br>如果A方法没有事务，那么B也不使用事务执行。</p>
-</li>
-<li><p>NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。<br>如果方法A有事务，那么就抛出异常。<br>如果方法A没有事务，那么B方法就以非事务的方式运行。</p>
-</li>
-<li><p>NESTED：如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则进行与PROPAGATION_REQUIRED类似的。<br>如果A方法有事务，那么B方法就在A方法的事务中使用嵌套事务。<br>如果A方法没有事务，那么方法B就新创建一个事务。</p>
-</li>
-</ol>
-<h3 id="3-2-指定传播行为"><a href="#3-2-指定传播行为" class="headerlink" title="3.2 指定传播行为"></a>3.2 指定传播行为</h3><p>在<code>@Transactional</code>注解上设置属性：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span>(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED )</span><br><span class="line"><span class="comment">//当前方法开启事务管理</span></span><br><span class="line"><span class="comment">//isolation指定隔离级别，当前指定为默认</span></span><br><span class="line"><span class="comment">//propagation指定传播行为，当前指定为默认</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2861,7 +2706,7 @@ BillMapper billMapper;</code></p>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2898,7 +2743,9 @@ BillMapper billMapper;</code></p>
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

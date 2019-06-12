@@ -349,6 +349,452 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/二叉排序树和平衡二叉树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fuyuanyua">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/03/二叉排序树和平衡二叉树/" class="post-title-link" itemprop="url">二叉排序树和平衡二叉树</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-03 16:33:33" itemprop="dateCreated datePublished" datetime="2019-06-03T16:33:33+08:00">2019-06-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-05 19:05:31" itemprop="dateModified" datetime="2019-06-05T19:05:31+08:00">2019-06-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构与算法/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-二叉排序树"><a href="#1-二叉排序树" class="headerlink" title="1. 二叉排序树"></a>1. 二叉排序树</h2><h3 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h3><p>二叉排序树（Binary Sort Tree）又称二叉查找树（Binary search Tree），简称BST，它有以下性质：</p>
+<ul>
+<li>若一棵二叉排序树的左子树不为空，则左子树所有结点的值都小于这棵二叉排序树的根节点的值。</li>
+<li>若一棵二叉排序树的右子树不为空，则右子树所有结点的值都大于这棵二叉排序树的根节点的值。</li>
+<li>这棵二叉排序树的左右子树也分别都是二叉排序树。</li>
+</ul>
+<h3 id="1-2-图示"><a href="#1-2-图示" class="headerlink" title="1.2 图示"></a>1.2 图示</h3><p>以下就是一棵二叉排序树：</p>
+<p><img src="20181127230519538.png" alt></p>
+<h3 id="1-3-其他"><a href="#1-3-其他" class="headerlink" title="1.3 其他"></a>1.3 其他</h3><p>对一棵二叉排序树进行中序遍历（左子树 -&gt; 根节点 -&gt; 右子树），就能得到一个有序序列，比如对上图的二叉排序树进行中序遍历就得到（30, 38, 40, 45, 48, 50, 60, 70, 75, 80）。</p>
+<h2 id="2-平衡二叉树"><a href="#2-平衡二叉树" class="headerlink" title="2. 平衡二叉树"></a>2. 平衡二叉树</h2><h3 id="2-1-定义"><a href="#2-1-定义" class="headerlink" title="2.1 定义"></a>2.1 定义</h3><p>平衡二叉树（Balanced Binary Tree），又称AVL树，它有以下性质：</p>
+<ul>
+<li>它的左右子树都是平衡二叉树。</li>
+<li>它的左右子树的深度之差的绝对值不超过。</li>
+<li>将二叉树节点上的平衡因子（Balance Factor）定义为该节点的左子树深度减去右子树深度。所以一颗平衡二叉树上所有结点的平衡因子只能为-1、0或1。</li>
+</ul>
+<h3 id="2-2-图示"><a href="#2-2-图示" class="headerlink" title="2.2 图示"></a>2.2 图示</h3><p>非平衡二叉树：</p>
+<p><img src="800px-Unbalanced_binary_tree.svg.png" alt></p>
+<p>平衡二叉树：</p>
+<p><img src="1920px-AVLtreef.svg.png" alt></p>
+<h3 id="2-3-插入"><a href="#2-3-插入" class="headerlink" title="2.3 插入"></a>2.3 插入</h3><p>当插入新节点时，可能会使这棵平衡二叉树失去平衡，这时就要调整最小的那棵失去平衡的子树，进行平衡化操作使整棵树重新平衡。</p>
+<p>平衡化操作分为：</p>
+<ul>
+<li>单次右旋</li>
+<li>单次左旋</li>
+<li>先左旋后右旋</li>
+<li>先右旋后左旋</li>
+</ul>
+<h4 id="2-3-1-单次右旋"><a href="#2-3-1-单次右旋" class="headerlink" title="2.3.1 单次右旋"></a>2.3.1 单次右旋</h4><p>如下图：</p>
+<p><img src="olpbovvey6.png" alt></p>
+<p>发生在LL的时候，即在一棵平衡二叉树的<strong>左子树</strong>的根节点的<strong>左叶子结点</strong>新插入结点，这样破坏了树的平衡，需要进行单次右旋使树重新平衡。</p>
+<p>单次右旋如何操作直接看图：</p>
+<p><img src="w1vwnol5or.png" alt></p>
+<h4 id="2-3-2-单次左旋"><a href="#2-3-2-单次左旋" class="headerlink" title="2.3.2 单次左旋"></a>2.3.2 单次左旋</h4><p>发生在RR的时候，即在一棵平衡二叉树的<strong>右子树</strong>的根节点的<strong>右叶子结点</strong>新插入结点，这样破坏了树的平衡，需要进行单次左旋使树重新平衡。</p>
+<p>单次左旋和单次右旋的思想是一样的，直接看图：</p>
+<p><img src="7dsbhmmv3p.png" alt></p>
+<h4 id="2-3-3-先左旋后右旋"><a href="#2-3-3-先左旋后右旋" class="headerlink" title="2.3.3 先左旋后右旋"></a>2.3.3 先左旋后右旋</h4><p>发生在LR的时候，即在一棵平衡二叉树的<strong>左子树</strong>的根节点的<strong>右叶子结点</strong>新插入结点，这样破坏了树的平衡，需要进行先左旋后右旋使树重新平衡。</p>
+<p>图略，思想和先右旋后左旋一样。</p>
+<h4 id="2-3-4-先右旋后左旋"><a href="#2-3-4-先右旋后左旋" class="headerlink" title="2.3.4 先右旋后左旋"></a>2.3.4 先右旋后左旋</h4><p>发生在RL的时候，即在一棵平衡二叉树的<strong>右子树</strong>的根节点的<strong>左叶子结点</strong>新插入结点，这样破坏了树的平衡，需要进行先右旋后左旋使树重新平衡。</p>
+<p>直接看图：</p>
+<p><img src="QQ截图20190604145528.png" alt></p>
+<h3 id="2-4-删除"><a href="#2-4-删除" class="headerlink" title="2.4 删除"></a>2.4 删除</h3><p>要了解一棵平衡二叉树如何删除一个结点，首先我们要了解二叉排序树如何删除一个结点。</p>
+<p>对于二叉排序树，假设要删除结点A，有三种情况：</p>
+<ol>
+<li>结点A是叶子结点。</li>
+<li>结点A的左子树或右子树为空。</li>
+<li>结点A的左子树和右子树都不为空。</li>
+</ol>
+<p>分别有三种对策：</p>
+<ol>
+<li>对于情况1，直接删除结点A即可。</li>
+<li>对于情况2，结点A的父结点绕过结点A，指向结点A的右子树（如果结点A的左子树为空），或指向结点A的左子树（如果结点A的右子树为空），然后删除结点A即可。</li>
+<li>对于情况3，找到结点A的前驱（左子树中值最大的结点）或者结点A的后继（右子树中值最小的结点），并把前驱或者后继的值复制到结点A中，最后将前驱或者后继删除。</li>
+</ol>
+<p><u>平衡二叉树的删除策略和二叉排序树一样，不过最后可能会失去平衡，需要对树进行平衡化操作。</u></p>
+<p>（小声bb，网上很多人写的博客真不怎样，用自以为很幽默风趣的话来描述一个知识点，却模棱两可描述不清楚，而且那些“幽默风趣”的话其实很无聊，比如“举个栗子”等等，呕）</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/31/B树和B-树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fuyuanyua">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/31/B树和B-树/" class="post-title-link" itemprop="url">B树和B+树</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-31 21:19:32" itemprop="dateCreated datePublished" datetime="2019-05-31T21:19:32+08:00">2019-05-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-03 16:33:42" itemprop="dateModified" datetime="2019-06-03T16:33:42+08:00">2019-06-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构与算法/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>要了解B+树，我们首先了解B树。</p>
+<h2 id="1-B树"><a href="#1-B树" class="headerlink" title="1. B树"></a>1. B树</h2><p>B树即B-树（中间不是减号，Balance Tree），是一种多路平衡查找树。</p>
+<p>我们描述一颗B树要指定它的阶数，阶数表示了一个结点最多可以有多少个孩子结点。</p>
+<p>比如：</p>
+<ul>
+<li>当阶数m=3时，则表示该B树一个结点最多有三个孩子结点。</li>
+<li>当阶数m=2时，则表示该B树一个结点最多有两个孩子结点，该B树其实就是二叉排序树。</li>
+</ul>
+<h3 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h3><p>规定了一颗m阶的B树要有以下特征：</p>
+<ol>
+<li>树中每个结点最多有m个孩子结点，树中每个结点最多有m-1个元素。</li>
+<li>根结点至少要有两个孩子结点。</li>
+<li>中间结点至少要有seil(m / 2)个孩子结点。</li>
+<li>中间结点和叶子结点至少要有seil(m / 2) - 1个元素。</li>
+<li>每个结点中的元素都按照从左到右从小到大的顺序排列，每个元素的左子树中的所有元素都小于它，每个元素的右子树中的所有元素都大于它。</li>
+<li>所有叶子结点都位于同一层。</li>
+</ol>
+<h3 id="1-2-图示"><a href="#1-2-图示" class="headerlink" title="1.2 图示"></a>1.2 图示</h3><p>以下是一颗3阶B树。</p>
+<p><img src="3f739e4edff200e682ec28f1a55979255e1.jpg" alt></p>
+<p>B树中所有节点都存储data。</p>
+<h3 id="1-3-B树的操作"><a href="#1-3-B树的操作" class="headerlink" title="1.3 B树的操作"></a>1.3 B树的操作</h3><p>可以参考以下博文：</p>
+<p><a href="https://www.yiibai.com/data_structure/b-tree.html" target="_blank" rel="noopener">https://www.yiibai.com/data_structure/b-tree.html</a></p>
+<h3 id="1-4-应用"><a href="#1-4-应用" class="headerlink" title="1.4 应用"></a>1.4 应用</h3><p>现实应用B树，B树是非常“矮胖”的，即树的阶数特别大，如m = 1000，那么树的一个结点最多可以储存999个元素，这样一来树的高度就特别小。</p>
+<p>B树主要应用在数据库的索引上，如非关系型数据库MongoDB的索引就是用了B树这种数据结构，大大减少了磁盘IO次数，大大提高了性能。</p>
+<p>注意：</p>
+<ul>
+<li>数据库索引都是存储在磁盘上的，当数据量非常庞大时，索引的大小可能有几个G。</li>
+<li>我们利用索引查询时，不可能把整个索引都加载到内存，只能逐一加载每一个磁盘页，每个磁盘页对应着树的每一个结点。</li>
+<li>这样一来树的最大高度决定了磁盘IO的最大次数，所以使用“矮胖”的B树。</li>
+<li>B树在查询的比较次数并不比平衡二叉树少，因为单一结点里存储的元素特别多。但是相比磁盘IO，内存中的耗时几乎可以忽略，所以只要树高度足够低，IO次数足够少，就大大提高性能。想象一下，上百万的数据中查询只发生了3次IO，性能是如何的强大啊！</li>
+</ul>
+<h2 id="2-B-树"><a href="#2-B-树" class="headerlink" title="2. B+树"></a>2. B+树</h2><h3 id="2-1-定义"><a href="#2-1-定义" class="headerlink" title="2.1 定义"></a>2.1 定义</h3><p>B+树其实是B树的一种变体，有着比B树更高的查询性能。</p>
+<p>B+树除了有B树的行政，还有以下特点：</p>
+<ol>
+<li>有k个子树的中间节点包含有k个元素（B树中是k-1个元素），每个元素不保存数据，只用来索引，所有数据都保存在叶子节点。</li>
+<li>所有的叶子结点中包含了全部元素的信息，及指向含这些元素记录的指针，且叶子结点本身依关键字的大小自小而大顺序链接。</li>
+<li>所有的中间节点元素都同时存在于子节点，在子节点元素中是最大（或最小）元素。</li>
+</ol>
+<h3 id="2-2-图示"><a href="#2-2-图示" class="headerlink" title="2.2 图示"></a>2.2 图示</h3><p>以下是一颗3阶B+树。</p>
+<p><img src="4097430ecac43a90cf31eeea92d8820cf3a.jpg" alt></p>
+<p>B+树只有叶子结点存储data。MyISAM中data存储key对应的那行数据的物理地址。InnoDB中data存储key所对应那行除key外的所有数据。</p>
+<h3 id="2-2-应用"><a href="#2-2-应用" class="headerlink" title="2.2 应用"></a>2.2 应用</h3><p>关系型数据库如MySQL的MyISAM表和InnoDB表等的索引就是使用了B+树的数据结构，B+树相比于B树：</p>
+<ul>
+<li>总数据量相等的情况下，B+树单一结点存储更多元素，使树高度降低，IO次数减少。</li>
+<li>查询性能稳定，因为每一次查询都要查询到叶子结点。而B树不稳定，最优查询到根节点，最坏查询到叶子结点。</li>
+<li>所有叶子结点形成有序链表，范围查询性能大大优于B树</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/31/MySQL索引/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1929,385 +2375,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/简述Java中的内部类/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fuyuanyua">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/19/简述Java中的内部类/" class="post-title-link" itemprop="url">简述Java中的内部类</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-19 14:36:11 / 修改时间：15:38:05" itemprop="dateCreated datePublished" datetime="2019-05-19T14:36:11+08:00">2019-05-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>Java内部类分为：</p>
-<ul>
-<li>成员内部类</li>
-<li>静态内部类</li>
-<li>方法内部类</li>
-<li>匿名内部类</li>
-</ul>
-<h2 id="2-成员内部类"><a href="#2-成员内部类" class="headerlink" title="2. 成员内部类"></a>2. 成员内部类</h2>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/MySQL的表有哪些存储引擎以及区别/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fuyuanyua">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/19/MySQL的表有哪些存储引擎以及区别/" class="post-title-link" itemprop="url">MySQL的表有哪些存储引擎以及区别</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-19 10:38:14" itemprop="dateCreated datePublished" datetime="2019-05-19T10:38:14+08:00">2019-05-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-02 15:11:43" itemprop="dateModified" datetime="2019-06-02T15:11:43+08:00">2019-06-02</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-MySQL的表的存储引擎"><a href="#1-MySQL的表的存储引擎" class="headerlink" title="1. MySQL的表的存储引擎"></a>1. MySQL的表的存储引擎</h3><p>MySQL中的数据用各种不同的技术存储在文件（或者内存）中。这些技术中的每一种技术都使用不同的存储机制、索引技巧、锁定水平并且最终提供广泛的不同的功能和能力。这些不同的技术以及配套的相关功能在MySQL中被称作存储引擎(也称作表类型)。MySQL默认配置了许多不同的存储引擎。</p>
-<p>常用的存储引擎有<strong>MyISAM</strong>、<strong>InnoDB</strong>、<strong>MEMORY</strong>、<strong>MERGE</strong>等。</p>
-<p><img src="QQ截图20190519104841.png" alt></p>
-<h3 id="2-MyISAM"><a href="#2-MyISAM" class="headerlink" title="2. MyISAM"></a>2. MyISAM</h3><ul>
-<li>MySQL 5.x以前的默认存储引擎，使用的是表级锁。</li>
-<li>每建立一个MyISAM存储引擎的表，都会在本地磁盘建立三个文件，比如创建了tb_demo表，则生成以下三个文件：<ol>
-<li>tb_demo.frm，存储表定义。</li>
-<li>tb_demo.MYD，存储数据。</li>
-<li>tb_demo.MYI，存储索引。</li>
-</ol>
-</li>
-<li>无法处理事务。</li>
-<li>筛选大量数据时非常迅速，这是它最突出的优点。</li>
-</ul>
-<h3 id="3-InnoDB"><a href="#3-InnoDB" class="headerlink" title="3. InnoDB"></a>3. InnoDB</h3><ul>
-<li>MySQL 5.x以后的默认存储引擎，健壮的事务型存储引擎，使用行级锁。</li>
-<li>适合处理多重并发的更新请求。</li>
-<li>支持外键，MySQL支持外键的存储引擎只有InnoDB。</li>
-<li>支持事务。</li>
-<li>支持自动增加列AUTO_INCREMENT属性。</li>
-</ul>
-<h3 id="4-MEMORY"><a href="#4-MEMORY" class="headerlink" title="4. MEMORY"></a>4. MEMORY</h3><ul>
-<li>速度很快，为了得到最快的响应时间，数据存储在内存中，可以修改<code>my.cnf</code>配置文件中的<code>max_heap_table_size</code>参数来指定内存表的最大内存。</li>
-<li>一般在以下情况使用MEMORY存储引擎：<ol>
-<li>目标数据较小，而且被非常频繁访问。</li>
-<li>数据是临时的，而且要求立即可用。</li>
-<li>数据如果突然消失，不会对应用服务产生实质的负面影响。</li>
-</ol>
-</li>
-</ul>
-<h3 id="5-MERGE"><a href="#5-MERGE" class="headerlink" title="5. MERGE"></a>5. MERGE</h3><ul>
-<li>MERGE存储引擎是一组MyISAM表的组合，每张MyISAM表的结构必须相同（即每张表的字段顺序、字段名称、字段类型、索引定义的顺序及其定义的方式必须相同）。</li>
-<li>MERGE表不存储数据，数据都存储在底层MyISAM表中。</li>
-<li>每建立一个MERGE存储引擎的表，都会在本地磁盘建立两个文件，比如创建了tb_log表，则生成以下两个个文件，不会有.MYD和.MYI文件：<ol>
-<li>tb_log.frm，存储表定义。</li>
-<li>tb_log.mrg，存储底层MyISAM表的名字。</li>
-</ol>
-</li>
-<li>对MERGE表可以进行查询、更新、删除操作，实际是对底层MyISAM表进行操作。可以进行插入操作，但默认不允许，因为插入的数据不知道放在底层的哪张表里。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2354,7 +2421,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2391,7 +2458,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
