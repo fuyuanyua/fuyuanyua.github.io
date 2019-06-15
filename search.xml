@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JDBC和MyBatis、Hibernate]]></title>
+    <url>%2F2019%2F06%2F15%2FJDBC%E5%92%8CMyBatis%E3%80%81Hibernate%2F</url>
+    <content type="text"><![CDATA[1. JDBC1.1 JDBC简介JDBC（Java DateBase Connectivity，Java数据库连接）是用于操作数据库的Java API，封装在java.sql包中，它规定了一系列的接口和类以及方法，他提供了数据库访问和操作的规范。 通过JDBC我们可以很轻松地让Java程序访问和操作各种关系型数据库（比如MySQL、SQL Server等）。使得开发人员专注于编写业务逻辑。 使用JDBC的主要步骤： 连接数据库，注册驱动和数据库信息。 操作Connection，打开Statement对象。 通过Statement对象执行SQL，返回结果到ResultSet对象。 使用ResultSet读取数据，然后通过代码转化为具体的POJO对象。 关闭数据库连接。 1.2 Spring JDBC但其实使用传统JDBC，对数据库访问和操作还是十分繁琐。 所以在Spring框架中，Spring对JDBC API再次进行了封装，封装在org.springframework.jdbc包中，简化了操作，大大降低了JDBC API的使用难度。 Spring中提供了JdbcTemplate类，这是Spring JDBC中最核心的类，类中提供了大量的方法操作数据库。 非Spring Boot使用Spring JDBC的主要步骤： 配置文件中配置DataSource的Bean，也就是数据源。 将DataSource的Bean注入到JdbcTemplate的Bean中。 将JdbcTemplate的Bean注入到Dao层的类中。 Dao层的类调用JdbcTemplate的方法进行数据库操作。 1.3 Spring Boot中整合Spring JDBCSpring Boot中使用Spring JDBC更简便。 主要步骤： pom.xml文件中引入jdbc依赖。 application.yml配置文件中配置数据源。 Dao层的类注入JdbcTemplate，调用JdbcTemplate的方法进行数据库操作。 注意： Spring Boot默认使用HikariCP作为数据源，如果要更换数据源，在application.yml配置文件spring.datasource.type指定数据源。 2. MyBatisMyBatis也是对JDBC再次进行了封装，MyBatis框架是一种ORM（Object Relational Mapping，对象关系映射）框架，它将Java持久化对象和关系型数据库中的表相互映射。 Spring Boot中整合MyBatis有两种方式： 使用配置文件版MyBatis（SQL语句写在***Mapper.xml文件中） 使用注解版MyBatis（SQL语句直接写在注解内） 具体可以参考： https://fuyuanyua.github.io/2019/04/10/Spring-Boot%E6%95%B4%E5%90%88MyBatis/ 3. HibernateHibernate也是对JDBC进行了封装，也是一种ORM框架，它将Java持久化对象和关系型数据库中的表相互映射。 4. 对比MyBatis和Hibernate MyBatis是半自动映射框架，除了提供POJO和对应的映射关系外，SQL语句也要自己编写。 Hibernate是全表映射框架，只需提供POJO和对应的映射关系，SQL语句会自动生成。 两中框架各自有各自的优势，在不同的项目中由开发者自行选择使用哪一种框架]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>Spring Boot</tag>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[详解Spring Boot主启动类]]></title>
     <url>%2F2019%2F06%2F12%2F%E8%AF%A6%E8%A7%A3Spring-Boot%E4%B8%BB%E5%90%AF%E5%8A%A8%E7%B1%BB%2F</url>
     <content type="text"><![CDATA[1. Spring Boot主启动类Spring Boot主启动类以xxxApplication来命名，类中定义一个main方法来启动Spring Boot项目。 示例： 123456@SpringBootApplicationpublic class SneakerBillApplication &#123; public static void main(String[] args) &#123; SpringApplication.run(SneakerBillApplication.class, args); &#125;&#125; 2. @SpringBootApplication注解通过上面可以看出Spring Boot主启动类标注了@SpringBootApplication注解，点击它进入源码，我们可以看出@SpringBootApplication其实是一个组合注解： 1234567891011121314151617181920212223242526272829303132333435363738@Target(&#123;ElementType.TYPE&#125;)@Retention(RetentionPolicy.RUNTIME)@Documented@Inherited@SpringBootConfiguration@EnableAutoConfiguration@ComponentScan( excludeFilters = &#123;@Filter( type = FilterType.CUSTOM, classes = &#123;TypeExcludeFilter.class&#125;), @Filter( type = FilterType.CUSTOM, classes = &#123;AutoConfigurationExcludeFilter.class&#125;)&#125;)public @interface SpringBootApplication &#123; @AliasFor( annotation = EnableAutoConfiguration.class ) Class&lt;?&gt;[] exclude() default &#123;&#125;; @AliasFor( annotation = EnableAutoConfiguration.class ) String[] excludeName() default &#123;&#125;; @AliasFor( annotation = ComponentScan.class, attribute = "basePackages" ) String[] scanBasePackages() default &#123;&#125;; @AliasFor( annotation = ComponentScan.class, attribute = "basePackageClasses" ) Class&lt;?&gt;[] scanBasePackageClasses() default &#123;&#125;;&#125; @SpringBootApplication由很多注解组成，我们主要关注下面这三个注解： @SpringBootConfiguration @EnableAutoConfiguration @ComponentScan 2.1 @SpringBootConfiguration注解@SpringBootConfiguration注解也是一个组合注解，点击 @SpringBootConfiguration进入源码： 123456@Target(&#123;ElementType.TYPE&#125;)@Retention(RetentionPolicy.RUNTIME)@Documented@Configurationpublic @interface SpringBootConfiguration &#123;&#125; 主要注解的层级关系： @SpringBootConfiguration @Configuration @SpringBootConfiguration注解内部最重要的还是@Configuration注解，被@Configuration标注的类表示这是一个配置类同时配置类自身也会被纳入容器，类中用@Bean标注的方法其返回值将会被注册纳入容器当作组件（Bean），该组件的id默认为方法名。 2.2 @EnableAutoConfiguration注解@EnableAutoConfiguration注解也是一个组合注解，点击 @EnableAutoConfiguration进入源码： 12345678910111213@Target(&#123;ElementType.TYPE&#125;)@Retention(RetentionPolicy.RUNTIME)@Documented@Inherited@AutoConfigurationPackage@Import(&#123;AutoConfigurationImportSelector.class&#125;)public @interface EnableAutoConfiguration &#123; String ENABLED_OVERRIDE_PROPERTY = "spring.boot.enableautoconfiguration"; Class&lt;?&gt;[] exclude() default &#123;&#125;; String[] excludeName() default &#123;&#125;;&#125; 主要注解的层级关系: @EnableAutoConfiguration @AutoConfigurationPackage @Import({Registrar.class}) @Import({AutoConfigurationImportSelector.class}) 主要关注@Import({AutoConfigurationImportSelector.class})注解，它导入了AutoConfigurationImportSelector类，AutoConfigurationImportSelector类会将项目需要的所有自动配置类（比如项目引入了Redis依赖，那么会自动将Redis自动配置类纳入Spring容器，无需我们手动去配置Redis了）纳入Spring容器。免去了我们手动写xml配置文件。 2.3 @ComponentScan注解完成自动扫描组件的功能。 会将Spring Boot项目主启动类所在包及其子包下的所有组件（Bean）扫描到容器，比如被@Component、@Controller等注解标注的类，都会被自动扫描到并被纳入Spring容器。 2.4 总结 @SpringBootApplication @SpringBootConfiguration @Configuration @EnableAutoConfiguration @AutoConfigurationPackage @Import({Registrar.class}) @Import({AutoConfigurationImportSelector.class}) @ComponentScan]]></content>
@@ -8,9 +21,9 @@
         <category>Spring Boot</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
         <tag>Spring Boot</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -21,8 +34,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -33,8 +46,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -45,8 +58,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -57,8 +70,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -69,8 +82,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -81,8 +94,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -469,8 +482,8 @@
         <category>Spring Boot笔记</category>
       </categories>
       <tags>
-        <tag>MySQL</tag>
         <tag>Spring Boot</tag>
+        <tag>MySQL</tag>
         <tag>MyBatis</tag>
       </tags>
   </entry>
@@ -487,9 +500,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[配置Druid数据库连接池]]></title>
-    <url>%2F2019%2F04%2F04%2F%E9%85%8D%E7%BD%AEDruid%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%2F</url>
-    <content type="text"><![CDATA[1. 配置Druid数据库连接池什么是数据库连接池？ 参考：https://www.cnblogs.com/aspirant/p/6747238.html Spring Boot 2.0 默认使用 HikariCP 作为数据库连接池。 Druid 是阿里巴巴推出的国产数据库连接池，据网上测试对比，比目前的 DBCP 或 C3P0 数据库连接池性能更好，并且 Druid 能够提供强大的监控和扩展功能。 1.1 在pom.xml中引入依赖123456&lt;!-- https://mvnrepository.com/artifact/com.alibaba/druid --&gt;&lt;dependency&gt; &lt;groupId&gt;com.alibaba&lt;/groupId&gt; &lt;artifactId&gt;druid&lt;/artifactId&gt; &lt;version&gt;1.1.15&lt;/version&gt;&lt;/dependency&gt; 1.2 在全局配置文件application.yml中配置12345678910111213141516171819202122232425262728spring: datasource: username: root password: root # mysql-connector-java 8.0版本以上的驱动包要指定时区 url: jdbc:mysql://localhost:3306/jdbc?serverTimezone=GMT%2B8 # mysql-connector-java 8.0版本以上指定了新的驱动类 driver-class-name: com.mysql.cj.jdbc.Driver # 使用阿里的Druid（德鲁伊）数据源 type: com.alibaba.druid.pool.DruidDataSource # 数据源其他配置 initialSize: 5 minIdle: 5 maxActive: 20 maxWait: 60000 timeBetweenEvictionRunsMillis: 60000 minEvictableIdleTimeMillis: 300000 validationQuery: SELECT 1 FROM DUAL testWhileIdle: true testOnBorrow: false testOnReturn: false poolPreparedStatements: true # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙 filters: stat,wall,logback maxPoolPreparedStatementPerConnectionSize: 20 useGlobalDataSourceStat: true connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500 1.3 绑定Druid相关信息在config目录下新建类DruidConfig 123456789@Configurationpublic class DruidConfig &#123; @ConfigurationProperties(prefix = "spring.datasource") @Bean public DataSource druid() &#123; return new DruidDataSource(); &#125;&#125; 至此Druid数据库连接池配置完毕。 2. 配置Druid的监控Druid 自带监控管理系统，要配置一个Druid监控： 配置一个Druid的Servlet 配置一个Druid的Filter 完成 2.1 配置一个Druid的Servlet在config目录下DruidConfig类下: 1234567891011121314151617//配置一个Druid的后台管理系统的Servlet@Beanpublic ServletRegistrationBean statViewServlet() &#123; //请求是/druid/* ServletRegistrationBean&lt;StatViewServlet&gt; bean = new ServletRegistrationBean&lt;&gt;(new StatViewServlet(), "/druid/*"); //设置初始化参数值 Map&lt;String, String&gt; map = new HashMap&lt;&gt;(); map.put(StatViewServlet.PARAM_NAME_USERNAME, "root"); map.put(StatViewServlet.PARAM_NAME_PASSWORD, "123456"); //如果不写，则默认所有IP地址都可以访问 map.put(StatViewServlet.PARAM_NAME_ALLOW, ""); //指定IP地址禁止访问 map.put(StatViewServlet.PARAM_NAME_DENY, "192.168.1.1"); bean.setInitParameters(map); return bean;&#125; 2.2 配置一个Druid的Filter在config目录下DruidConfig类下: 123456789101112131415//配置一个Druid的Filter@Beanpublic FilterRegistrationBean webStatFilter() &#123; FilterRegistrationBean&lt;Filter&gt; bean = new FilterRegistrationBean&lt;&gt;(); bean.setFilter(new WebStatFilter()); //设置不拦截的请求 Map&lt;String, String&gt; map = new HashMap&lt;&gt;(); map.put(WebStatFilter.PARAM_NAME_EXCLUSIONS, "*.js, *.css, /druid/*"); bean.setInitParameters(map); //设置拦截请求, /* 表示拦截所有请求 bean.setUrlPatterns(Arrays.asList("/*")); return bean;&#125;]]></content>
+    <title><![CDATA[配置Druid数据源]]></title>
+    <url>%2F2019%2F04%2F04%2F%E9%85%8D%E7%BD%AEDruid%E6%95%B0%E6%8D%AE%E6%BA%90%2F</url>
+    <content type="text"><![CDATA[1. 配置Druid数据源什么是数据源？ 参考：https://www.cnblogs.com/aspirant/p/6747238.html Spring Boot 2.0 默认使用 HikariCP 作为数据源。 Druid 是阿里巴巴推出的国产数据库连接池，据网上测试对比，比目前的 DBCP 或 C3P0 数据库连接池性能更好，并且 Druid 能够提供强大的监控和扩展功能。 1.1 在pom.xml中引入依赖123456&lt;!-- https://mvnrepository.com/artifact/com.alibaba/druid --&gt;&lt;dependency&gt; &lt;groupId&gt;com.alibaba&lt;/groupId&gt; &lt;artifactId&gt;druid&lt;/artifactId&gt; &lt;version&gt;1.1.15&lt;/version&gt;&lt;/dependency&gt; 1.2 在全局配置文件application.yml中配置12345678910111213141516171819202122232425262728spring: datasource: username: root password: root # mysql-connector-java 8.0版本以上的驱动包要指定时区 url: jdbc:mysql://localhost:3306/jdbc?serverTimezone=GMT%2B8 # mysql-connector-java 8.0版本以上指定了新的驱动类 driver-class-name: com.mysql.cj.jdbc.Driver # 使用阿里的Druid（德鲁伊）数据源 type: com.alibaba.druid.pool.DruidDataSource # 数据源其他配置 initialSize: 5 minIdle: 5 maxActive: 20 maxWait: 60000 timeBetweenEvictionRunsMillis: 60000 minEvictableIdleTimeMillis: 300000 validationQuery: SELECT 1 FROM DUAL testWhileIdle: true testOnBorrow: false testOnReturn: false poolPreparedStatements: true # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙 filters: stat,wall,logback maxPoolPreparedStatementPerConnectionSize: 20 useGlobalDataSourceStat: true connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500 1.3 绑定Druid相关信息在config目录下新建类DruidConfig 123456789@Configurationpublic class DruidConfig &#123; @ConfigurationProperties(prefix = "spring.datasource") @Bean public DataSource druid() &#123; return new DruidDataSource(); &#125;&#125; 至此Druid数据库连接池配置完毕。 2. 配置Druid的监控Druid 自带监控管理系统，要配置一个Druid监控： 配置一个Druid的Servlet 配置一个Druid的Filter 完成 2.1 配置一个Druid的Servlet在config目录下DruidConfig类下: 1234567891011121314151617//配置一个Druid的后台管理系统的Servlet@Beanpublic ServletRegistrationBean statViewServlet() &#123; //请求是/druid/* ServletRegistrationBean&lt;StatViewServlet&gt; bean = new ServletRegistrationBean&lt;&gt;(new StatViewServlet(), "/druid/*"); //设置初始化参数值 Map&lt;String, String&gt; map = new HashMap&lt;&gt;(); map.put(StatViewServlet.PARAM_NAME_USERNAME, "root"); map.put(StatViewServlet.PARAM_NAME_PASSWORD, "123456"); //如果不写，则默认所有IP地址都可以访问 map.put(StatViewServlet.PARAM_NAME_ALLOW, ""); //指定IP地址禁止访问 map.put(StatViewServlet.PARAM_NAME_DENY, "192.168.1.1"); bean.setInitParameters(map); return bean;&#125; 2.2 配置一个Druid的Filter在config目录下DruidConfig类下: 123456789101112131415//配置一个Druid的Filter@Beanpublic FilterRegistrationBean webStatFilter() &#123; FilterRegistrationBean&lt;Filter&gt; bean = new FilterRegistrationBean&lt;&gt;(); bean.setFilter(new WebStatFilter()); //设置不拦截的请求 Map&lt;String, String&gt; map = new HashMap&lt;&gt;(); map.put(WebStatFilter.PARAM_NAME_EXCLUSIONS, "*.js, *.css, /druid/*"); bean.setInitParameters(map); //设置拦截请求, /* 表示拦截所有请求 bean.setUrlPatterns(Arrays.asList("/*")); return bean;&#125;]]></content>
       <categories>
         <category>Spring Boot笔记</category>
       </categories>
