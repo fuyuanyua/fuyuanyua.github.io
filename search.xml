@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Spring Cloud简介]]></title>
+    <url>%2F2019%2F07%2F10%2FSpring-Cloud%E7%AE%80%E4%BB%8B%2F</url>
+    <content type="text"><![CDATA[1. 单体应用架构和微服务架构要学习Spring Cloud，我们首先了解单体应用架构和微服务架构。 1.1 单体应用架构传统项目大多数采用了单体应用架构，单个应用包含所有功能，把应用打成一个war或jar包部署到Tomcat中，通常称为单体应用架构。 因为各个功能的页面、代码、配置文件等都在一个项目，使得这个项目十分混乱和复杂。 1.2 微服务架构微服务架构是现在很流行的架构，微服务架构根据项目的业务功能将项目拆分成一个个微服务，一个微服务实现项目中的一个业务功能，每个微服务都独立运行在自己的进程中，服务之间采用轻量级的HTTP通信机制 ( 通常是采用HTTP的RESTful API )进行通信。这些微服务可以用不同的编程语言编写，也可以采用不同的数据库。 因为一个微服务只会关注一个特定的业务功能，所以业务清晰、代码量较少。开发和维护单个微服务相对简单。 2. Spring CloudSpring Cloud是Spring提供的一套基于Spring Boot的微服务架构解决方案，包括服务注册与发现，配置中心，全链路监控，服务网关，负载均衡，熔断器等组件。 Spring Cloud 使用RESTful API实现微服务之间通信调用。]]></content>
+      <categories>
+        <category>Spring Cloud</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring Cloud</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Spring MVC的工作流程]]></title>
     <url>%2F2019%2F06%2F17%2FSpring-MVC%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%2F</url>
     <content type="text"><![CDATA[Spring MVC的工作流程： 用户通过客户端（浏览器）向服务器发送请求（也就是发送URL），请求被DispatcherServlet（前端控制器）拦截。 DispatcherServlet（前端控制器）会调用HandlerMapping（处理器映射器）。 HandlerMapping（处理器映射器）会根据URL找到具体的Handler（处理器），生成Handler（处理器）对象和一些拦截器返回给DispatcherServlet（前端控制器）。 DispatcherServlet（前端控制器）通过返回的信息选择合适的HandlerAdapter（处理器适配器）。 HandlerAdapter（处理器适配器）会调用并执行这个Handler（处理器），这个Handler（处理器）也就是对应的Controller类。 Controller执行完后，返回一个ModelAndView对象或String对象（实际企业开发中都是返回String对象）给HandlerAdapter（处理器适配器）再返回给DispatcherServlet（前端控制器）。 DispatcherServlet（前端控制器）根据返回的String对象，调用ViewResolver（视图解析器）返回对应具体的视图。 DispatcherServlet（前端控制器）对视图进行渲染，返回给用户。 图解：]]></content>
