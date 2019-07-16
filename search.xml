@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[HashMap和HashTable、HashSet的区别]]></title>
+    <url>%2F2019%2F07%2F16%2FHashMap%E5%92%8CHashTable%E3%80%81HashSet%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[1. 三者分别的继承实现关系1.1 HashMap12public class HashMap&lt;K,V&gt; extends AbstractMap&lt;K,V&gt; implements Map&lt;K,V&gt;, Cloneable, Serializable 1.2 HashTable123public class Hashtable&lt;K,V&gt; extends Dictionary&lt;K,V&gt; implements Map&lt;K,V&gt;, Cloneable, java.io.Serializable 1.3 HashSet123public class HashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Set&lt;E&gt;, Cloneable, java.io.Serializable 通过以上可以看出，HashMap和HashTable都是实现了Map接口，是Map接口下的实现类，而HashSet是实现了Set接口，是属于Collection接口下的实现类。 2. HashMap和HashTable的区别 HashTable和HashMap都是存储键值对。 HashTable是线程同步的，HashTable的实现方法里都添加了synchronized关键字来保证线程同步； HashMap缺省是非线程同步的，如果需要则要自己添加同步处理。 HashTable中，key和value都不允许为null； HashMap中，null可以为key，但是唯一，null也可以作为value，可以有多个。判断一个HashMap对象中是否存在某个key，要用containsKey()方法。 HashTable直接使用key的hashCode散列； HashMap获得key的HashCode后要进行二次hash计算然后再散列。 HashTable散列直接通过key的hashCode除以数组length取余； HashMap散列通过key的二次hash和数组length - 1进行与运算。 HashTable初始容量为11，扩容为原容量 * 2 + 1； HashMap初始容量为16，扩容为原容量 * 2。 3. HashSet1234567891011121314151617181920212223public class HashSet&lt;E&gt; extends AbstractSet&lt;E&gt; implements Set&lt;E&gt;, Cloneable, java.io.Serializable&#123; static final long serialVersionUID = -5024744406713321676L; private transient HashMap&lt;E,Object&gt; map; // Dummy value to associate with an Object in the backing Map private static final Object PRESENT = new Object(); /** * Constructs a new, empty set; the backing &lt;tt&gt;HashMap&lt;/tt&gt; instance has * default initial capacity (16) and load factor (0.75). */ public HashSet() &#123; map = new HashMap&lt;&gt;(); &#125; /** * 其余省略 */&#125; HashMap和HashTable都是存储键值对； HashSet是存储对象。 通过HashSet源码可以知道HashSet是由HashMap对象提供支持的，虽然HashSet实现的是Set接口。HashSet中，元素都存到HashMap键值对的Key上面（HashMap的Key不能重复，所以HashSet的元素也是不能重复的），而Value有一个统一的值private static final Object PRESENT = new Object();(定义一个虚拟的Object对象作为HashMap的value，将此对象定义为static final)。 HashSet的添加删除操作底层都是基于HashMap的添加删除操作。]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Spring Cloud简介]]></title>
     <url>%2F2019%2F07%2F10%2FSpring-Cloud%E7%AE%80%E4%BB%8B%2F</url>
     <content type="text"><![CDATA[1. 单体应用架构和微服务架构要学习Spring Cloud，我们首先了解单体应用架构和微服务架构。 1.1 单体应用架构传统项目大多数采用了单体应用架构，单个应用包含所有功能，把应用打成一个war或jar包部署到Tomcat中，通常称为单体应用架构。 因为各个功能的页面、代码、配置文件等都在一个项目，使得这个项目十分混乱和复杂。 1.2 微服务架构微服务架构是现在很流行的架构，微服务架构根据项目的业务功能将项目拆分成一个个微服务，一个微服务实现项目中的一个业务功能，每个微服务都独立运行在自己的进程中，服务之间采用轻量级的HTTP通信机制 ( 通常是采用HTTP的RESTful API )进行通信。这些微服务可以用不同的编程语言编写，也可以采用不同的数据库。 因为一个微服务只会关注一个特定的业务功能，所以业务清晰、代码量较少。开发和维护单个微服务相对简单。 2. Spring CloudSpring Cloud是Spring提供的一套基于Spring Boot的微服务架构解决方案，包括服务注册与发现，配置中心，全链路监控，服务网关，负载均衡，熔断器等组件。 Spring Cloud 使用RESTful API实现微服务之间通信调用。]]></content>
@@ -20,8 +31,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
         <tag>Spring MVC</tag>
       </tags>
   </entry>
@@ -33,9 +44,9 @@
         <category>Spring</category>
       </categories>
       <tags>
+        <tag>Java</tag>
         <tag>Spring</tag>
         <tag>Spring Boot</tag>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -46,9 +57,9 @@
         <category>Spring Boot</category>
       </categories>
       <tags>
+        <tag>Java</tag>
         <tag>Spring</tag>
         <tag>Spring Boot</tag>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -59,8 +70,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -71,8 +82,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -83,8 +94,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -95,8 +106,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -107,8 +118,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -119,8 +130,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
