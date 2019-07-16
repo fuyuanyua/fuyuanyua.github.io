@@ -1457,12 +1457,24 @@
                 
               
 
-              <time title="创建时间：2019-05-04 10:59:01 / 修改时间：18:34:21" itemprop="dateCreated datePublished" datetime="2019-05-04T10:59:01+08:00">2019-05-04</time>
+              <time title="创建时间：2019-05-04 10:59:01" itemprop="dateCreated datePublished" datetime="2019-05-04T10:59:01+08:00">2019-05-04</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-16 21:33:34" itemprop="dateModified" datetime="2019-07-16T21:33:34+08:00">2019-07-16</time>
               
             
           </span>
@@ -1479,7 +1491,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot笔记/" itemprop="url" rel="index"><span itemprop="name">Spring Boot笔记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
 
                 
                 
@@ -1517,7 +1529,7 @@
         
           
             <h2 id="1-Redis简介"><a href="#1-Redis简介" class="headerlink" title="1. Redis简介"></a>1. Redis简介</h2><ul>
-<li>在实际开发中，一般使用缓存中间件：redis、ehcache、memcache；导入了对应的组件依赖，就可以使用<br>对应的缓存。</li>
+<li>在实际开发中，一般使用缓存中间件：Redis、Memcached等；导入了对应的组件依赖，就可以使用<br>对应的缓存。</li>
 <li>Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets）， 有序集合（sorted sets） 与范围查询， bitmaps， hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis 内置了 复制（replication），LUA脚本（Lua scripting）， LRU驱动事件（LRU eviction），事务（transactions） 和不同级别的 磁盘持久化（persistence）， 并通过 Redis哨兵（Sentinel）和自动 分区（Cluster）提供高可用性（high availability）。</li>
 <li>我使用Redis作为缓存中间件。</li>
 </ul>
@@ -1774,7 +1786,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-03 19:05:06" itemprop="dateModified" datetime="2019-05-03T19:05:06+08:00">2019-05-03</time>
+                <time title="修改时间：2019-07-16 21:35:20" itemprop="dateModified" datetime="2019-07-16T21:35:20+08:00">2019-07-16</time>
               
             
           </span>
@@ -1791,7 +1803,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot笔记/" itemprop="url" rel="index"><span itemprop="name">Spring Boot笔记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
 
                 
                 
@@ -1857,53 +1869,17 @@
 <p><img src="QQ截图20190503164248.png" alt></p>
 </li>
 <li><p>使用secureCRT（什么是secureCRT：<a href="https://blog.csdn.net/liwf_/article/details/9429349" target="_blank" rel="noopener">https://blog.csdn.net/liwf_/article/details/9429349</a> ）连接阿里云服务器，解压文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /opt</span><br><span class="line">   # tar -zxvf JDK的文件名</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<ol start="3">
-<li><p>ls 查看解压后的JDK。</p>
-</li>
-<li><p>将JDK移动到/home目录。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mv jdk1.8.0_171/ /home/</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="4-2-配置环境变量"><a href="#4-2-配置环境变量" class="headerlink" title="4.2 配置环境变量"></a>4.2 配置环境变量</h3><ol>
-<li><p>用vim编辑器编辑profile文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vim /etc/profile</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在末尾行添加，打开后按i编辑, 按ctrl+c停止编辑，然后 :wq 保存退出。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/home/jdk1.8.0_171</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin:</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使更改的配置立即生效。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># source /etc/profile</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看JDK版本信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># java -version</span><br></pre></td></tr></table></figure>
-<p><img src="QQ截图20190503163833.png" alt></p>
-<p>此结果说明JDK安装配置成功。</p>
-</li>
-</ol>
-<h2 id="5-运行"><a href="#5-运行" class="headerlink" title="5. 运行"></a>5. 运行</h2><h3 id="5-1-阿里云服务器MySQL建表"><a href="#5-1-阿里云服务器MySQL建表" class="headerlink" title="5.1 阿里云服务器MySQL建表"></a>5.1 阿里云服务器MySQL建表</h3><p>使用MySQL Workbench访问阿里云上的数据库，建项目所需要的表。</p>
-<h3 id="5-2-设置MySQL开机自启动"><a href="#5-2-设置MySQL开机自启动" class="headerlink" title="5.2 设置MySQL开机自启动"></a>5.2 设置MySQL开机自启动</h3><p>使用secureCRT设置阿里云服务器上MySQL开机自启动。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># chkconfig mysqld on</span><br></pre></td></tr></table></figure>
-<h3 id="5-3-运行项目"><a href="#5-3-运行项目" class="headerlink" title="5.3 运行项目"></a>5.3 运行项目</h3><ul>
-<li><p>先用FileZilla将本地打包好的项目jar包推送到阿里云服务器。</p>
-</li>
-<li><p>然后用secureCRT在阿里云服务器上以后台进程并用80端口运行项目。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># nohup java -jar 项目jar包名 --servre.port=80 &amp;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>至此已经将项目在阿里云服务器全部部署完成，理论上访问阿里云服务器的IP地址，便可以成功访问本项目。</p>
-</li>
-</ul>
-<h3 id="5-4-一些小问题"><a href="#5-4-一些小问题" class="headerlink" title="5.4 一些小问题"></a>5.4 一些小问题</h3><ul>
-<li><p>Linux下MySQL中文乱码（全部显示问号），</p>
-<p>请参考：<a href="https://blog.csdn.net/leen0304/article/details/80534609" target="_blank" rel="noopener">https://blog.csdn.net/leen0304/article/details/80534609</a></p>
-</li>
-<li><p>网页响应特别慢，</p>
-<p>请参考：<a href="https://www.cnblogs.com/zhangyuejia/p/8575080.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhangyuejia/p/8575080.html</a></p>
-</li>
-</ul>
-
+<h1 id="cd-opt"><a href="#cd-opt" class="headerlink" title="cd /opt"></a>cd /opt</h1><h1 id="tar-zxvf-JDK的文件名"><a href="#tar-zxvf-JDK的文件名" class="headerlink" title="tar -zxvf JDK的文件名"></a>tar -zxvf JDK的文件名</h1>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">3. ls 查看解压后的JDK。</span><br><span class="line"></span><br><span class="line">4. 将JDK移动到/home目录。</span><br></pre></td></tr></table></figure>
+<h1 id="mv-jdk1-8-0-171-home"><a href="#mv-jdk1-8-0-171-home" class="headerlink" title="mv jdk1.8.0_171/ /home/"></a>mv jdk1.8.0_171/ /home/</h1>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 4.2 配置环境变量</span><br><span class="line"></span><br><span class="line">1. 用vim编辑器编辑profile文件。</span><br></pre></td></tr></table></figure>
+<h1 id="vim-etc-profile"><a href="#vim-etc-profile" class="headerlink" title="vim /etc/profile"></a>vim /etc/profile</h1>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 在末尾行添加，打开后按i编辑, 按ctrl+c停止编辑，然后 :wq 保存退出。</span><br></pre></td></tr></table></figure>
+<p>   export JAVA_HOME=/home/jdk1.8.0_171<br>   export PATH=$PATH:$JAVA_HOME/bin:<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 使更改的配置立即生效。</span><br></pre></td></tr></table></figure></p>
+<h1 id="source-etc-profile"><a href="#source-etc-profile" class="headerlink" title="source /etc/profile"></a>source /etc/profile</h1>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. 查看JDK版本信息</span><br></pre></td></tr></table></figure>
+<h1 id="java-version"><a href="#java-version" class="headerlink" title="java -version"></a>java -version</h1>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   ![](QQ截图20190503163833.png)</span><br><span class="line"></span><br><span class="line">   此结果说明JDK安装配置成功。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 5. 运行</span><br><span class="line"></span><br><span class="line">### 5.1 阿里云服务器MySQL建表</span><br><span class="line"></span><br><span class="line">使用MySQL Workbench访问阿里云上的数据库，建项目所需要的表。</span><br><span class="line"></span><br><span class="line">### 5.2 设置MySQL开机自启动</span><br><span class="line"></span><br><span class="line">使用secureCRT设置阿里云服务器上MySQL开机自启动。</span><br></pre></td></tr></table></figure>
+<h1 id="chkconfig-mysqld-on"><a href="#chkconfig-mysqld-on" class="headerlink" title="chkconfig mysqld on"></a>chkconfig mysqld on</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 5.3 运行项目</span><br><span class="line"></span><br><span class="line">- 先用FileZilla将本地打包好的项目jar包推送到阿里云服务器。</span><br><span class="line"></span><br><span class="line">- 然后用secureCRT在阿里云服务器上以后台进程并用80端口运行项目。</span><br></pre></td></tr></table></figure>
+<h1 id="nohup-java-jar-项目jar包名-–servre-port-80-amp"><a href="#nohup-java-jar-项目jar包名-–servre-port-80-amp" class="headerlink" title="nohup java -jar 项目jar包名 –servre.port=80 &amp;"></a>nohup java -jar 项目jar包名 –servre.port=80 &amp;</h1>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 至此已经将项目在阿里云服务器全部部署完成，理论上访问阿里云服务器的IP地址，便可以成功访问本项目。</span><br><span class="line"></span><br><span class="line">### 5.4 一些小问题</span><br><span class="line"></span><br><span class="line">- Linux下MySQL中文乱码（全部显示问号），</span><br><span class="line"></span><br><span class="line">  请参考：https://blog.csdn.net/leen0304/article/details/80534609</span><br><span class="line"></span><br><span class="line">- 网页响应特别慢，</span><br><span class="line"></span><br><span class="line">  请参考：https://www.cnblogs.com/zhangyuejia/p/8575080.html</span><br></pre></td></tr></table></figure>
           
         
       
