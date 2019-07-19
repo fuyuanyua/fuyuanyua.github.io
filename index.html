@@ -349,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/浅谈JVM的内存布局/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/浅谈常量池/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fuyuanyua">
@@ -369,7 +369,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/19/浅谈JVM的内存布局/" class="post-title-link" itemprop="url">浅谈JVM的内存布局</a>
+                <a href="/2019/07/19/浅谈常量池/" class="post-title-link" itemprop="url">浅谈常量池</a>
               
             
           </h1>
@@ -394,7 +394,191 @@
                 
               
 
-              <time title="创建时间：2019-07-19 10:45:03 / 修改时间：17:15:59" itemprop="dateCreated datePublished" datetime="2019-07-19T10:45:03+08:00">2019-07-19</time>
+              <time title="创建时间：2019-07-19 18:57:10 / 修改时间：21:09:53" itemprop="dateCreated datePublished" datetime="2019-07-19T18:57:10+08:00">2019-07-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-常量"><a href="#1-常量" class="headerlink" title="1. 常量"></a>1. 常量</h2><p>在Java中，常量就是被<code>final</code>关键字修饰的变量（<code>final</code>可以修饰成员变量也可以修饰局部变量），值给定后就无法修改。</p>
+<h2 id="2-class文件（字节码文件）"><a href="#2-class文件（字节码文件）" class="headerlink" title="2. class文件（字节码文件）"></a>2. class文件（字节码文件）</h2><p>我们直接编写的<code>.java</code>源文件是无法被JVM识别的，我们需要将<code>.java</code>源文件编译成<code>.class</code>字节码文件，这样才能被JVM识别。</p>
+<p>class文件结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ClassFile &#123;</span><br><span class="line">  u4              magic;</span><br><span class="line">  u2              minor_version;</span><br><span class="line">  u2              major_version;</span><br><span class="line">  u2              constant_pool_count;</span><br><span class="line">  cp_info         constant_pool[constant_pool_count-1];</span><br><span class="line">  u2              access_flags;</span><br><span class="line">  u2              this_class;</span><br><span class="line">  u2              super_class;</span><br><span class="line">  u2              interfaces_count;</span><br><span class="line">  u2              interfaces[interfaces_count];</span><br><span class="line">  u2              fields_count;</span><br><span class="line">  field_info      fields[fields_count];</span><br><span class="line">  u2              methods_count;</span><br><span class="line">  method_info     methods[methods_count];</span><br><span class="line">  u2              attributes_count;</span><br><span class="line">  attribute_info  attributes[attributes_count];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>magic：魔数，占4字节，值固定为0xCAFEBABE，用于标识这是一个class文件。</li>
+<li>minor_version：次版本号，占2字节。</li>
+<li>major_version：主版本号，占2字节。</li>
+<li>constant_pool_count：常量池部分，代表常量池容量。</li>
+<li>constant_pool：常量池部分。</li>
+<li>其他略。</li>
+</ul>
+<p><img src="3458176-da04f13d9345d534.png" alt></p>
+<h2 id="3-常量池"><a href="#3-常量池" class="headerlink" title="3. 常量池"></a>3. 常量池</h2><p>class文件中常量池主要存放：</p>
+<ul>
+<li>字面量（Literal）：如字符串、被final修饰的常量。</li>
+<li>符号引用（Symbolic References）：<ul>
+<li>类和接口的全限定名。</li>
+<li>字段名称和描述符。</li>
+<li>方法名称和描述符。</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-运行时常量池"><a href="#4-运行时常量池" class="headerlink" title="4. 运行时常量池"></a>4. 运行时常量池</h2><p>class文件中的常量池在类被加载后就被放入方法区的运行时常量池，运行时常量池有动态性，表明常量不一定需要在编译时就产生，运行时也能产生常量放入运行时常量池，比如String类的intern()方法。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/浅谈JVM的内存布局和GC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fuyuanyua">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/19/浅谈JVM的内存布局和GC/" class="post-title-link" itemprop="url">浅谈JVM的内存布局和GC</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-19 10:45:03 / 修改时间：20:56:42" itemprop="dateCreated datePublished" datetime="2019-07-19T10:45:03+08:00">2019-07-19</time>
             
 
             
@@ -471,7 +655,8 @@
 <p>Java堆分为年轻代和老年代，而年轻代又被分为三块内存区域：Eden空间、From Survivor空间、To Survivor空间。</p>
 <p>堆内存空间不足时抛出<code>outOfMemoryError</code>。</p>
 <h3 id="1-2-方法区（Method-Area）"><a href="#1-2-方法区（Method-Area）" class="headerlink" title="1.2 方法区（Method Area）"></a>1.2 方法区（Method Area）</h3><p>方法区也是被所有线程共享的一块内存区域。</p>
-<p>方法区主要用来存储被虚拟机加载的类的类信息、常量、静态变量、编译后的代码、运行时常量池等。方法区也会执行GC，但很少。</p>
+<p>方法区主要用来存储被虚拟机加载的类的类信息（类名、修饰符等）、常量、静态变量、编译后的代码等。运行时常量池是方法区的重要部分，class文件中的常量池在类被加载后就被放入方法区的运行时常量池。</p>
+<p>方法区也会执行GC，但很少。</p>
 <p>方法区内存空间不足时抛出<code>outOfMemoryError</code>。</p>
 <h3 id="1-3-Java虚拟机栈（JVM-Stack）"><a href="#1-3-Java虚拟机栈（JVM-Stack）" class="headerlink" title="1.3 Java虚拟机栈（JVM Stack）"></a>1.3 Java虚拟机栈（JVM Stack）</h3><p>Java虚拟机栈是线程私有的，它的生命周期与线程相同。</p>
 <p>Java虚拟机描述的是Java方法执行的内存模型：每个方法执行时都会同时创建一个栈帧（Stack Frame）用于存储局部变量表、操作数栈、动态链接、方法出口等信息。一个方法从被调用到被执行完成，对应着一个栈帧在Java虚拟机栈中从入栈到出栈的过程。</p>
@@ -2005,234 +2190,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/09/Spring中的Bean/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fuyuanyua">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/09/Spring中的Bean/" class="post-title-link" itemprop="url">Spring中的Bean</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-09 11:43:45" itemprop="dateCreated datePublished" datetime="2019-06-09T11:43:45+08:00">2019-06-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-14 16:13:28" itemprop="dateModified" datetime="2019-06-14T16:13:28+08:00">2019-06-14</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-Bean的定义"><a href="#1-Bean的定义" class="headerlink" title="1. Bean的定义"></a>1. Bean的定义</h2><p>Bean是一个被实例化被纳入Spring容器管理的对象，我们称Bean叫组件。</p>
-<h2 id="1-Bean的注册"><a href="#1-Bean的注册" class="headerlink" title="1. Bean的注册"></a>1. Bean的注册</h2><p>Spring中注册Bean有三种途径：</p>
-<ul>
-<li>基于配置文件注册</li>
-<li>基于注解注册（推荐）</li>
-<li><code>@Bean</code>方式</li>
-</ul>
-<h3 id="1-1-基于xml配置文件注册"><a href="#1-1-基于xml配置文件注册" class="headerlink" title="1.1 基于xml配置文件注册"></a>1.1 基于xml配置文件注册</h3><p>Spring支持<code>.xml</code>和<code>.properties</code>两种格式的配置文件来注册Bean，xml文件比较常用。</p>
-<p>示例：</p>
-<p>比如在<code>com.example.springcloud.dao</code>包下有一个<code>UserDao</code>类，则xml文件这样配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userDao"</span> <span class="attr">class</span>=<span class="string">"com.example.springcloud.dao.UserDao"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>注册一个Bean通常指定id和class即可，如果没有指定id也没指定name，Spring默认将class名当作id名。</p>
-<h3 id="1-2-基于注解注册"><a href="#1-2-基于注解注册" class="headerlink" title="1.2 基于注解注册"></a>1.2 基于注解注册</h3><p>Spring Boot推荐无xml文件来进行开发，所以推荐使用注解来注册Bean，Spring对Bean的注册有一系列的注解：</p>
-<ul>
-<li><code>@Component</code>：可以标注在任何层的类上。</li>
-<li><code>@Repository</code>：标注在DAO层的类上。</li>
-<li><code>@Service</code>：标注在Service层的类上。</li>
-<li><code>@Controller</code>：标注在Controller层的类上。</li>
-</ul>
-<p>以上四个注解功能是相同的，标识在类上，Spring就会自动把这个类注册Bean纳入容器，但是实际开发中分层开发，所以各层的类用各层对应的注解。</p>
-<p>示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Repository</span>(<span class="string">"userDao"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 其余代码省略</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>以上注册Bean和1.1中基于xml注册Bean是等价的。</p>
-</li>
-<li><p>如果不指定Bean名，即直接<code>@Repository</code>，Bean的id默认为类名（首字母会变小写）。</p>
-</li>
-</ul>
-<h3 id="1-3-Bean方式"><a href="#1-3-Bean方式" class="headerlink" title="1.3 @Bean方式"></a>1.3 <code>@Bean</code>方式</h3><p>参考以下：</p>
-<p><a href="https://fuyuanyua.github.io/2019/06/07/Spring-Bean%E6%B3%A8%E8%A7%A3/" target="_blank" rel="noopener">https://fuyuanyua.github.io/2019/06/07/Spring-Bean%E6%B3%A8%E8%A7%A3/</a></p>
-<h2 id="2-Bean的装配"><a href="#2-Bean的装配" class="headerlink" title="2. Bean的装配"></a>2. Bean的装配</h2><p>Bean的装配即Bean的依赖注入（DI），依赖注入在我上一篇博文中已经讲过，除了讲过的基于xml文件的两种方法：</p>
-<ul>
-<li>setter方法注入</li>
-<li>构造方法注入</li>
-</ul>
-<p>其实还有：</p>
-<ul>
-<li>基于注解的装配（推荐）</li>
-</ul>
-<h3 id="2-1-基于xml配置文件装配"><a href="#2-1-基于xml配置文件装配" class="headerlink" title="2.1 基于xml配置文件装配"></a>2.1 基于xml配置文件装配</h3><p>在我上一篇博文已经讲过，我便不再重复叙述，链接：</p>
-<p><a href="https://fuyuanyua.github.io/2019/06/09/Spring%E4%B8%AD%E7%9A%84IoC%E5%92%8CDI/" target="_blank" rel="noopener">https://fuyuanyua.github.io/2019/06/09/Spring%E4%B8%AD%E7%9A%84IoC%E5%92%8CDI/</a></p>
-<h3 id="2-2-基于注解装配"><a href="#2-2-基于注解装配" class="headerlink" title="2.2 基于注解装配"></a>2.2 基于注解装配</h3><p>Spring Boot推荐无xml文件来进行开发，所以推荐使用注解来装配Bean，Spring对Bean的装配有一系列的注解：</p>
-<ul>
-<li><p><code>@Autowired</code>：可以标注在属性、方法或者构造方法上。标注在属性上是最常用最简便的，根据Bean的类型自动装配（Spring自动找到容器中对应属性类型的Bean并注入）。</p>
-<p>示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 标注在属性上，Spring自动在容器中找到UserDao类型的Bean注入 </span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserDao userDao;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 其余代码省略</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>@Qualifier</code>：配合<code>@Autowired</code>使用，当容器中有多个相同类型的Bean时，Spring不知道装配哪个Bean，于是用<code>@Qualifier</code>指定Bean的id来确定装配哪个Bean。</p>
-<p>示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Qualifier</span>配合<span class="doctag">@Autowired</span>一起标注在属性上</span></span><br><span class="line"><span class="comment">     * Spring自动在容器中找到id为userDao的Bean注入</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="meta">@Qualifier</span>(<span class="string">"userDao"</span>)</span><br><span class="line">    <span class="keyword">private</span> UserDao userDao;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 其余代码省略</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>@Resource</code>：功能和<code>@Autowired</code>一样，但是<code>@Resource</code>默认根据Bean的id进行自动装配。</p>
-<p>示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//标注在属性上，Spring自动在容器中找到id为userDao的Bean注入</span></span><br><span class="line">    <span class="meta">@Resource</span>（name = <span class="string">"userDao"</span>）</span><br><span class="line">    <span class="keyword">private</span> UserDao userDao;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 其余代码省略</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2279,7 +2236,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
