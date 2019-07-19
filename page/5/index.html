@@ -349,6 +349,679 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/02/Spring-Boot项目部署到云服务器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fuyuanyua">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/02/Spring-Boot项目部署到云服务器/" class="post-title-link" itemprop="url">Spring Boot项目部署到云服务器</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-02 18:37:47" itemprop="dateCreated datePublished" datetime="2019-05-02T18:37:47+08:00">2019-05-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-16 21:35:20" itemprop="dateModified" datetime="2019-07-16T21:35:20+08:00">2019-07-16</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-打包本地项目"><a href="#1-打包本地项目" class="headerlink" title="1. 打包本地项目"></a>1. 打包本地项目</h2><h3 id="1-1-打包"><a href="#1-1-打包" class="headerlink" title="1.1 打包"></a>1.1 打包</h3><p>将本地Spring Boot项目以jar包形式打包。</p>
+<ul>
+<li>IDEA最右侧栏点击Maven Projects。</li>
+<li><p>找到要打包的项目，Lifecycle→package→Run Maven Build。</p>
+<p><img src="QQ截图20190503150009.png" alt></p>
+</li>
+<li><p>显示如下说明打包成功。</p>
+<p><img src="QQ截图20190503151526.png" alt></p>
+</li>
+<li><p>可在项目目录下的target目录下找到打包好的jar包。</p>
+<p><img src="QQ截图20190503151811.png" alt></p>
+</li>
+</ul>
+<h3 id="1-2-本地测试"><a href="#1-2-本地测试" class="headerlink" title="1.2 本地测试"></a>1.2 本地测试</h3><p>cmd 进入jar包所在目录，运行jar包启动项目，指定80端口号，直接访问localhost或者127.0.0.1（等同于localhost）即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F:\Users\Administrator\IdeaProjects\spring-boot-10-bill\target&gt;java -jar spring-</span><br><span class="line">boot-10-bill-0.0.1-SNAPSHOT.jar --server.port=80</span><br></pre></td></tr></table></figure>
+<p><img src="QQ截图20190503154727.png" alt></p>
+<h2 id="2-阿里云服务器"><a href="#2-阿里云服务器" class="headerlink" title="2. 阿里云服务器"></a>2. 阿里云服务器</h2><h3 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1 简介"></a>2.1 简介</h3><p>阿里云官网网站：<a href="https://www.aliyun.com/" target="_blank" rel="noopener">https://www.aliyun.com/</a></p>
+<h3 id="2-2-购买"><a href="#2-2-购买" class="headerlink" title="2.2 购买"></a>2.2 购买</h3><p>先进行学生认证，然后购买仅需9.5元一个月，十分优惠。</p>
+<p>我购买的阿里云服务器为CentOS 7.3 64位系统（什么是CentOS：<a href="https://zh.wikipedia.org/wiki/CentOS" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/CentOS</a> ）。</p>
+<p><img src="QQ截图20190503155250.png" alt></p>
+<h3 id="2-3-开放端口"><a href="#2-3-开放端口" class="headerlink" title="2.3 开放端口"></a>2.3 开放端口</h3><p>添加安全组规则，开放8080端口、80端口和3306端口。</p>
+<p><img src="QQ截图20190503160253.png" alt></p>
+<h2 id="3-阿里云服务器安装MySQL"><a href="#3-阿里云服务器安装MySQL" class="headerlink" title="3. 阿里云服务器安装MySQL"></a>3. 阿里云服务器安装MySQL</h2><h3 id="3-1-参考"><a href="#3-1-参考" class="headerlink" title="3.1 参考"></a>3.1 参考</h3><p>安装Linux版MySQL5.7。</p>
+<p>具体参考：<a href="https://www.jellythink.com/archives/14" target="_blank" rel="noopener">https://www.jellythink.com/archives/14</a></p>
+<h2 id="4-阿里云服务器安装JDK1-8"><a href="#4-阿里云服务器安装JDK1-8" class="headerlink" title="4. 阿里云服务器安装JDK1.8"></a>4. 阿里云服务器安装JDK1.8</h2><h3 id="4-1-上传解压"><a href="#4-1-上传解压" class="headerlink" title="4.1 上传解压"></a>4.1 上传解压</h3><ol>
+<li><p>用FileZilla（什么是FileZilla：<a href="https://themebetter.com/ftp-filezilla.html" target="_blank" rel="noopener">https://themebetter.com/ftp-filezilla.html</a> ）将 JDK安装包上传到服务器 /opt目录里面 ，右键选择上传即可。</p>
+<p><img src="QQ截图20190503164248.png" alt></p>
+</li>
+<li><p>使用secureCRT（什么是secureCRT：<a href="https://blog.csdn.net/liwf_/article/details/9429349" target="_blank" rel="noopener">https://blog.csdn.net/liwf_/article/details/9429349</a> ）连接阿里云服务器，解压文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="cd-opt"><a href="#cd-opt" class="headerlink" title="cd /opt"></a>cd /opt</h1><h1 id="tar-zxvf-JDK的文件名"><a href="#tar-zxvf-JDK的文件名" class="headerlink" title="tar -zxvf JDK的文件名"></a>tar -zxvf JDK的文件名</h1>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">3. ls 查看解压后的JDK。</span><br><span class="line"></span><br><span class="line">4. 将JDK移动到/home目录。</span><br></pre></td></tr></table></figure>
+<h1 id="mv-jdk1-8-0-171-home"><a href="#mv-jdk1-8-0-171-home" class="headerlink" title="mv jdk1.8.0_171/ /home/"></a>mv jdk1.8.0_171/ /home/</h1>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 4.2 配置环境变量</span><br><span class="line"></span><br><span class="line">1. 用vim编辑器编辑profile文件。</span><br></pre></td></tr></table></figure>
+<h1 id="vim-etc-profile"><a href="#vim-etc-profile" class="headerlink" title="vim /etc/profile"></a>vim /etc/profile</h1>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 在末尾行添加，打开后按i编辑, 按ctrl+c停止编辑，然后 :wq 保存退出。</span><br></pre></td></tr></table></figure>
+<p>   export JAVA_HOME=/home/jdk1.8.0_171<br>   export PATH=$PATH:$JAVA_HOME/bin:<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 使更改的配置立即生效。</span><br></pre></td></tr></table></figure></p>
+<h1 id="source-etc-profile"><a href="#source-etc-profile" class="headerlink" title="source /etc/profile"></a>source /etc/profile</h1>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. 查看JDK版本信息</span><br></pre></td></tr></table></figure>
+<h1 id="java-version"><a href="#java-version" class="headerlink" title="java -version"></a>java -version</h1>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   ![](QQ截图20190503163833.png)</span><br><span class="line"></span><br><span class="line">   此结果说明JDK安装配置成功。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 5. 运行</span><br><span class="line"></span><br><span class="line">### 5.1 阿里云服务器MySQL建表</span><br><span class="line"></span><br><span class="line">使用MySQL Workbench访问阿里云上的数据库，建项目所需要的表。</span><br><span class="line"></span><br><span class="line">### 5.2 设置MySQL开机自启动</span><br><span class="line"></span><br><span class="line">使用secureCRT设置阿里云服务器上MySQL开机自启动。</span><br></pre></td></tr></table></figure>
+<h1 id="chkconfig-mysqld-on"><a href="#chkconfig-mysqld-on" class="headerlink" title="chkconfig mysqld on"></a>chkconfig mysqld on</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 5.3 运行项目</span><br><span class="line"></span><br><span class="line">- 先用FileZilla将本地打包好的项目jar包推送到阿里云服务器。</span><br><span class="line"></span><br><span class="line">- 然后用secureCRT在阿里云服务器上以后台进程并用80端口运行项目。</span><br></pre></td></tr></table></figure>
+<h1 id="nohup-java-jar-项目jar包名-–servre-port-80-amp"><a href="#nohup-java-jar-项目jar包名-–servre-port-80-amp" class="headerlink" title="nohup java -jar 项目jar包名 –servre.port=80 &amp;"></a>nohup java -jar 项目jar包名 –servre.port=80 &amp;</h1>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 至此已经将项目在阿里云服务器全部部署完成，理论上访问阿里云服务器的IP地址，便可以成功访问本项目。</span><br><span class="line"></span><br><span class="line">### 5.4 一些小问题</span><br><span class="line"></span><br><span class="line">- Linux下MySQL中文乱码（全部显示问号），</span><br><span class="line"></span><br><span class="line">  请参考：https://blog.csdn.net/leen0304/article/details/80534609</span><br><span class="line"></span><br><span class="line">- 网页响应特别慢，</span><br><span class="line"></span><br><span class="line">  请参考：https://www.cnblogs.com/zhangyuejia/p/8575080.html</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/02/Linux的常用命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fuyuanyua">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/02/Linux的常用命令/" class="post-title-link" itemprop="url">Linux的常用命令</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-02 15:48:32" itemprop="dateCreated datePublished" datetime="2019-05-02T15:48:32+08:00">2019-05-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-17 21:18:24" itemprop="dateModified" datetime="2019-07-17T21:18:24+08:00">2019-07-17</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-Linux的常用命令"><a href="#1-Linux的常用命令" class="headerlink" title="1. Linux的常用命令"></a>1. Linux的常用命令</h2><ol>
+<li><p>进入指定目录，<code>cd</code>即<code>change directory</code>的缩写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cd /xx/xx</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="2">
+<li><p>进入用户主目录，即HOME变量指定的目录，如root用户的主目录为/root。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cd ~</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cd</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="3">
+<li><p>返回上一级目录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cd ..</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="4">
+<li><p>查看当前目录下所有文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ls</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="5">
+<li><p>解压压缩包到当前目录下（按Tab键可以快速补全文件名）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># tar -zxvf 文件名</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="6">
+<li><p>移动指定文件或目录到指定目录下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mv /xx/xx /xx/xx</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="7">
+<li><p>用vim编辑器编辑指定文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vim /xx/xx</span><br></pre></td></tr></table></figure>
+<p>进入文件后：</p>
+<ul>
+<li><p>按<code>i</code>：切换到输入模式，以输入字符。</p>
+</li>
+<li><p>按<code>ctrl+c</code>：暂停。</p>
+</li>
+<li><p>暂停后：</p>
+<ol>
+<li><p>按<code>:w</code>：保存文件但不退出vim。</p>
+</li>
+<li><p>按<code>:wq</code>：保存文件并退出vim。</p>
+</li>
+<li><p>按<code>:q</code>：不保存文件，退出vim。</p>
+</li>
+<li><p>按<code>:q!</code>：不保存文件，并强制退出vim。</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="8">
+<li><p>重新执行刚修改的初始化文件，使之立即生效。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># source 文件名</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="9">
+<li><p>启动以jar包形式打包的java项目。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># java -jar 项目jar包名</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="10">
+<li><p>以80端口启动jar包形式的java项目。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># java -jar 项目jar包名 --servre.port=80</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="11">
+<li><p>以后台进程运行项目。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># nohup java -jar 项目jar包名 --servre.port=80 &amp;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="12">
+<li><p>查看所有java进程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ps -ef|grep java</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="13">
+<li><p>停止所有java进程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># pkill -9 java</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="14">
+<li><p>停止指定java进程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># kill -9 java进程序号</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="15">
+<li><p>连接本地主机mysql。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mysql -u 用户名 -p 密码</span><br></pre></td></tr></table></figure>
+<p>一般都是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>随后输入密码即可进入mysql。</p>
+</li>
+</ol>
+<ol start="16">
+<li><p>连接远程主机mysql。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mysql -h 远程主机IP地址 -u 用户名 -p 密码</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="17">
+<li><p>查看当前Linux系统内核版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># uname -r</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/27/redis-server-exe启动失败解决方案/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fuyuanyua">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/27/redis-server-exe启动失败解决方案/" class="post-title-link" itemprop="url">redis-server.exe启动失败解决方案</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-27 11:53:56" itemprop="dateCreated datePublished" datetime="2019-04-27T11:53:56+08:00">2019-04-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-02 18:49:42" itemprop="dateModified" datetime="2019-05-02T18:49:42+08:00">2019-05-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/小坑/" itemprop="url" rel="index"><span itemprop="name">小坑</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天我下载了Win版的Redis，解压缩后，双击redis-server.exe，屏幕一闪而过，启动失败，查阅网上资料后找到解决办法。</p>
+<ul>
+<li>win+R打开cmd命令。</li>
+<li>进入F盘：<code>f:</code></li>
+<li>cd到Redis包目录下：<code>cd F:\redis\Redis-x64-3.2.100</code>（在当前目录的地址栏直接输入cmd，可直接进入，更方便）</li>
+<li>输入：<code>redis-server.exe redis.windows.conf</code></li>
+<li>启动成功</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/25/Spring-Boot缓存操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2013,566 +2686,6 @@ BillMapper billMapper;</code></p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/Spring-Boot嵌入式Servlet容器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fuyuanyua">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/03/Spring-Boot嵌入式Servlet容器/" class="post-title-link" itemprop="url">Spring Boot嵌入式Servlet容器</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-03 15:11:02" itemprop="dateCreated datePublished" datetime="2019-04-03T15:11:02+08:00">2019-04-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-16 21:34:30" itemprop="dateModified" datetime="2019-07-16T21:34:30+08:00">2019-07-16</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-修改Servlet配置"><a href="#1-修改Servlet配置" class="headerlink" title="1. 修改Servlet配置"></a>1. 修改Servlet配置</h2><p>参考<code>pom.xml</code>文件可以知道，Spring Boot默认使用Tomcat作为嵌入式的Servlet容器。</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1554275834188.png" alt="1554275834188"></p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1554275920854.png" alt="1554275920854"></p>
-<h3 id="1-1-通过全局配置文件修改Servlet配置"><a href="#1-1-通过全局配置文件修改Servlet配置" class="headerlink" title="1.1 通过全局配置文件修改Servlet配置"></a>1.1 通过全局配置文件修改Servlet配置</h3><p>通过修改全局配置文件<code>application.properties</code>，修改嵌入式Servlet容器配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 修改关于服务的相关配置，对应的类是ServerProperties</span><br><span class="line"></span><br><span class="line"># 修改端口号</span><br><span class="line">server.port=8081</span><br><span class="line"></span><br><span class="line"># 修改Servlet的相关配置，修改应用名</span><br><span class="line">server.servlet.context-path=/servlet</span><br><span class="line"></span><br><span class="line"># 修改Tomcat的相关配置</span><br><span class="line">server.tomcat.max-connections=80000</span><br></pre></td></tr></table></figure>
-<h3 id="1-2-通过自定义配置器修改Servlet配置"><a href="#1-2-通过自定义配置器修改Servlet配置" class="headerlink" title="1.2 通过自定义配置器修改Servlet配置"></a>1.2 通过自定义配置器修改Servlet配置</h3><p><strong>Spring Boot 2.x：</strong></p>
-<p>实现<code>WebServerFactoryCustomizer</code>接口的<code>customize</code>抽象方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义定制器修改Servlet容器配置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> WebServerFactoryCustomizer <span class="title">webServerFactoryCustomizer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//采用匿名内部类实现WebServerFactoryCustomizer接口的void customize(T factory)抽象方法</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> WebServerFactoryCustomizer() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">customize</span><span class="params">(WebServerFactory factory)</span> </span>&#123;</span><br><span class="line">            ConfigurableServletWebServerFactory factory1 =</span><br><span class="line">                    (ConfigurableServletWebServerFactory) factory;</span><br><span class="line">            <span class="comment">//修改端口号，如果全局配置文件中的配置与定制器的配置冲突，默认采用定制器的配置</span></span><br><span class="line">            factory1.setPort(<span class="number">8082</span>);</span><br><span class="line">            <span class="comment">//修改应用名</span></span><br><span class="line">            factory1.setContextPath(<span class="string">"/servlet2"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-切换为其他嵌入式Servlet容器"><a href="#2-切换为其他嵌入式Servlet容器" class="headerlink" title="2. 切换为其他嵌入式Servlet容器"></a>2. 切换为其他嵌入式Servlet容器</h2><p>Spring Boot默认针对Servlet容器提供以下支持：</p>
-<ul>
-<li>Tomcat（默认使用）。</li>
-<li>Jetty：支持长连接项目（如：聊天页面）。</li>
-<li>Undertow：不支持jsp，但是并发性能高，是高性能非阻塞的容器。</li>
-</ul>
-<h3 id="2-1-使用Jetty"><a href="#2-1-使用Jetty" class="headerlink" title="2.1 使用Jetty"></a>2.1 使用Jetty</h3><ol>
-<li><p>在<code>pom.xml</code>文件中移除Tomcat</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 移除Tomcat启动器 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>引入Jetty依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入Jetty启动器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-jetty<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="2-2-使用Undertow"><a href="#2-2-使用Undertow" class="headerlink" title="2.2 使用Undertow"></a>2.2 使用Undertow</h3><ol>
-<li><p>在<code>pom,xml</code>文件中移除Tomcat，代码同上。</p>
-</li>
-<li><p>引入Undertow依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入Undertow启动器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-undertow<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/Spring-Boot中pom文件的依赖配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fuyuanyua">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/02/Spring-Boot中pom文件的依赖配置/" class="post-title-link" itemprop="url">Spring Boot中pom文件的依赖配置</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-02 18:35:35" itemprop="dateCreated datePublished" datetime="2019-04-02T18:35:35+08:00">2019-04-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-16 21:34:15" itemprop="dateModified" datetime="2019-07-16T21:34:15+08:00">2019-07-16</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-pom-xml文件中依赖配置"><a href="#1-pom-xml文件中依赖配置" class="headerlink" title="1. pom.xml文件中依赖配置"></a>1. <code>pom.xml</code>文件中依赖配置</h2><p>Spring Boot中需要使用什么，只需在<code>pom.xml</code>文件中引入相对应的依赖即可，以下来介绍各种依赖。</p>
-<h3 id="1-1-thymeleaf模板启动器"><a href="#1-1-thymeleaf模板启动器" class="headerlink" title="1.1 thymeleaf模板启动器"></a>1.1 thymeleaf模板启动器</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入thymeleaf模板启动器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-2-注释处理器"><a href="#1-2-注释处理器" class="headerlink" title="1.2 注释处理器"></a>1.2 注释处理器</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 该依赖为注释处理器，在编写配置文件时能自动提示自定义的类 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-3-热部署"><a href="#1-3-热部署" class="headerlink" title="1.3 热部署"></a>1.3 热部署</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 热部署依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-4-jquery-webjars"><a href="#1-4-jquery-webjars" class="headerlink" title="1.4 jquery webjars"></a>1.4 jquery webjars</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入jquery webjars --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.webjars<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jquery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3.1-2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-5-Druid数据库连接池"><a href="#1-5-Druid数据库连接池" class="headerlink" title="1.5 Druid数据库连接池"></a>1.5 Druid数据库连接池</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Druid数据库连接池 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.alibaba/druid --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.15<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-6-MyBatis"><a href="#1-6-MyBatis" class="headerlink" title="1.6 MyBatis"></a>1.6 MyBatis</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- MyBatis启动器，已经引入了spring-boot-starter-jdbc启动器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-7-JDBC"><a href="#1-7-JDBC" class="headerlink" title="1.7 JDBC"></a>1.7 JDBC</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-8-Java连接MySQL驱动包"><a href="#1-8-Java连接MySQL驱动包" class="headerlink" title="1.8 Java连接MySQL驱动包"></a>1.8 Java连接MySQL驱动包</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Java连接MySQL驱动包 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/Spring-Boot实现热部署/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fuyuanyua">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/02/Spring-Boot实现热部署/" class="post-title-link" itemprop="url">Spring Boot实现热部署</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-02 10:51:07" itemprop="dateCreated datePublished" datetime="2019-04-02T10:51:07+08:00">2019-04-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-16 21:34:36" itemprop="dateModified" datetime="2019-07-16T21:34:36+08:00">2019-07-16</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-Spring-Boot实现项目的热部署"><a href="#1-Spring-Boot实现项目的热部署" class="headerlink" title="1. Spring Boot实现项目的热部署"></a>1. Spring Boot实现项目的热部署</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><p>Spring Boot项目的热部署，按照我的理解，就是在修改代码后，无须重新启动服务器，只需要重新Build Project，然后刷新网页，就可以立即在网页查看到修改后的变化。</p>
-<h3 id="1-2-在配置文件中禁用模板缓存"><a href="#1-2-在配置文件中禁用模板缓存" class="headerlink" title="1.2 在配置文件中禁用模板缓存"></a>1.2 在配置文件中禁用模板缓存</h3><p>如果不禁用缓存，那么因为有网页的缓存，变化无法实时获取，所以在配置文件<code>application.properties</code>或者<code>application,yml</code>中禁用Thymeleaf模板缓存，下面以<code>application.properties</code>配置文件为例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 开发中推荐关闭thymeleaf的缓存，可以实现热部署</span><br><span class="line">spring.thymeleaf.cache=false</span><br></pre></td></tr></table></figure>
-<h3 id="1-3-在pom-xml文件中引入依赖"><a href="#1-3-在pom-xml文件中引入依赖" class="headerlink" title="1.3 在pom.xml文件中引入依赖"></a>1.3 在<code>pom.xml</code>文件中引入依赖</h3><p>在<code>pom.xml</code>文件中引入热部署依赖：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 热部署依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-4-实现"><a href="#1-4-实现" class="headerlink" title="1.4 实现"></a>1.4 实现</h3><p>按IDEA快捷键 <strong>ctrl+F9</strong> 进行Build Project，无须重新启动服务器，然后刷新网页即可实现项目的热部署。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2619,7 +2732,7 @@ BillMapper billMapper;</code></p>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-count">56</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
