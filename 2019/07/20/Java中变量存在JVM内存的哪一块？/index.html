@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1. 关于JVM内存布局请参考： https://fuyuanyua.github.io/2019/07/19/%E6%B5%85%E8%B0%88JVM%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80%E5%92%8CGC/ 2. 对象实例与对象引用1Student student = new Student(); 关注以上代码：  new Studen">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-20T07:06:03.206Z">
+<meta property="og:updated_time" content="2019-07-20T09:23:06.310Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中变量存在JVM内存的哪一块？">
 <meta name="twitter:description" content="1. 关于JVM内存布局请参考： https://fuyuanyua.github.io/2019/07/19/%E6%B5%85%E8%B0%88JVM%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80%E5%92%8CGC/ 2. 对象实例与对象引用1Student student = new Student(); 关注以上代码：  new Studen">
@@ -396,7 +396,7 @@
                 
               
 
-              <time title="创建时间：2019-07-20 11:33:36 / 修改时间：15:06:03" itemprop="dateCreated datePublished" datetime="2019-07-20T11:33:36+08:00">2019-07-20</time>
+              <time title="创建时间：2019-07-20 11:33:36 / 修改时间：17:23:06" itemprop="dateCreated datePublished" datetime="2019-07-20T11:33:36+08:00">2019-07-20</time>
             
 
             
@@ -465,16 +465,22 @@
 <h3 id="3-1-成员变量"><a href="#3-1-成员变量" class="headerlink" title="3.1 成员变量"></a>3.1 成员变量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">Student student1 = <span class="keyword">new</span> Student();</span><br></pre></td></tr></table></figure>
 <p><strong>成员变量</strong>即在类中声明的变量，当变量为成员变量时：</p>
 <ol>
-<li>当声明的成员变量是<strong>基本数据类型的变量</strong>（如上面代码中的<code>a</code>）：变量名（<code>a</code>）和值（<code>1</code>）都存放在堆中。</li>
-<li>当声明的成员变量是<strong>引用变量</strong>（如上面代码的<code>student1</code>）：变量名也就是对象引用（<code>student1</code>）和对象实例（<code>new Student()</code>）都存放在堆中。</li>
+<li>当声明的成员变量是<strong>基本数据类型类型(Primitive Type)的变量</strong>（如上面代码中的<code>a</code>）：变量名（<code>a</code>）和值（<code>1</code>）都存放在堆中。</li>
+<li>当声明的成员变量是<strong>引用类型(Reference Type)变量</strong>（如上面代码的<code>student1</code>）：变量名也就是对象引用（<code>student1</code>）和对象实例（<code>new Student()</code>）都存放在堆中。</li>
 </ol>
+<p><u>ps：</u></p>
+<ul>
+<li><u>基本数据类型类型(Primitive Type)：boolean，byte、short、int、long，float、double、char。</u></li>
+<li><u>引用类型(Reference Type)：类、接口和数组。就是对对象实例或者数组的引用</u></li>
+</ul>
 <h3 id="3-2-局部变量"><a href="#3-2-局部变量" class="headerlink" title="3.2 局部变量"></a>3.2 局部变量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> b = <span class="number">2</span>;</span><br><span class="line">Student student2 = <span class="keyword">new</span> Student();</span><br></pre></td></tr></table></figure>
 <p><strong>局部变量</strong>即在方法中声明的变量，当变量为局部变量时：</p>
 <ol>
-<li>当声明的局部变量是<strong>基本数据类型的变量</strong>（如上面代码中的<code>b</code>）：变量名（<code>b</code>）和值（<code>2</code>）都存放在Java虚拟机栈中。</li>
-<li>当声明的成员变量是<strong>引用变量</strong>（如上面代码的<code>student2</code>）：变量名也就是对象引用（<code>student2</code>）存放在Java虚拟机栈中，对象实例（<code>new Student()</code>）存放在堆中。</li>
+<li>当声明的局部变量是<strong>基本数据类型类型(Primitive Type)的变量</strong>（如上面代码中的<code>b</code>）：变量名（<code>b</code>）和值（<code>2</code>）都存放在Java虚拟机栈中。</li>
+<li>当声明的成员变量是<strong>引用类型(Reference Type)变量</strong>（如上面代码的<code>student2</code>）：变量名也就是对象引用（<code>student2</code>）存放在Java虚拟机栈中，对象实例（<code>new Student()</code>）存放在堆中。</li>
 </ol>
 <p><u>ps：因为局部变量是存在于方法里的，方法是基于JVM内存中Java虚拟机栈的栈帧（一个方法对应一个栈帧，局部变量和对象引用便存放于栈帧的局部变量表里）实现的：方法开始，栈帧入栈，当方法结束，栈帧便出栈。</u></p>
+<p>以上内容可能会有疏漏与错误，随着我以后的学习会持续更新改正。</p>
 
       
     </div>
