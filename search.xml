@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[HTTP协议]]></title>
+    <url>%2F2019%2F07%2F22%2FHTTP%E5%8D%8F%E8%AE%AE%2F</url>
+    <content type="text"><![CDATA[1. HTTP协议HTTP协议（Hyper Text Transfer Protocol，超文本传输协议）是TCP/IP模型中应用层协议，提供了客户端和服务端之间传输信息的机制。特点： 支持C/S模式。 无连接。 无状态。 默认端口号80。 HTTP有两类报文： 请求报文（在Java的Servlet中被封装成HttpRequest类） 响应报文（在Java的Servlet中被封装成HttpResponse类） 1.1 请求报文结构： 请求行（Request Line）：方法（GET、POST等）、URL、版本（HTTP协议的版本）。 首部行（Header Line ）：包括要请求的服务器主机域名信息、产生请求的客户端信息、客户端可以识别的数据类型信息等。 正文：一般为空，GET请求会将参数放在URL中，POST请求将参数放在实体主体中。 1.2 相应报文结构： 状态行（Status Line）：服务器HTTP协议版本、状态码（1xx、2xx、3xx、4xx、5xx）、状态码文本描述（比如200对应OK）。 首部行（Header Line）：包括生成响应的日期、服务器版本、编码格式等信息。 响应正文：服务器返回的响应正文信息。]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+      <tags>
+        <tag>计算机网络</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java中的Collection]]></title>
     <url>%2F2019%2F07%2F22%2FJava%E4%B8%AD%E7%9A%84Collection%2F</url>
     <content type="text"><![CDATA[1. Java中的CollectionCollection是List接口、Set接口、Queue接口的父接口。 继承关系如下： 2. List接口List有序、可重复。可以用Iterator实现单向遍历，也可以用ListIterator实现双向遍历。 List接口的实现类： ArrayList LinkedList Vector Stack等 2.1 ArrayList 底层数据结构是数组，查询快增删慢（因为数组在内存中空间是连续的）。 线程不安全，效率高。 2.2 LinkedList 底层数据结构是链表，查询慢，增删快。 线程不安全，效率高。 2.3 Vector 底层数据结构是数组，查询快，增删慢。 线程安全，效率低。 2.4 Stack 继承了Vector类。 遵循后进先出的原则。 提供了push（入栈）、pop（出栈）等方法。 2. Set接口Set无序、不可重复。只能用用Iterator实现单向遍历。最多包含一个null元素。 Set的实现类： HashSet TreeSet等 2.1 HashSet 无序，底层用HashMap实现。 非线程同步。 2.2 TreeSet 因为TreeSet实现的是SortedSet接口（SortedSet继承Set接口），且底层数据接口是红黑树，所以是有序的。 3. Queue接口Queue遵循先进先出的原则。通常不允许null元素。 Queue实现类： LinkedList等 3.1 LinkedList 既实现List接口又实现Queue接口。]]></content>
@@ -111,8 +122,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
         <tag>Spring MVC</tag>
       </tags>
   </entry>
@@ -124,9 +135,9 @@
         <category>Spring</category>
       </categories>
       <tags>
+        <tag>Java</tag>
         <tag>Spring</tag>
         <tag>Spring Boot</tag>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -137,9 +148,9 @@
         <category>Spring Boot</category>
       </categories>
       <tags>
+        <tag>Java</tag>
         <tag>Spring</tag>
         <tag>Spring Boot</tag>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -150,8 +161,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -162,8 +173,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -174,8 +185,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -186,8 +197,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -198,8 +209,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -210,8 +221,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -399,7 +410,7 @@
   <entry>
     <title><![CDATA[简述TCP和UDP的区别]]></title>
     <url>%2F2019%2F05%2F15%2F%E7%AE%80%E8%BF%B0TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
-    <content type="text"><![CDATA[1. TCP报文格式 2. UDP报文格式 3. 区别 TCP： TCP提供一种面向连接的面向字节流的服务。 TCP提供可靠交付。 TCP只能一对一连接，不提供广播或多播。 TCP对资源开销大。 UDP： UDP提供无连接的面向报文的服务。 UDP不保证可靠交付。 UDP支持一对一，一对多，多对一，多对多的交互通信。 UDP资源开销小。]]></content>
+    <content type="text"><![CDATA[1. TCP和UDP是什么TCP和UDP都是TCP/IP的传输层的协议： TCP（Transmission Control Protocol），传输控制协议。 UDP（User Datagram Protocol），用户数据包协议。 1. TCP报文格式 2. UDP报文格式 3. 区别 TCP： TCP提供一种面向连接的面向字节流的服务。 TCP提供可靠交付。 TCP只能一对一连接，不提供广播或多播。 TCP对资源开销大。 UDP： UDP提供无连接的面向报文的服务。 UDP不保证可靠交付。 UDP支持一对一，一对多，多对一，多对多的交互通信。 UDP资源开销小。]]></content>
       <categories>
         <category>计算机网络</category>
       </categories>
@@ -476,7 +487,7 @@
   <entry>
     <title><![CDATA[Java中抽象类与接口的区别]]></title>
     <url>%2F2019%2F05%2F13%2FJava%E4%B8%AD%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
-    <content type="text"><![CDATA[1. 抽象类抽象类：如果一个类中有抽象方法，那么这个类就是抽象类，抽象类必须用abstract关键字修饰。 抽象方法只声明，无具体实现。 抽象类和抽象方法必须被public或protected修饰（如果是private，则不能被子类访问到，自然无法被继承也无法被子类实现抽象方法），缺省情况下默认为public。 不能用抽象类创建对象。 如果一个子类继承一个抽象类的父类，那么子类必须实现父类的所有抽象方法，如果不全部实现，这个子类任然是抽象类，必须仍然用abstract关键字修饰。 2. 接口接口：用interface定义。 接口中所有方法都必须是抽象方法，缺省被public abstract修饰，且只能被public abstract修饰。（推荐缺省即不加修饰词，使代码简洁美观）。 接口中可以有变量，缺省被public abstract final修饰，且只能被public abstract final修饰，即变量必须给初值且不可更改。一般情况下不会在接口中定义变量。 3. 抽象类和接口的区别 抽象类在Java中表示继承关系，只能单继承，class B extends A {} 接口也能继承接口，不需要实现父接口方法，且一个接口能继承多个接口，interface C extends A, B {} 一个类可以单继承，多接口实现，class E extends D implements A, B, C {} 抽象类中可以有非抽象方法，接口中必须全部为抽象方法。 抽象类中可以有static方法（static方法是类方法，不允许子类override），接口中不能有static方法，只能是public abstract方法。]]></content>
+    <content type="text"><![CDATA[1. 抽象类抽象类：如果一个类中有抽象方法，那么这个类就是抽象类，抽象类必须用abstract关键字修饰。 抽象方法只声明，无具体实现。 抽象类和抽象方法必须被public或protected修饰（如果是private，则不能被子类访问到，自然无法被继承也无法被子类实现抽象方法），缺省情况下默认为public。 不能用抽象类创建对象。 如果一个子类继承一个抽象类的父类，那么子类必须实现父类的所有抽象方法，如果不全部实现，这个子类任然是抽象类，必须仍然用abstract关键字修饰。 2. 接口接口：用interface定义。 接口中所有方法都必须是抽象方法，缺省被public abstract修饰，且只能被public abstract修饰。（推荐缺省即不加修饰词，使代码简洁美观）。 接口中可以有变量，缺省被public abstract final修饰，且只能被public abstract final修饰，即变量必须给初值且不可更改。一般情况下不会在接口中定义变量。 3. 抽象类和接口的区别 抽象类在Java中表示继承关系，只能单继承，class B extends A {} 接口也能继承接口，不需要实现父接口方法，且一个接口能继承多个接口，interface C extends A, B {} 一个类可以单继承，多接口实现，class E extends D implements A, B, C {} 抽象类中可以有非抽象方法，接口中必须全部为抽象方法。 抽象类中可以有static方法（static方法是类方法，不允许子类override），接口中不能有static方法，只能是public abstract方法。（这是原内容，有错误，不删，以下是正确内容） 抽象类中可以有static方法（static方法是类方法，不允许子类override）；JDK 8以后，接口中可以声明static方法，也可以声明default方法，并且都可以实现。接口中声明default方法并实现后，一个类实现该接口能自动继承该default方法，并且不用去实现（@Override）。（这是更改后的内容）]]></content>
       <categories>
         <category>Java</category>
       </categories>

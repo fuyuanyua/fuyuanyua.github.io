@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1. 抽象类抽象类：如果一个类中有抽象方法，那么这个类就是抽象类，抽象类必须用abstract关键字修饰。  抽象方法只声明，无具体实现。 抽象类和抽象方法必须被public或protected修饰（如果是private，则不能被子类访问到，自然无法被继承也无法被子类实现抽象方法），缺省情况下默认为public。 不能用抽象类创建对象。 如果一个子类继承一个抽象类的父类，那么子类必须实现父类的所有">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-13T08:35:56.581Z">
+<meta property="og:updated_time" content="2019-07-22T11:13:48.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中抽象类与接口的区别">
 <meta name="twitter:description" content="1. 抽象类抽象类：如果一个类中有抽象方法，那么这个类就是抽象类，抽象类必须用abstract关键字修饰。  抽象方法只声明，无具体实现。 抽象类和抽象方法必须被public或protected修饰（如果是private，则不能被子类访问到，自然无法被继承也无法被子类实现抽象方法），缺省情况下默认为public。 不能用抽象类创建对象。 如果一个子类继承一个抽象类的父类，那么子类必须实现父类的所有">
@@ -396,12 +396,24 @@
                 
               
 
-              <time title="创建时间：2019-05-13 15:45:41 / 修改时间：16:35:56" itemprop="dateCreated datePublished" datetime="2019-05-13T15:45:41+08:00">2019-05-13</time>
+              <time title="创建时间：2019-05-13 15:45:41" itemprop="dateCreated datePublished" datetime="2019-05-13T15:45:41+08:00">2019-05-13</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-22 19:13:48" itemprop="dateModified" datetime="2019-07-22T19:13:48+08:00">2019-07-22</time>
               
             
           </span>
@@ -472,7 +484,9 @@
 </li>
 <li><p>抽象类中可以有非抽象方法，接口中必须全部为抽象方法。</p>
 </li>
-<li><p>抽象类中可以有static方法（static方法是类方法，不允许子类override），接口中不能有static方法，只能是public abstract方法。</p>
+<li><p><del>抽象类中可以有static方法（static方法是类方法，不允许子类override），接口中不能有static方法，只能是public abstract方法。（这是原内容，有错误，不删，以下是正确内容）</del></p>
+</li>
+<li><p>抽象类中可以有static方法（static方法是类方法，不允许子类override）；JDK 8以后，接口中可以声明static方法，也可以声明default方法，并且都可以实现。接口中声明default方法并实现后，一个类实现该接口能自动继承该default方法，并且不用去实现（@Override）。（这是更改后的内容）</p>
 </li>
 </ul>
 
@@ -592,7 +606,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-count">62</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
