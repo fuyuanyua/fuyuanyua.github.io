@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java中的Collection]]></title>
+    <url>%2F2019%2F07%2F22%2FJava%E4%B8%AD%E7%9A%84Collection%2F</url>
+    <content type="text"><![CDATA[1. Java中的CollectionCollection是List接口、Set接口、Queue接口的父接口。 继承关系如下： 2. List接口List有序、可重复。可以用Iterator实现单向遍历，也可以用ListIterator实现双向遍历。 List接口的实现类： ArrayList LinkedList Vector Stack等 2.1 ArrayList 底层数据结构是数组，查询快增删慢（因为数组在内存中空间是连续的）。 线程不安全，效率高。 2.2 LinkedList 底层数据结构是链表，查询慢，增删快。 线程不安全，效率高。 2.3 Vector 底层数据结构是数组，查询快，增删慢。 线程安全，效率低。 2.4 Stack 继承了Vector类。 遵循后进先出的原则。 提供了push（入栈）、pop（出栈）等方法。 2. Set接口Set无序、不可重复。只能用用Iterator实现单向遍历。最多包含一个null元素。 Set的实现类： HashSet TreeSet等 2.1 HashSet 无序，底层用HashMap实现。 非线程同步。 2.2 TreeSet 因为TreeSet实现的是SortedSet接口（SortedSet继承Set接口），且底层数据接口是红黑树，所以是有序的。 3. Queue接口Queue遵循先进先出的原则。通常不允许null元素。 Queue实现类： LinkedList等 3.1 LinkedList 既实现List接口又实现Queue接口。]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Servlet和Servlet容器]]></title>
+    <url>%2F2019%2F07%2F21%2FServlet%E5%92%8CServlet%E5%AE%B9%E5%99%A8%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Minor GC、Major GC和Full GC]]></title>
+    <url>%2F2019%2F07%2F20%2FMinor-GC%E3%80%81Major-GC%E5%92%8CFull-GC%2F</url>
+    <content type="text"><![CDATA[1. Minor GCMinor GC（次要垃圾回收）：对年轻代的垃圾回收。 Eden空间被填满时触发一次Minor GC。存活的对象被复制到Survivor to空间中，Eden空间和Survivor from空间的对象被清空。对象每经过一次GC还存活，年龄计数器加一，超过特定值还存活，将被送入老年代。 2. Major GCMajor GC（主要垃圾回收）：对老年代的垃圾回收。老年代生活的对象一般是大对象（字符串、数组等），还有就是年龄超过特定值从年轻代过来的对象。 3. Full GCFull GC（全部垃圾回收）：对整个堆以及方法区（这个我个人推断的，可能是）的垃圾回收。 4. 总结Minor GC速度快，Major GC和Full GC速度慢。]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java中变量存在JVM内存的哪一块？]]></title>
     <url>%2F2019%2F07%2F20%2FJava%E4%B8%AD%E5%8F%98%E9%87%8F%E5%AD%98%E5%9C%A8JVM%E5%86%85%E5%AD%98%E7%9A%84%E5%93%AA%E4%B8%80%E5%9D%97%EF%BC%9F%2F</url>
-    <content type="text"><![CDATA[1. 关于JVM内存布局请参考： https://fuyuanyua.github.io/2019/07/19/%E6%B5%85%E8%B0%88JVM%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80%E5%92%8CGC/ 2. 对象实例与对象引用1Student student = new Student(); 关注以上代码： new Student()是对象实例。 student是对象引用，指向对象实例的内存地址。 3. 变量变量分为成员变量和局部变量。 3.1 成员变量12int a = 1;Student student1 = new Student(); 成员变量即在类中声明的变量，当变量为成员变量时： 当声明的成员变量是基本数据类型类型(Primitive Type)的变量（如上面代码中的a）：变量名（a）和值（1）都存放在堆中。 当声明的成员变量是引用类型(Reference Type)变量（如上面代码的student1）：变量名也就是对象引用（student1）和对象实例（new Student()）都存放在堆中。 ps： 基本数据类型类型(Primitive Type)：boolean，byte、short、int、long，float、double、char。 引用类型(Reference Type)：类、接口和数组。就是对对象实例或者数组的引用 3.2 局部变量12int b = 2;Student student2 = new Student(); 局部变量即在方法中声明的变量，当变量为局部变量时： 当声明的局部变量是基本数据类型类型(Primitive Type)的变量（如上面代码中的b）：变量名（b）和值（2）都存放在Java虚拟机栈中。 当声明的成员变量是引用类型(Reference Type)变量（如上面代码的student2）：变量名也就是对象引用（student2）存放在Java虚拟机栈中，对象实例（new Student()）存放在堆中。 ps：因为局部变量是存在于方法里的，方法是基于JVM内存中Java虚拟机栈的栈帧（一个方法对应一个栈帧，局部变量和对象引用便存放于栈帧的局部变量表里）实现的：方法开始，栈帧入栈，当方法结束，栈帧便出栈。 以上内容可能会有疏漏与错误，随着我以后的学习会持续更新改正。]]></content>
+    <content type="text"><![CDATA[1. 关于JVM内存布局请参考： https://fuyuanyua.github.io/2019/07/19/%E6%B5%85%E8%B0%88JVM%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80%E5%92%8CGC/ 2. 对象实例与对象引用1Student student = new Student(); 关注以上代码： new Student()是对象实例。 student是对象引用，指向对象实例的内存地址。 3. 变量变量分为成员变量和局部变量。 3.1 成员变量12int a = 1;Student student1 = new Student(); 成员变量即在类中声明的变量，当变量为成员变量时： 当声明的成员变量是基本数据类型类型(Primitive Type)的变量（如上面代码中的a）：变量名（a）和值（1）都存放在堆中。 当声明的成员变量是引用类型(Reference Type)变量（如上面代码的student1）：变量名也就是对象引用（student1）和对象实例（new Student()）都存放在堆中。 ps： 基本数据类型类型(Primitive Type)：boolean，byte、short、int、long，float、double、char。 引用类型(Reference Type)：类、接口和数组。就是对对象实例或者数组的引用。 ps：个人理解，因为成员变量都在对象实例里面，所以因为对象实例是被存放在堆上的，对象实例内部的成员变量自然也都存放在堆上。 3.2 局部变量12int b = 2;Student student2 = new Student(); 局部变量即在方法中声明的变量，当变量为局部变量时： 当声明的局部变量是基本数据类型类型(Primitive Type)的变量（如上面代码中的b）：变量名（b）和值（2）都存放在Java虚拟机栈中。 当声明的成员变量是引用类型(Reference Type)变量（如上面代码的student2）：变量名也就是对象引用（student2）存放在Java虚拟机栈中，对象实例（new Student()）存放在堆中。 ps：因为局部变量是存在于方法里的，方法是基于JVM内存中Java虚拟机栈的栈帧（一个方法对应一个栈帧，局部变量和对象引用便存放于栈帧的局部变量表里）实现的：方法开始，栈帧入栈，当方法结束，栈帧便出栈。 以上内容可能会有疏漏与错误，随着我以后的学习会持续更新改正。]]></content>
       <categories>
         <category>Java</category>
       </categories>
@@ -83,8 +111,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
         <tag>Spring MVC</tag>
       </tags>
   </entry>
@@ -96,9 +124,9 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
         <tag>Spring Boot</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -109,9 +137,9 @@
         <category>Spring Boot</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
         <tag>Spring Boot</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -122,8 +150,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -134,8 +162,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -146,8 +174,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -158,8 +186,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -170,8 +198,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -182,8 +210,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
