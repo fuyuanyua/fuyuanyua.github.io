@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于Integer的一些问题]]></title>
+    <url>%2F2019%2F10%2F15%2F%E5%85%B3%E4%BA%8EInteger%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[1. IntegerInteger是包装类，对应基本数据类型为int。 2. 自动装箱与自动拆箱2.1 自动装箱1234int i1 = 100;Integer i2 = 100;Integer i3 = Integer.valueOf(100);Integer i4 = new Integer(100)； 疑问是： 像第一行i1是基本数据类型int所以可以直接赋值，那么第二行i2是Integer类对象的引用，怎么也能直接赋值呢？ 其实这就是自动装箱，以上二、三两行代码实质意义相同，将第二行代码编译成class文件再反编译，其实就是第3行代码这种写法，而第三行的写法其实就是在堆内存上新建一个Integer对象，i3为这个对象的引用。 而第四行的就是我们正常用构造方法创建一个Integer对象，每用这个方法创建一个Integer对象，都会在堆内存新建一个对象。 缓存机制： Integer包装类还有一个缓存机制，可以查看源码： 123456789101112131415161718192021222324252627282930313233343536373839private static class IntegerCache &#123; static final int low = -128; static final int high; static final Integer cache[]; static &#123; // high value may be configured by property int h = 127; String integerCacheHighPropValue = sun.misc.VM.getSavedProperty("java.lang.Integer.IntegerCache.high"); if (integerCacheHighPropValue != null) &#123; try &#123; int i = parseInt(integerCacheHighPropValue); i = Math.max(i, 127); // Maximum array size is Integer.MAX_VALUE h = Math.min(i, Integer.MAX_VALUE - (-low) -1); &#125; catch( NumberFormatException nfe) &#123; // If the property cannot be parsed into an int, ignore it. &#125; &#125; high = h; cache = new Integer[(high - low) + 1]; int j = low; for(int k = 0; k &lt; cache.length; k++) cache[k] = new Integer(j++); // range [-128, 127] must be interned (JLS7 5.1.7) assert IntegerCache.high &gt;= 127; &#125; private IntegerCache() &#123;&#125; &#125;public static Integer valueOf(int i) &#123; if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high) return IntegerCache.cache[i + (-IntegerCache.low)]; return new Integer(i); &#125; 示例： 123456789@Test public void test() &#123; Integer i1 = 1; Integer i2 = 1; Integer i3 = 1000; Integer i4 = 1000; System.out.println(i1 == i2); System.out.println(i3 == i4); &#125; 结果为： 12truefalse “==”比较的是两个引用的内存地址是否相同，因为1在[-128, 127]之间，所以Integer i1 = 1;在堆内存上新建了一个Integer对象并缓存，i2同样指向这个Integer对象，所以i1和i2指向同一个内存地址，所以结果为true； 而1000不在[-128, 127]之间，Integer i3 = 1000;在堆内存上新建了一个Integer对象，Integer i4 = 1000; 在堆内存上又新建了一个Integer对象，所以i3和i4指向不同内存地址，所以结果为false。 2.2 自动拆箱自动拆箱即将Integer类型的对象自动拆箱为int基本数据类型，以下情况会自动拆箱： 包装类和基本数据类型的相等判断： 123456@Test public void test() &#123; Integer i1 = 1; int i2 = 1; System.out.println(i1 == i2); &#125; 以上代码编译再反编译其实就是： 123456@Test public void test() &#123; Integer i1 = 1; int i2 = 1; System.out.println(i1.intValue() + i2); &#125; 自动拆箱也就是调用了i1.intValue()方法。 包装类和基本数据类型的四则运算： 123456@Test public void test() &#123; Integer i1 = 1; int i2 = 1; System.out.println(i1 + i2); &#125;]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[HTTP协议]]></title>
     <url>%2F2019%2F07%2F22%2FHTTP%E5%8D%8F%E8%AE%AE%2F</url>
     <content type="text"><![CDATA[1. HTTP协议HTTP协议（Hyper Text Transfer Protocol，超文本传输协议）是TCP/IP模型中应用层协议，提供了客户端和服务端之间传输信息的机制。特点： 支持C/S模式。 无连接。 无状态。 默认端口号80。 HTTP有两类报文： 请求报文（在Java的Servlet中被封装成HttpRequest类） 响应报文（在Java的Servlet中被封装成HttpResponse类） 1.1 请求报文结构： 请求行（Request Line）：方法（GET、POST等）、URL、版本（HTTP协议的版本）。 首部行（Header Line ）：包括要请求的服务器主机域名信息、产生请求的客户端信息、客户端可以识别的数据类型信息等。 正文：一般为空，GET请求会将参数放在URL中，POST请求将参数放在实体主体中。 1.2 相应报文结构： 状态行（Status Line）：服务器HTTP协议版本、状态码（1xx、2xx、3xx、4xx、5xx）、状态码文本描述（比如200对应OK）。 首部行（Header Line）：包括生成响应的日期、服务器版本、编码格式等信息。 响应正文：服务器返回的响应正文信息。]]></content>
@@ -122,8 +133,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
         <tag>Spring MVC</tag>
       </tags>
   </entry>
@@ -135,9 +146,9 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
         <tag>Spring Boot</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -148,9 +159,9 @@
         <category>Spring Boot</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
         <tag>Spring Boot</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -161,8 +172,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -173,8 +184,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -185,8 +196,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -197,8 +208,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -209,8 +220,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -221,8 +232,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
