@@ -349,6 +349,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/关于Java多态与继承一些注意/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fuyuanyua">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/16/关于Java多态与继承一些注意/" class="post-title-link" itemprop="url">关于Java多态与继承一些注意</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-16 21:12:40 / 修改时间：22:06:48" itemprop="dateCreated datePublished" datetime="2019-10-16T21:12:40+08:00">2019-10-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><p>A类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(A a)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="number">1111</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(C c)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="number">3333</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>B类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(A a)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="number">2222</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(B b)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="number">4444</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="number">5555</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>C类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">C</span> <span class="keyword">extends</span> <span class="title">B</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        A a = <span class="keyword">new</span> B();</span><br><span class="line">        B b = <span class="keyword">new</span> B();</span><br><span class="line">        C c = <span class="keyword">new</span> C();</span><br><span class="line">        a.show(a);</span><br><span class="line">        a.show(b);</span><br><span class="line">        a.show(c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2222</span></span><br><span class="line"><span class="number">2222</span></span><br><span class="line"><span class="number">3333</span></span><br></pre></td></tr></table></figure>
+<h3 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h3><p>为什么结果会这样呢？</p>
+<p>首先<code>A a = new B()</code>，a为引用，类型为父类A类，但它指向子类B类的对象实例，所以a只能调用在A类定义过的方法，而不能调用在B类中新增的方法，如果A类中的某个方法在B类中被重写，那么调用重写的那个方法。还有一个是Java类型匹配，如果类型不能匹配就自动向上转型转为父类（就近原则，转换到能匹配到为止，就不再继续向上转型）。</p>
+<p>接下来就可以解释通了：</p>
+<ul>
+<li><p><code>a.show(a);</code></p>
+<p>传参a实际是B类，但是a引用类型为A类，只能调用A类的方法，传参a自动向上转型为A类，便有A类中的<code>public void show(A a) {System.out.println(1111);}</code>方法，但是此方法在B类中被重写，所以调用B类重写的<code>@Override public void show(A a) {System.out.println(2222);}</code>方法，所以控制台打印”2222”。</p>
+</li>
+<li><p><code>a.show(b);</code></p>
+<p>同上，传参b实际是B类，但是a引用类型为A类，只能调用A类的方法，传参a自动向上转型为A类，便有A类中的<code>public void show(A a) {System.out.println(1111);}</code>方法，但是此方法在B类中被重写，所以调用B类重写的<code>@Override public void show(A a) {System.out.println(2222);}</code>方法，所以控制台打印”2222”。</p>
+</li>
+<li><p><code>a.show(c);</code></p>
+<p>传参c实际类型为C，于是直接可以调用A类的<code>public void show(C c) {System.out.println(3333);}</code>方法，于是控制台打印”3333”。</p>
+</li>
+</ul>
+<p>如果在测试类中再添加一句<code>a.show1();</code>会怎样，结果是编译通不过，因为a的引用类型为A 类，所以只能调用A类中定义的方法，A类没有<code>show1()</code>这个方法，于是无法调用，编译通不过。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/15/关于Integer的一些问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1995,175 +2180,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/18/常见查找算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fuyuanyua">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/18/常见查找算法/" class="post-title-link" itemprop="url">常见查找算法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-18 10:24:20 / 修改时间：11:12:19" itemprop="dateCreated datePublished" datetime="2019-07-18T10:24:20+08:00">2019-07-18</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构与算法/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-顺序查找法"><a href="#1-顺序查找法" class="headerlink" title="1. 顺序查找法"></a>1. 顺序查找法</h2><p>顺序查找法很简单，即从到到尾遍历整个数组，直到查找到要查找的数。</p>
-<h2 id="2-二分查找法"><a href="#2-二分查找法" class="headerlink" title="2. 二分查找法"></a>2. 二分查找法</h2><p>二分查找法又称折半查找法，是非常常用和高效的查找算法。</p>
-<h3 id="2-1-过程"><a href="#2-1-过程" class="headerlink" title="2.1 过程"></a>2.1 过程</h3><ol>
-<li>给定一组有序数组int a[] = {0, 12, 24, 36, 48, 60, 72, 84}，要查找的数int target = 24。</li>
-<li>设三个变量，start = 0，指向第一个元素a[0]；end = 7，指向最后一个元素a[7]，mid = (start + end) / 2 = 3，指向a[3]。</li>
-<li>a[3] = 36，a[3] &gt; 24，所以要查找的数肯定在a[3]以前，所以start = 0不变，end = mid - 1 = 2，指向a[2]，mid = (start + end) / 2 = 1，指向a[1]。</li>
-<li>a[1] = 12，a[1] &lt; 24，所以要查找的数肯定在a[1]以后，所以end = 2不变，start = mid + 1 = 2，指向a[2]，mid = (start + end) / 2 = 2，指向a[2]。</li>
-<li>a[2] = 24，正是我们要查找的数，查找完毕。（如果我们要查找的数是30，那么24 &lt; 30，所以要查找的数肯定在a[2]以后，所以end = 2不变，start = mid + 1 = 3，此时start &gt; end，那么就表示查找失败了）</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2210,7 +2226,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">63</span>
+                    <span class="site-state-item-count">64</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
