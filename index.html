@@ -349,6 +349,190 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/17/关于Java中String的一些思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fuyuanyua">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/17/关于Java中String的一些思考/" class="post-title-link" itemprop="url">关于Java中String的一些思考</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-17 21:51:32 / 修改时间：22:47:13" itemprop="dateCreated datePublished" datetime="2019-10-17T21:51:32+08:00">2019-10-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-Java中的String"><a href="#1-Java中的String" class="headerlink" title="1. Java中的String"></a>1. Java中的String</h3><p>String太熟悉不过了，每天都在使用它，但是String不是Java的基本数据类型，Java的基本数据类型有（byte，short，int，long，float，double，char，boolean）总共八种，他们的包装类在这里不再赘述。</p>
+<p>当然，String不属于基本数据类型，String是一个类，以下是一部分String类的源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">Comparable</span>&lt;<span class="title">String</span>&gt;, <span class="title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">char</span> value[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看出String类其实就是被final修饰的char数组。</p>
+<h3 id="2-新建对象"><a href="#2-新建对象" class="headerlink" title="2. 新建对象"></a>2. 新建对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 第一种</span><br><span class="line">String s1 = &quot;aaa&quot;;</span><br><span class="line">String s2 = &quot;aaa&quot;;</span><br><span class="line">// 第二种</span><br><span class="line">String s3 = new String(&quot;aaa&quot;);</span><br><span class="line">String s4 = new String(&quot;bbb&quot;);</span><br></pre></td></tr></table></figure>
+<p>有两种方式创建String对象：</p>
+<ul>
+<li><p>第一种：</p>
+<p>首先看第一行代码，<code>String s1 = &quot;aaa&quot;;</code>，其实是在常量池直接创建”aaa”对象。s1为引用，保存在栈中，直接指向”aaa”的内存地址。</p>
+<p>再看第二行代码，<code>String s2 = &quot;aaa&quot;;</code>，因为常量池中已经存在”aaa”对象，便不再常量池中新建对象，s2为引用，直接指向”aaa”的内存地址(和s1指向的内存地址一样，如果进行<code>s1 == s2</code>判断，返回为true)。</p>
+</li>
+<li><p>第二种：</p>
+<p>首先看第三行代码<code>String s3 = new String(&quot;aaa&quot;);</code>，这其实就是跟正常的类用构造方法新建对象一样，首先因为在常量池中已经存在”aaa”对象，便不再常量池中新建对象，然后在堆内存中新建String(“aaa”)对象，s3为引用，指向堆内存中String(“aaa”)对象的内存地址。</p>
+<p>再看第四行代码<code>String s4 = new String(&quot;bbb&quot;);</code>，首先在常量池中新建”bbb”对象，然后再在堆内存新建String(“bbb”)对象，s4为引用，指向堆内存中String(“bbb”)对象的内存地址。所以实际上这一行代码创建了两个对象。</p>
+</li>
+</ul>
+<h3 id="3-字符串拼接"><a href="#3-字符串拼接" class="headerlink" title="3. 字符串拼接"></a>3. 字符串拼接</h3><p>强烈不建议直接使用<code>+</code>进行字符串拼接，以下是例子：</p>
+<h4 id="3-1-直接使用"><a href="#3-1-直接使用" class="headerlink" title="3.1 直接使用+"></a>3.1 直接使用<code>+</code></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String result = <span class="string">""</span>;</span><br><span class="line">        String s = <span class="string">"hello"</span>;</span><br><span class="line">        <span class="keyword">long</span> begin = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123;</span><br><span class="line">            result += s;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> consume = end - begin;</span><br><span class="line">        System.out.println(<span class="string">"总耗时 = "</span> + consume);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">总耗时 = 36965</span><br></pre></td></tr></table></figure>
+<h4 id="3-2-使用StringBuilder"><a href="#3-2-使用StringBuilder" class="headerlink" title="3.2 使用StringBuilder"></a>3.2 使用StringBuilder</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String result = <span class="string">""</span>;</span><br><span class="line">        String s = <span class="string">"hello"</span>;</span><br><span class="line">        StringBuilder stringBuilder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        stringBuilder.append(result);</span><br><span class="line">        <span class="keyword">long</span> begin = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123;</span><br><span class="line">            stringBuilder.append(s);</span><br><span class="line">        &#125;</span><br><span class="line">        stringBuilder.toString();</span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> consume = end - begin;</span><br><span class="line">        System.out.println(<span class="string">"总耗时 = "</span> + consume);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">总耗时 = 15</span><br></pre></td></tr></table></figure>
+<h4 id="3-3-分析"><a href="#3-3-分析" class="headerlink" title="3.3 分析"></a>3.3 分析</h4><p>通过以上两个对比，发现性能相差极其悬殊，所以当字符串要拼接很多的时候，及其不推荐使用<code>+</code>直接拼接，因为编译再反编译可以得知，因为每进行一次<code>+</code>进行拼接，都要new一个StringBuilder对象来进行append，拼接几次就要new几个StringBulider对象，而直接使用StringBuilder对象的append方法，无论拼接多少次，至始至终都只使用这一个StringBuilder对象，所以性能差距是显而易见的。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/关于Java多态与继承一些注意/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2038,148 +2222,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/浅谈Java中的赋值与拷贝/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fuyuanyua">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/19/浅谈Java中的赋值与拷贝/" class="post-title-link" itemprop="url">浅谈Java中的赋值与拷贝</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-19 10:30:44 / 修改时间：10:30:45" itemprop="dateCreated datePublished" datetime="2019-07-19T10:30:44+08:00">2019-07-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2226,7 +2268,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">64</span>
+                    <span class="site-state-item-count">65</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

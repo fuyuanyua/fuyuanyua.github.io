@@ -349,6 +349,236 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/14/简述TCP三次握手和四次挥手/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fuyuanyua">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/14/简述TCP三次握手和四次挥手/" class="post-title-link" itemprop="url">简述TCP三次握手和四次挥手</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-14 17:58:48" itemprop="dateCreated datePublished" datetime="2019-05-14T17:58:48+08:00">2019-05-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-15 15:23:19" itemprop="dateModified" datetime="2019-05-15T15:23:19+08:00">2019-05-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机网络/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-TCP简介"><a href="#1-TCP简介" class="headerlink" title="1. TCP简介"></a>1. TCP简介</h2><ul>
+<li>TCP提供一种<strong>面向连接的、可靠的字节流服务</strong>。</li>
+<li>每一条TCP连接只能有两个端点，是一对一的，广播和多播不能用于 TCP。</li>
+<li>TCP提供超时重发、丢弃重复数据、校验数据、流量控制等功能。</li>
+</ul>
+<h2 id="2-TCP报文格式"><a href="#2-TCP报文格式" class="headerlink" title="2. TCP报文格式"></a>2. TCP报文格式</h2><p>如图所示：</p>
+<p><img src="9rzlJf.png" alt></p>
+<p>TCP报文首部有几个部分重点关注：</p>
+<ol>
+<li>序号字段（Sequence Number）：占32位（4字节），TCP连接中传送的数据流每一个字节都编上一个序号，序号字段的值表示本报文所发送的数据的第一个字节的序号。</li>
+<li>确认号字段（Acknowledgement Number）：占32位（4字节），是期望收到对方下一个报文的数据的第一个字节的编号。</li>
+<li>标志字段：共6个，URG、ACK、PSH、RST、SYN、FIN。<ul>
+<li>URG：URG=1时，表明紧急指针字段有效，此报文有紧急数据，应尽快传送。</li>
+<li>ACK：ACK=1时，确认号字段才有效。</li>
+<li>PSH：PSH=1时，接收方应该尽快将这个报文交给应用层。</li>
+<li>RST：RST=1时，表明TCP连接出现严重差错，重置连接。</li>
+<li>SYN：SYN=1时，表明这是一个连接请求（SYN）报文或者连接接受（SYN+ACK）报文。</li>
+<li>FIN：FIN=1时，表明是FIN报文，释放连接。</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-TCP连接的建立与释放"><a href="#3-TCP连接的建立与释放" class="headerlink" title="3. TCP连接的建立与释放"></a>3. TCP连接的建立与释放</h2><p>TCP的连接有三个阶段：连接建立、数据传输和连接释放。</p>
+<h3 id="3-1-连接建立（三次握手）"><a href="#3-1-连接建立（三次握手）" class="headerlink" title="3.1 连接建立（三次握手）"></a>3.1 连接建立（三次握手）</h3><ul>
+<li>第一次握手：客户端发送一条<strong>SYN报文</strong>到服务器端，该报文SYN=1，序号（Sequence Number）=x。</li>
+<li>第二次握手：服务器端发送一条<strong>（SYN+ACK）报文</strong>回客户端，该报文SYN=1、ACK=1，序号（Sequence Number）=y、确认号（Acknowledgement Number）=x+1。</li>
+<li>第三次握手：客户端发送<strong>ACK报文</strong>回服务器端，该报文ACK=1，序号（Sequence Number）=x+1、确认号（Acknowledgement Number）=y+1。</li>
+</ul>
+<p>此时TCP连接便已经建立，进行数据传输。</p>
+<p><u>注意：发送SYN=1报文或者FIN=1报文虽然不携带数据，但仍然要消耗一个序号；ACK报文可以携带数据，如果不携带数据不消耗序号。</u></p>
+<h3 id="3-2-数据传输"><a href="#3-2-数据传输" class="headerlink" title="3.2 数据传输"></a>3.2 数据传输</h3><p>数据传输。</p>
+<h3 id="3-3-连接释放（四次挥手）"><a href="#3-3-连接释放（四次挥手）" class="headerlink" title="3.3 连接释放（四次挥手）"></a>3.3 连接释放（四次挥手）</h3><p>客户端和服务器端双方都可以发起连接释放请求，这里假设客户端发起连接释放请求。</p>
+<ul>
+<li>第一次挥手：客户端发送一条<strong>FIN报文</strong>到服务器端，该报文FIN=1，序号（Sequence Number）=u。<u>意思是我客户端没有数据要发给你了，通知对方要释放从客户端到服务器端这个方向的连接。</u></li>
+<li>第二次挥手：服务器端发送<strong>ACK报文</strong>回客户端，该报文ACK=1，序号（Sequence Number）=v，确认号（Acknowledgement Number）=u+1。<u>此时从客户端到服务器端这个方向的连接释放，但服务器端仍然可以发送数据到客户端。</u></li>
+<li>第三次挥手：服务器端发送<strong>FIN+ACK报文</strong>回客户端，该报文FIN=1、ACK=1，序号（Sequence Number）=w、确认号（Acknowledgement Number）=u+1。<u>意思是服务器端到客户端的数据也发送完毕了，准备好释放连接了。</u></li>
+<li>第四次挥手：客户端发送<strong>ACK报文</strong>回服务器端，该报文ACK=1，序号（Sequence Number）=u+1、确认号（Acknowledgement Number）=w+1。<u>服务器端收到ACK报文后便CLOSED；而客户端进入TIME-WAIT，等待2MSL（Maximum Segment Lifetime）后如果依然没收到服务器端的ACK回复，则证明服务器端确实CLOSED，那么客户端也CLOSED。</u></li>
+</ul>
+<p>此时TCP连接全部释放完毕。</p>
+<h3 id="4-问题"><a href="#4-问题" class="headerlink" title="4. 问题"></a>4. 问题</h3><h3 id="4-1-问题一"><a href="#4-1-问题一" class="headerlink" title="4.1 问题一"></a>4.1 问题一</h3><ul>
+<li><p>为什么TCP三次握手而不是两次握手？</p>
+</li>
+<li><p>主要为了防止已经失效的SYN报文（连接请求报文）突然又传送到了服务器端，造成了连接的误判而使服务器资源浪费。</p>
+<p>例：</p>
+<p>客户端发送了SYN报文A到服务器端，但由于某些原因SYN报文A在网络上滞留了，所以客户端又超时重发了SYN报文B到服务器端，而后正常的连接建立、数据传输和连接释放。此时滞留的SYN报文A发到了服务器端，这是一个已经失效的报文，假设没有第三次握手，服务器端发送（SYN+ACK）报文回客户端后便建立了连接，但由于客户端认为自己没有发送SYN报文请求连接，所以不理会服务器端，也不传输数据给服务器端，白白造成服务器资源浪费。第三次握手就是为了避免这种情况。</p>
+</li>
+</ul>
+<h3 id="4-2-问题二"><a href="#4-2-问题二" class="headerlink" title="4.2 问题二"></a>4.2 问题二</h3><ul>
+<li><p>TCP三次握手的缺陷？</p>
+</li>
+<li><p>服务器端维护两个队列：syns queue（半连接队列）、accept queue（全连接队列）。</p>
+<p>第一次挥手中，服务器端收到客户端的SYN报文后，就把相关信息放到半连接队列中。随后第二次挥手，服务器端发送（SYN+ACK）报文回客户端。第三次挥手服务器端收到客户端的ACK报文后，就把半连接队列里的相关信息拿出来放到全队列连接里。</p>
+<p>SYN-Flood攻击就是攻击者伪造IP地址对服务器不停发SYN报文，而故意不理会服务器发送回的（SYN+ACK）报文，从而占满服务器的半连接队列。另一方面，真实的IP会认为我没有发送SYN报文，不理会，服务器没收到客户端的ACK报文，就不知道自己的（SYN+ACK）报文是否发送成功，一直重发，对服务器资源造成极大浪费。</p>
+</li>
+</ul>
+<h3 id="4-3-问题三"><a href="#4-3-问题三" class="headerlink" title="4.3 问题三"></a>4.3 问题三</h3><ul>
+<li>为什么第四次挥手后会有TIME-WAIT状态？</li>
+<li>防止第四次挥手发送的ACK报文丢失（防止对方没有收到第四次挥手发送的ACK报文），所以进入TIME-WAIT状态，等待2MSL后，如果依然没收到对方发送回的ACK报文，则确定对方CLOSED，那么自己也CLOSED。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/14/Java中的异常/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2103,288 +2333,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/02/Linux的常用命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fuyuanyua">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/02/Linux的常用命令/" class="post-title-link" itemprop="url">Linux的常用命令</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-02 15:48:32" itemprop="dateCreated datePublished" datetime="2019-05-02T15:48:32+08:00">2019-05-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-17 21:18:24" itemprop="dateModified" datetime="2019-07-17T21:18:24+08:00">2019-07-17</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-Linux的常用命令"><a href="#1-Linux的常用命令" class="headerlink" title="1. Linux的常用命令"></a>1. Linux的常用命令</h2><ol>
-<li><p>进入指定目录，<code>cd</code>即<code>change directory</code>的缩写。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cd /xx/xx</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="2">
-<li><p>进入用户主目录，即HOME变量指定的目录，如root用户的主目录为/root。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cd ~</span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cd</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="3">
-<li><p>返回上一级目录。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cd ..</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="4">
-<li><p>查看当前目录下所有文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ls</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="5">
-<li><p>解压压缩包到当前目录下（按Tab键可以快速补全文件名）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># tar -zxvf 文件名</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="6">
-<li><p>移动指定文件或目录到指定目录下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mv /xx/xx /xx/xx</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="7">
-<li><p>用vim编辑器编辑指定文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vim /xx/xx</span><br></pre></td></tr></table></figure>
-<p>进入文件后：</p>
-<ul>
-<li><p>按<code>i</code>：切换到输入模式，以输入字符。</p>
-</li>
-<li><p>按<code>ctrl+c</code>：暂停。</p>
-</li>
-<li><p>暂停后：</p>
-<ol>
-<li><p>按<code>:w</code>：保存文件但不退出vim。</p>
-</li>
-<li><p>按<code>:wq</code>：保存文件并退出vim。</p>
-</li>
-<li><p>按<code>:q</code>：不保存文件，退出vim。</p>
-</li>
-<li><p>按<code>:q!</code>：不保存文件，并强制退出vim。</p>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ol>
-<ol start="8">
-<li><p>重新执行刚修改的初始化文件，使之立即生效。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># source 文件名</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="9">
-<li><p>启动以jar包形式打包的java项目。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># java -jar 项目jar包名</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="10">
-<li><p>以80端口启动jar包形式的java项目。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># java -jar 项目jar包名 --servre.port=80</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="11">
-<li><p>以后台进程运行项目。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># nohup java -jar 项目jar包名 --servre.port=80 &amp;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="12">
-<li><p>查看所有java进程。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ps -ef|grep java</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="13">
-<li><p>停止所有java进程。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># pkill -9 java</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="14">
-<li><p>停止指定java进程。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># kill -9 java进程序号</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="15">
-<li><p>连接本地主机mysql。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mysql -u 用户名 -p 密码</span><br></pre></td></tr></table></figure>
-<p>一般都是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mysql -u root -p</span><br></pre></td></tr></table></figure>
-<p>随后输入密码即可进入mysql。</p>
-</li>
-</ol>
-<ol start="16">
-<li><p>连接远程主机mysql。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mysql -h 远程主机IP地址 -u 用户名 -p 密码</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="17">
-<li><p>查看当前Linux系统内核版本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># uname -r</span><br></pre></td></tr></table></figure>
-</li>
-<li></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2431,7 +2379,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">64</span>
+                    <span class="site-state-item-count">65</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

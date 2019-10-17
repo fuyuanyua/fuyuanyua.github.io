@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于Java中String的一些思考]]></title>
+    <url>%2F2019%2F10%2F17%2F%E5%85%B3%E4%BA%8EJava%E4%B8%ADString%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%2F</url>
+    <content type="text"><![CDATA[1. Java中的StringString太熟悉不过了，每天都在使用它，但是String不是Java的基本数据类型，Java的基本数据类型有（byte，short，int，long，float，double，char，boolean）总共八种，他们的包装类在这里不再赘述。 当然，String不属于基本数据类型，String是一个类，以下是一部分String类的源码： 12345public final class String implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence &#123; /** The value is used for character storage. */ private final char value[];&#125; 可以看出String类其实就是被final修饰的char数组。 2. 新建对象123456// 第一种String s1 = &quot;aaa&quot;;String s2 = &quot;aaa&quot;;// 第二种String s3 = new String(&quot;aaa&quot;);String s4 = new String(&quot;bbb&quot;); 有两种方式创建String对象： 第一种： 首先看第一行代码，String s1 = &quot;aaa&quot;;，其实是在常量池直接创建”aaa”对象。s1为引用，保存在栈中，直接指向”aaa”的内存地址。 再看第二行代码，String s2 = &quot;aaa&quot;;，因为常量池中已经存在”aaa”对象，便不再常量池中新建对象，s2为引用，直接指向”aaa”的内存地址(和s1指向的内存地址一样，如果进行s1 == s2判断，返回为true)。 第二种： 首先看第三行代码String s3 = new String(&quot;aaa&quot;);，这其实就是跟正常的类用构造方法新建对象一样，首先因为在常量池中已经存在”aaa”对象，便不再常量池中新建对象，然后在堆内存中新建String(“aaa”)对象，s3为引用，指向堆内存中String(“aaa”)对象的内存地址。 再看第四行代码String s4 = new String(&quot;bbb&quot;);，首先在常量池中新建”bbb”对象，然后再在堆内存新建String(“bbb”)对象，s4为引用，指向堆内存中String(“bbb”)对象的内存地址。所以实际上这一行代码创建了两个对象。 3. 字符串拼接强烈不建议直接使用+进行字符串拼接，以下是例子： 3.1 直接使用+1234567891011public static void main(String[] args) &#123; String result = ""; String s = "hello"; long begin = System.currentTimeMillis(); for (int i = 0; i &lt; 100000; i++) &#123; result += s; &#125; long end = System.currentTimeMillis(); long consume = end - begin; System.out.println("总耗时 = " + consume); &#125; 结果为： 1总耗时 = 36965 3.2 使用StringBuilder1234567891011121314public static void main(String[] args) &#123; String result = ""; String s = "hello"; StringBuilder stringBuilder = new StringBuilder(); stringBuilder.append(result); long begin = System.currentTimeMillis(); for (int i = 0; i &lt; 100000; i++) &#123; stringBuilder.append(s); &#125; stringBuilder.toString(); long end = System.currentTimeMillis(); long consume = end - begin; System.out.println("总耗时 = " + consume); &#125; 结果为： 1总耗时 = 15 3.3 分析通过以上两个对比，发现性能相差极其悬殊，所以当字符串要拼接很多的时候，及其不推荐使用+直接拼接，因为编译再反编译可以得知，因为每进行一次+进行拼接，都要new一个StringBuilder对象来进行append，拼接几次就要new几个StringBulider对象，而直接使用StringBuilder对象的append方法，无论拼接多少次，至始至终都只使用这一个StringBuilder对象，所以性能差距是显而易见的。]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于Java多态与继承一些注意]]></title>
     <url>%2F2019%2F10%2F16%2F%E5%85%B3%E4%BA%8EJava%E5%A4%9A%E6%80%81%E4%B8%8E%E7%BB%A7%E6%89%BF%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%2F</url>
     <content type="text"><![CDATA[例如：A类： 12345678public class A &#123; public void show(A a) &#123; System.out.println(1111); &#125; public void show(C c) &#123; System.out.println(3333); &#125;&#125; B类： 1234567891011121314public class B extends A &#123; @Override public void show(A a) &#123; System.out.println(2222); &#125; public void show(B b) &#123; System.out.println(4444); &#125; public void show1() &#123; System.out.println(5555); &#125;&#125; C类： 12public class C extends B &#123;&#125; 测试类： 1234567891011public class Main &#123; public static void main(String[] args) &#123; A a = new B(); B b = new B(); C c = new C(); a.show(a); a.show(b); a.show(c); &#125;&#125; 结果为： 123222222223333 解释：为什么结果会这样呢？ 首先A a = new B()，a为引用，类型为父类A类，但它指向子类B类的对象实例，所以a只能调用在A类定义过的方法，而不能调用在B类中新增的方法，如果A类中的某个方法在B类中被重写，那么调用重写的那个方法。还有一个是Java类型匹配，如果类型不能匹配就自动向上转型转为父类（就近原则，转换到能匹配到为止，就不再继续向上转型）。 接下来就可以解释通了： a.show(a); 传参a实际是B类，但是a引用类型为A类，只能调用A类的方法，传参a自动向上转型为A类，便有A类中的public void show(A a) {System.out.println(1111);}方法，但是此方法在B类中被重写，所以调用B类重写的@Override public void show(A a) {System.out.println(2222);}方法，所以控制台打印”2222”。 a.show(b); 同上，传参b实际是B类，但是a引用类型为A类，只能调用A类的方法，传参a自动向上转型为A类，便有A类中的public void show(A a) {System.out.println(1111);}方法，但是此方法在B类中被重写，所以调用B类重写的@Override public void show(A a) {System.out.println(2222);}方法，所以控制台打印”2222”。 a.show(c); 传参c实际类型为C，于是直接可以调用A类的public void show(C c) {System.out.println(3333);}方法，于是控制台打印”3333”。 如果在测试类中再添加一句a.show1();会怎样，结果是编译通不过，因为a的引用类型为A 类，所以只能调用A类中定义的方法，A类没有show1()这个方法，于是无法调用，编译通不过。]]></content>
@@ -144,8 +155,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
         <tag>Spring MVC</tag>
       </tags>
   </entry>
@@ -157,9 +168,9 @@
         <category>Spring</category>
       </categories>
       <tags>
+        <tag>Java</tag>
         <tag>Spring</tag>
         <tag>Spring Boot</tag>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -170,9 +181,9 @@
         <category>Spring Boot</category>
       </categories>
       <tags>
+        <tag>Java</tag>
         <tag>Spring</tag>
         <tag>Spring Boot</tag>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -183,8 +194,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -195,8 +206,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -207,8 +218,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -219,8 +230,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -231,8 +242,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -243,8 +254,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
